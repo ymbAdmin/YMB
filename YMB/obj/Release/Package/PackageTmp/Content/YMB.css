@@ -1,0 +1,37 @@
+﻿.beer-img {
+    width: 100%;
+}
+
+.page-title {
+    color: rgba(255,204,0,255);
+}
+
+#navBar a:hover {
+    color: rgba(255,204,0,255);
+}
+
+.img-slider {
+    /*width: 800px;
+    height: 800px;*/
+    margin: 0 auto;
+}
+
+.img-in-slider{
+    margin: 0 auto;
+}
+
+.div-in-slider{
+    padding: 5px;
+}
+
+.top-logo-div{
+    margin: 0 auto;
+}
+
+.top-logo-img{
+    width: 25%;
+}
+
+.slick-prev:before, .slick-next:before { 
+    color:rgba(255,204,0,255) !important;
+}
