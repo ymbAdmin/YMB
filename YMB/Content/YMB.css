@@ -35,3 +35,15 @@
 .slick-prev:before, .slick-next:before { 
     color:rgba(255,204,0,255) !important;
 }
+
+.black-white{
+    background-color: black;
+    color: white;
+}
+
+.beer-comp-divs > div {
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-style:outset;
+    border-radius: 25px;
+ }

@@ -15,7 +15,7 @@
     <AssemblyName>YMB</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -161,10 +161,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyFinancesController.cs" />
+    <Compile Include="Factory\AccountsFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FinancialAccountModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -325,6 +328,11 @@
     <Content Include="slick\slick.less" />
     <Content Include="slick\slick.scss" />
     <Content Include="Views\Shared\_ImageSlider.cshtml" />
+    <Content Include="Views\MyFinances\Create.cshtml" />
+    <Content Include="Views\MyFinances\Delete.cshtml" />
+    <Content Include="Views\MyFinances\Details.cshtml" />
+    <Content Include="Views\MyFinances\Edit.cshtml" />
+    <Content Include="Views\MyFinances\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,7 +361,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64979</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60970/</IISUrl>
+          <IISUrl>http://localhost/YMB</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

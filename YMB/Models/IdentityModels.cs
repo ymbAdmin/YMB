@@ -40,5 +40,7 @@ namespace YMB.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<YMB.Models.Accounts> Accounts { get; set; }
     }
 }

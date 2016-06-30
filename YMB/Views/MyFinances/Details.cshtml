@@ -1,0 +1,34 @@
+﻿@model YMB.Models.Accounts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Accounts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.acctName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acctName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acctType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acctType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.acctId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

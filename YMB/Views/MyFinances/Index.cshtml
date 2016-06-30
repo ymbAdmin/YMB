@@ -1,0 +1,39 @@
+﻿@model IEnumerable<YMB.Models.Accounts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.acctName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.acctType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.acctName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.acctType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.acctId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.acctId })
+        </td>
+    </tr>
+}
+
+</table>
