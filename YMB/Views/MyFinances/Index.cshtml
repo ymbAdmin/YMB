@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<YMB.Models.Accounts>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Accounts";
 }
 
-<h2>Index</h2>
+<h2 class="ymb-yellow">Accounts</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,7 +14,7 @@
             @Html.DisplayNameFor(model => model.acctName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.acctType)
+            @Html.DisplayNameFor(model => model.acctBalance)
         </th>
         <th></th>
     </tr>
@@ -26,12 +25,12 @@
             @Html.DisplayFor(modelItem => item.acctName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.acctType)
+            $@Html.DisplayFor(modelItem => item.acctBalance)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.acctId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.acctId })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.acctId })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.acctId })*@
         </td>
     </tr>
 }

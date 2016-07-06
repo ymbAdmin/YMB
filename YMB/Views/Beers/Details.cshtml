@@ -1,0 +1,66 @@
+﻿@model YMB.Models.Beers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Beers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.beerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beerStyle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerStyle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beerABV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerABV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beerCalories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerCalories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beerIBU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerIBU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beerDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beerDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.beerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

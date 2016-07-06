@@ -12,105 +12,110 @@ using YMB.Factory;
 
 namespace YMB.Controllers
 {
-    [Authorize(Roles="FinanceAdmin")]
-    public class MyFinancesController : Controller
+    public class BeersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: MyFinances
+        // GET: Beers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Accounts.ToListAsync());
+            Beers beerModel = new Beers();
+            //beerModel = 
+            return View(BeersFactory.GetBeerList());
         }
 
-        // GET: MyFinances/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Beers/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
-            Accounts accounts = await db.Accounts.FindAsync(id);
-            accounts.acctTrans = AccountsFactory.GetAccountTransactions(id);
-            if (accounts == null)
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Beers beers = await db.Beers.FindAsync(id);
+            if (beers == null)
             {
                 return HttpNotFound();
             }
-            return View(accounts);
+            return View(beers);
         }
 
-        // GET: MyFinances/Create
+        // GET: Beers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MyFinances/Create
+        // POST: Beers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "acctId,acctName,acctType")] Accounts accounts)
+        [Authorize(Roles = "BeerAdmin")]
+        public async Task<ActionResult> Create(Beers beers)
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(accounts);
+                db.Beers.Add(beers);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(accounts);
+            return View(beers);
         }
 
-        // GET: MyFinances/Edit/5
+        // GET: Beers/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accounts accounts = await db.Accounts.FindAsync(id);
-            if (accounts == null)
+            Beers beers = await db.Beers.FindAsync(id);
+            if (beers == null)
             {
                 return HttpNotFound();
             }
-            return View(accounts);
+            return View(beers);
         }
 
-        // POST: MyFinances/Edit/5
+        // POST: Beers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "acctId,acctName,acctType")] Accounts accounts)
+        public async Task<ActionResult> Edit([Bind(Include = "beerId,beerName,beerStyle,beerABV,beerCalories,beerIBU,beerDesc")] Beers beers)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accounts).State = EntityState.Modified;
+                db.Entry(beers).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(accounts);
+            return View(beers);
         }
 
-        // GET: MyFinances/Delete/5
+        // GET: Beers/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accounts accounts = await db.Accounts.FindAsync(id);
-            if (accounts == null)
+            Beers beers = await db.Beers.FindAsync(id);
+            if (beers == null)
             {
                 return HttpNotFound();
             }
-            return View(accounts);
+            return View(beers);
         }
 
-        // POST: MyFinances/Delete/5
+        // POST: Beers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Accounts accounts = await db.Accounts.FindAsync(id);
-            db.Accounts.Remove(accounts);
+            Beers beers = await db.Beers.FindAsync(id);
+            db.Beers.Remove(beers);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -122,19 +127,6 @@ namespace YMB.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        [HttpPost]
-        public ActionResult AddTransactions(int acctId, int tranType, string tranDesc, decimal tranAmount, int acctType)
-        {
-            AccountsFactory.AddTransaction(acctId, tranType, tranDesc, tranAmount, acctType);
-            return RedirectToAction("Details", new { id = acctId });
-        }
-
-        [HttpPost]
-        public ActionResult DeleteTransaction(int acctId, int tranId)
-        {
-            AccountsFactory.DeleteTransaction(acctId, tranId);
-            return RedirectToAction("Details", new { id = acctId });
         }
     }
 }

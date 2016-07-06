@@ -1,0 +1,69 @@
+﻿@model IEnumerable<YMB.Models.Beers>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    var beerCount = Model.Count();
+}
+
+<h2 class="ymb-yellow">YMB Beers (@beerCount)</h2>
+@{
+    var userName = User.Identity.GetUserName();
+    if (userName == "asutton")
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+@foreach (var item in Model)
+{
+
+    @*@Html.ActionLink("Edit", "Edit", new { id=item.beerId }) |
+        @Html.ActionLink("Details", "Details", new { id=item.beerId }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.beerId })*@
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="beer-img-slider">
+                @foreach (var imageURL in item.beerImages)
+                {
+                    <div class="div-in-slider">
+                        <img src=@imageURL class="beer-img img-thumbnail" />
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="col-md-7">
+            @Html.DisplayNameFor(model => model.beerName) : @Html.DisplayFor(modelItem => item.beerName)
+            @Html.DisplayNameFor(model => model.beerStyle) : @Html.DisplayFor(modelItem => item.beerStyle)
+            @Html.DisplayNameFor(model => model.beerABV) : @Html.DisplayFor(modelItem => item.beerABV)
+            @Html.DisplayNameFor(model => model.beerCalories) : @Html.DisplayFor(modelItem => item.beerCalories)
+            @Html.DisplayNameFor(model => model.beerIBU) : @Html.DisplayFor(modelItem => item.beerIBU)
+            <p>
+                @Html.DisplayNameFor(model => model.beerDesc) : @Html.DisplayFor(modelItem => item.beerDesc)
+            </p>
+        </div>
+    </div>
+                //don't put line after last beer because footer has one already, looks wierd
+                if (beerCount != 1)
+                {
+                    <hr />
+                }
+                beerCount--;
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      $('.beer-img-slider').slick({
+          adaptiveHeight: false,
+          dots: true,
+          fade: true,
+          draggable: true,
+          prevArrow: true
+      });
+    });
+
+
+</script>

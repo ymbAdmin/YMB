@@ -159,14 +159,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BeersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyFinancesController.cs" />
     <Compile Include="Factory\AccountsFactory.cs" />
+    <Compile Include="Factory\BeersFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Beers.cs" />
     <Compile Include="Models\FinancialAccountModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -181,6 +184,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\add_button.png" />
     <Content Include="images\beer-comp.jpg" />
     <Content Include="images\beer-emoji.png" />
     <Content Include="images\beer_barrels.jpg" />
@@ -236,6 +240,7 @@
     <Content Include="images\instagram.png" />
     <Content Include="images\landlord_stout.jpg" />
     <Content Include="images\loading.gif" />
+    <Content Include="images\loading_new.gif" />
     <Content Include="images\medals\medal_bronze.png" />
     <Content Include="images\medals\medal_gold.png" />
     <Content Include="images\medals\medal_silver.png" />
@@ -317,7 +322,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Beers.cshtml" />
     <Content Include="Views\Shared\_DocReady.cshtml" />
     <Content Include="slick\config.rb" />
     <Content Include="slick\fonts\slick.eot" />
@@ -333,6 +337,11 @@
     <Content Include="Views\MyFinances\Details.cshtml" />
     <Content Include="Views\MyFinances\Edit.cshtml" />
     <Content Include="Views\MyFinances\Index.cshtml" />
+    <Content Include="Views\Beers\Create.cshtml" />
+    <Content Include="Views\Beers\Delete.cshtml" />
+    <Content Include="Views\Beers\Details.cshtml" />
+    <Content Include="Views\Beers\Edit.cshtml" />
+    <Content Include="Views\Beers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

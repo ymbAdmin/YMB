@@ -2,33 +2,128 @@
 
 @{
     ViewBag.Title = "Details";
+    var accountBalance = Model.acctBalance;
+    var counter = 0;
+    var rowClass = "";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Accounts</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.acctName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.acctName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.acctType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.acctType)
-        </dd>
-
-    </dl>
+<div id="fade">
+    <img id="loading" src="~/images/loading_new.gif" />
 </div>
 <p>
+    <br/>
     @Html.ActionLink("Edit", "Edit", new { id = Model.acctId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script>
+    function showAddTran() {
+        $("#add-tran-div").show();
+    }
+    function hideAddTran() {
+        $("#add-tran-div").hide();
+    }
+    function deleteTransaction(acctId, tranId){
+        openLoadingModal();
+        var url = "/MyFinances/DeleteTransaction";
+        if (window.location.hostname == 'localhost'){
+            url = "/YMB/MyFinances/DeleteTransaction";
+        }
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: {acctId : acctId, tranId : tranId},
+            success: function(result){
+                closeLoadingModal();
+                location.reload();
+            }
+        });
+    }
+    function addTransaction(acctId, acctType){
+        openLoadingModal();
+        var url = "/MyFinances/AddTransactions";
+        if (window.location.hostname == 'localhost'){
+            url = "/YMB/MyFinances/AddTransactions";
+        }
+        var tranDesc = $("#tranDesc").val();
+        var tranAmount = $("#tranAmount").val();
+        var tranType = $("#tranType").val();
+        if (tranDesc <= "" || tranAmount <= 0.00 || tranType == 0){
+            alert("Please enter every field.");
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: {acctId : acctId, tranType : tranType, tranDesc : tranDesc, tranAmount : tranAmount, acctType : acctType},
+            success: function(result){
+                closeLoadingModal();
+                location.reload();
+            }
+        });
+    }
+    
+    function openLoadingModal() {
+        $("#fade").show();
+    }
+
+    function closeLoadingModal() {
+        $("#fade").hide();
+    }
+</script>
+<div>
+    <h4><i>@Html.DisplayFor(model => model.acctName)</i></h4>
+    <a href="#"><img src="~/images/add_button.png" onclick="javascript: showAddTran();" /></a>
+    <hr />
+</div>
+<div class="transaction-container">
+    <div class="row hide-on-phone">
+        <div class="col-md-2">
+            <b>Transaction Description</b>
+        </div>
+        <div class="col-md-2">
+            <b>Transaction Date</b>
+        </div>
+        <div class="col-md-2">
+            <b>Transaction Amount</b>
+        </div>
+        <div class="col-md-2">
+            <b>Account Balance</b>
+        </div>
+    </div>
+
+    @foreach (var tran in Model.acctTrans)
+    {
+        if (counter % 2 <= 0)
+        {
+            rowClass = "odd";
+        }
+        <div class="row @rowClass">
+            <div class="col-md-2">
+                @tran.tranDesc
+            </div>
+            <div class="col-md-2">
+                @tran.tranDate.ToString("MMM dd yyyy")
+            </div>
+            <div class="col-md-2">
+                $@tran.tranAmount
+            </div>
+            <div class="col-md-2">
+                $@tran.acctBalance
+            </div>
+            <div class="col-md-2">
+                <input type="hidden" name="tranId" value="@tran.tranId" />
+                <a href="#"><img src="~/images/delete_button.png" onclick="javascript: deleteTransaction(@Model.acctId, @tran.tranId);" /></a>
+            </div>
+        </div>
+        rowClass = "";
+        counter++;
+    }
+</div>
+<div id="add-tran-div" style="display: none;" class="add-tran-div">
+    <label>Transaction Description:</label><input id="tranDesc" /><br />
+    <label>Transaction Amount:</label><input id="tranAmount" /><br /><br />
+    <label>Transaction Type:</label><select id="tranType"><option value="0">Select tran type...</option><option value="1">Charge (-)</option><option value="2">Deposit/Payment (+)</option></select><br />
+    <input type="button" onclick="javascript: hideAddTran();" value="Cancel" />
+    <input type="button" onclick="javascript: addTransaction(@Model.acctId, @Model.acctType);" value="Add Tran" />
+</div>

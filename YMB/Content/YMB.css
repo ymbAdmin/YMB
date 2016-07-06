@@ -2,12 +2,13 @@
     width: 100%;
 }
 
-.page-title {
+.ymb-yellow {
     color: rgba(255,204,0,255);
 }
 
 #navBar a:hover {
     color: rgba(255,204,0,255);
+    font-weight: bolder;
 }
 
 .img-slider {
@@ -16,27 +17,27 @@
     margin: 0 auto;
 }
 
-.img-in-slider{
+.img-in-slider {
     margin: 0 auto;
 }
 
-.div-in-slider{
+.div-in-slider {
     padding: 5px;
 }
 
-.top-logo-div{
+.top-logo-div {
     margin: 0 auto;
 }
 
-.top-logo-img{
+.top-logo-img {
     width: 25%;
 }
 
-.slick-prev:before, .slick-next:before { 
-    color:rgba(255,204,0,255) !important;
+.slick-prev:before, .slick-next:before {
+    color: rgba(255,204,0,255) !important;
 }
 
-.black-white{
+.black-white {
     background-color: black;
     color: white;
 }
@@ -44,6 +45,107 @@
 .beer-comp-divs > div {
     padding: 20px;
     border: 2px solid #ccc;
-    border-style:outset;
+    border-style: outset;
     border-radius: 25px;
- }
+}
+
+.magneto {
+    font-family: magneto;
+}
+
+.arual {
+    font-family: arual;
+}
+
+
+.top-quote {
+    font-size: 2em;
+    margin-top: -50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1px black;
+}
+
+@media (max-width: 500px) {
+    .top-quote {
+        font-size: 0.75em;
+        margin-top: -25px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+}
+
+.mini-logo {
+    float: left;
+    width: 50px;
+    padding: 5px;
+    display: block;
+    margin-right: 5px;
+}
+
+.odd {
+    background-color: lightgray;
+}
+
+
+.transaction-container {
+    overflow: auto;
+    height: 500px;
+    border: 2.5px solid black;
+    padding: 2.5px;
+}
+
+.add-tran-div {
+    height: 250px;
+    width: 250px;
+    background-color: #F6F6F6;
+    color: black;
+    z-index: 999;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    padding: 5px;
+    line-height: 20px;
+}
+
+/*iPhone 5*/
+@media (max-width: 500px) {
+    .top-quote {
+        font-size: 0.75em;
+        margin-top: -25px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .transaction-container {
+        height: 350px;
+    }
+
+    .hide-on-phone {
+        display: none;
+    }
+    .add-tran-div {
+        left: 25%;
+    }
+
+}
+
+
+#fade {
+    display: none;
+    background-color: #ababab;
+    opacity: .7;
+    z-index: 1000;
+    top: 0%;
+    left: 0%;
+    height: 1225px;
+    width: 100%;
+    position: absolute;
+}
+
+#loading {
+    border: solid;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    display: block;
+    margin-top: 20%;
+    margin-left: 50%;
+}

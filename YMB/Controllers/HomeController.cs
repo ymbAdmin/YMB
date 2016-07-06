@@ -13,13 +13,6 @@ namespace YMB.Controllers
             return View();
         }
 
-        public ActionResult Beers()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
         public ActionResult About()
         {
             return View();

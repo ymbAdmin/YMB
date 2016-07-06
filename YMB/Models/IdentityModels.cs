@@ -42,5 +42,11 @@ namespace YMB.Models
         }
 
         public System.Data.Entity.DbSet<YMB.Models.Accounts> Accounts { get; set; }
+
+        public System.Data.Entity.DbSet<YMB.Models.AccountTransactions> AccountTransactions { get; set; }
+
+        public System.Data.Entity.DbSet<YMB.Models.Beers> Beers { get; set; }
+
+        public System.Data.Entity.DbSet<YMB.Models.BeerImages> BeerImages { get; set; }
     }
 }
