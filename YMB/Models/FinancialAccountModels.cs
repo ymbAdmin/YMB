@@ -10,13 +10,20 @@ namespace YMB.Models
     {
         [Key]
         public int acctId { get; set; }
-        [Display(Name="Account Name")]
+        [Display(Name = "Account Name")]
         public string acctName { get; set; }
         public int acctType { get; set; }
         [Display(Name = "Account Transactions")]
         public List<AccountTransactions> acctTrans { get; set; }
         [Display(Name = "Account Balance")]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? acctBalance { get; set; }
+        [Display(Name = "Bill Due Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime? acctBillDueDate { get; set; }
+        [Display(Name = "Amount Due")]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public decimal? acctBillDueAmount { get; set; }
     }
 
     public class AccountTransactions
@@ -30,5 +37,14 @@ namespace YMB.Models
         public decimal tranAmount { get; set; }
         public decimal acctBalance { get; set; }
 
+    }
+
+    public class Paycheck
+    {
+        [Key]
+        public int id { get; set; }
+        public string paycheck { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime paycheckDate { get; set; }
     }
 }

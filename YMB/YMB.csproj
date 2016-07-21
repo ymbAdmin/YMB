@@ -168,6 +168,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607111941473_InitialModel.cs" />
+    <Compile Include="Migrations\201607111941473_InitialModel.Designer.cs">
+      <DependentUpon>201607111941473_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Beers.cs" />
     <Compile Include="Models\FinancialAccountModels.cs" />
@@ -190,20 +195,12 @@
     <Content Include="images\beer_barrels.jpg" />
     <Content Include="images\beer_barrels2.jpg" />
     <Content Include="images\bio_pic.jpg" />
-    <Content Include="images\BlackPaw.svg" />
-    <Content Include="images\BlackPawWithInitials.svg" />
     <Content Include="images\BlackPawWithInitials2.png" />
     <Content Include="images\boil.png" />
     <Content Include="images\brewery_overview.png" />
     <Content Include="images\brewery_overview2.png" />
     <Content Include="images\chilling.png" />
-    <Content Include="images\circlelogo.svg" />
     <Content Include="images\circlelogotall.png" />
-    <Content Include="images\circlelogotall.svg" />
-    <Content Include="images\CircleLogoWithBlackTextandYellowPawClearBackground.svg" />
-    <Content Include="images\CircleLogoWithBlackTextandYellowPawTanBackground.svg" />
-    <Content Include="images\CircleLogoWithBlackTextandYellowPawWhiteBackground.svg" />
-    <Content Include="images\circlelogo_turned.svg" />
     <Content Include="images\clothing\AllDesigns.svg" />
     <Content Include="images\clothing\BlackTextLogoWithYellowPaw.svg" />
     <Content Include="images\clothing\CircleLogoWithBlackTextandYellowPaw.svg" />
@@ -230,11 +227,10 @@
     <Content Include="images\delete_button.png" />
     <Content Include="images\facebook.png" />
     <Content Include="images\fermenting.png" />
+    <Content Include="images\goFundMe.png" />
     <Content Include="images\hopback.png" />
     <Content Include="images\hopback2.png" />
-    <Content Include="images\hopLogo.svg" />
     <Content Include="images\hops.png" />
-    <Content Include="images\hops.svg" />
     <Content Include="images\icon_chrome.png" />
     <Content Include="images\info_symbol.png" />
     <Content Include="images\instagram.png" />
@@ -245,23 +241,44 @@
     <Content Include="images\medals\medal_gold.png" />
     <Content Include="images\medals\medal_silver.png" />
     <Content Include="images\me_sarah_bio.JPG" />
+    <Content Include="images\mobile-goFundme.png" />
     <Content Include="images\signature.jpg" />
-    <Content Include="images\signature.svg" />
+    <Content Include="images\svg\AllDesigns.svg" />
+    <Content Include="images\svg\BlackPaw.svg" />
+    <Content Include="images\svg\BlackPawWithInitials.svg" />
+    <Content Include="images\svg\BlackTextLogoWithYellowPaw.svg" />
+    <Content Include="images\svg\circlelogo.svg" />
+    <Content Include="images\svg\circlelogotall.svg" />
+    <Content Include="images\svg\CircleLogoWithBlackTextandYellowPaw.svg" />
+    <Content Include="images\svg\CircleLogoWithBlackTextandYellowPawClearBackground.svg" />
+    <Content Include="images\svg\CircleLogoWithBlackTextandYellowPawTanBackground.svg" />
+    <Content Include="images\svg\CircleLogoWithBlackTextandYellowPawWhiteBackground.svg" />
+    <Content Include="images\svg\circlelogo_turned.svg" />
+    <Content Include="images\svg\hopLogo.svg" />
+    <Content Include="images\svg\hops.svg" />
+    <Content Include="images\svg\mobile-goFundme.svg" />
+    <Content Include="images\svg\signature.svg" />
+    <Content Include="images\svg\sticker_CircleLogoWithBlackTextandYellowPaw.svg" />
+    <Content Include="images\svg\WhiteTextLogoWithYellowPaw.svg" />
+    <Content Include="images\svg\YellowPaw.svg" />
+    <Content Include="images\svg\YellowPawWithBlackInitials.svg" />
+    <Content Include="images\svg\YellowPawWithWhiteInitials.svg" />
+    <Content Include="images\svg\YellowPayInitialsInPaw.svg" />
+    <Content Include="images\svg\YMBclothingLine.svg" />
+    <Content Include="images\svg\YMBlogo2.svg" />
+    <Content Include="images\svg\YMBlogo3.svg" />
+    <Content Include="images\svg\YMBlogo4.svg" />
+    <Content Include="images\svg\YMBlogo5.svg" />
+    <Content Include="images\svg\YMBlogo6.svg" />
+    <Content Include="images\svg\YMBwords_black.svg" />
+    <Content Include="images\svg\YMBwords_yellow.svg" />
     <Content Include="images\TextLogoYellowPaw.png" />
+    <Content Include="images\widget.png" />
     <Content Include="images\yeast_harvest.png" />
-    <Content Include="images\YellowPaw.svg" />
     <Content Include="images\YellowPawWithInitials.png" />
-    <Content Include="images\YMBclothingLine.svg" />
-    <Content Include="images\YMBlogo2.svg" />
-    <Content Include="images\YMBlogo3.svg" />
     <Content Include="images\YMBlogo4.png" />
-    <Content Include="images\YMBlogo4.svg" />
     <Content Include="images\YMBlogo5.png" />
-    <Content Include="images\YMBlogo5.svg" />
-    <Content Include="images\YMBlogo6.svg" />
-    <Content Include="images\YMBwords_black.svg" />
     <Content Include="images\YMBwords_yellow.png" />
-    <Content Include="images\YMBwords_yellow.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Arual.ttf" />
@@ -351,6 +368,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607111941473_InitialModel.resx">
+      <DependentUpon>201607111941473_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

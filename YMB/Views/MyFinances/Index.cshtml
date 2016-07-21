@@ -6,7 +6,7 @@
 <h2 class="ymb-yellow">Accounts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Next Paycheck:  <b>@ViewBag.NextPaycheck</b>
 </p>
 <table class="table">
     <tr>
@@ -16,23 +16,53 @@
         <th>
             @Html.DisplayNameFor(model => model.acctBalance)
         </th>
+        <th class="no-show-on-phone">
+            @Html.DisplayNameFor(model => model.acctBillDueDate)
+        </th>
+        <th class="no-show-on-phone">
+            @Html.DisplayNameFor(model => model.acctBillDueAmount)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.acctName)
-        </td>
-        <td>
-            $@Html.DisplayFor(modelItem => item.acctBalance)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.acctId })
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.acctId })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.acctName)
+            </td>
+            <td>
+                @if (item.acctType == 2 && item.acctBalance > 0)
+                {
+                    <span class="red">
+                        @Html.DisplayFor(modelItem => item.acctBalance)
+                    </span>
+                }
+                else
+                {
+                    <span class="green">
+                        @Html.DisplayFor(modelItem => item.acctBalance)
+                    </span>
+                }
+            </td>
+            <td class="no-show-on-phone">
+                @if (item.acctBillDueAmount > 0)
+                {
+                    @Html.DisplayFor(modelItem => item.acctBillDueDate)
+                }
+            </td>
+            <td class="no-show-on-phone">
+                @if (item.acctBillDueAmount > 0)
+                {
+                    @Html.DisplayFor(modelItem => item.acctBillDueAmount)
+                }
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.acctId })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.acctId })*@
+            </td>
+        </tr>
+    }
 
 </table>

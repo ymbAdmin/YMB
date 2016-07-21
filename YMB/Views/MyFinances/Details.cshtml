@@ -74,6 +74,14 @@
 <div>
     <h4><i>@Html.DisplayFor(model => model.acctName)</i></h4>
     <a href="#"><img src="~/images/add_button.png" onclick="javascript: showAddTran();" /></a>
+    
+    @if (Model.acctType == 2)
+    {
+        <br/>
+        <label>Next Bill:</label>@Html.DisplayFor(m => m.acctBillDueDate)<br/>
+        <label>Bill Amount:</label>@Html.DisplayFor(m => m.acctBillDueAmount)
+    }
+    
     <hr />
 </div>
 <div class="transaction-container">

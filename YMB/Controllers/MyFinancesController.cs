@@ -12,21 +12,30 @@ using YMB.Factory;
 
 namespace YMB.Controllers
 {
-    [Authorize(Roles="FinanceAdmin")]
+    [Authorize(Roles = "FinanceAdmin")]
     public class MyFinancesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: MyFinances
         public async Task<ActionResult> Index()
         {
-            return View(await db.Accounts.ToListAsync());
+
+            var date = _db.Paycheck.Find(1).paycheckDate;
+            if (DateTime.Now > date){
+                // make next paycheck in 2 weeks at 7am
+                date = date.AddDays(14);
+                date = date.AddHours(7);
+                AccountsFactory.UpdatePaycheckDate(date);
+            }
+            ViewBag.NextPaycheck = (string.Format("{0}/{1}/{2}", date.Month, date.Day, date.Year));
+            return View(await _db.Accounts.OrderBy(a => a.acctType).ThenBy(a => a.acctBalance).ToListAsync());
         }
 
         // GET: MyFinances/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            Accounts accounts = await db.Accounts.FindAsync(id);
+            Accounts accounts = await _db.Accounts.FindAsync(id);
             accounts.acctTrans = AccountsFactory.GetAccountTransactions(id);
             if (accounts == null)
             {
@@ -50,8 +59,8 @@ namespace YMB.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(accounts);
-                await db.SaveChangesAsync();
+                _db.Accounts.Add(accounts);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +74,7 @@ namespace YMB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accounts accounts = await db.Accounts.FindAsync(id);
+            Accounts accounts = await _db.Accounts.FindAsync(id);
             if (accounts == null)
             {
                 return HttpNotFound();
@@ -82,8 +91,8 @@ namespace YMB.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accounts).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(accounts).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(accounts);
@@ -96,7 +105,7 @@ namespace YMB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accounts accounts = await db.Accounts.FindAsync(id);
+            Accounts accounts = await _db.Accounts.FindAsync(id);
             if (accounts == null)
             {
                 return HttpNotFound();
@@ -109,9 +118,9 @@ namespace YMB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Accounts accounts = await db.Accounts.FindAsync(id);
-            db.Accounts.Remove(accounts);
-            await db.SaveChangesAsync();
+            Accounts accounts = await _db.Accounts.FindAsync(id);
+            _db.Accounts.Remove(accounts);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +128,7 @@ namespace YMB.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

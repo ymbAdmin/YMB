@@ -35,14 +35,12 @@
             </div>
         </div>
         <div class="col-md-7">
-            @Html.DisplayNameFor(model => model.beerName) : @Html.DisplayFor(modelItem => item.beerName)
-            @Html.DisplayNameFor(model => model.beerStyle) : @Html.DisplayFor(modelItem => item.beerStyle)
-            @Html.DisplayNameFor(model => model.beerABV) : @Html.DisplayFor(modelItem => item.beerABV)
-            @Html.DisplayNameFor(model => model.beerCalories) : @Html.DisplayFor(modelItem => item.beerCalories)
-            @Html.DisplayNameFor(model => model.beerIBU) : @Html.DisplayFor(modelItem => item.beerIBU)
-            <p>
-                @Html.DisplayNameFor(model => model.beerDesc) : @Html.DisplayFor(modelItem => item.beerDesc)
-            </p>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerName)</b></span><br/><span style="padding-left: 15px; font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerName)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerStyle)</b></span><br /> <span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">@Html.DisplayFor(modelItem => item.beerStyle)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerABV)</b></span><br /> <span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">@Html.DisplayFor(modelItem => item.beerABV)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerCalories)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerCalories)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerIBU)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerIBU)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => model.beerDesc)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerDesc)</span></div>
         </div>
     </div>
                 //don't put line after last beer because footer has one already, looks wierd
@@ -56,13 +54,13 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-      $('.beer-img-slider').slick({
-          adaptiveHeight: false,
-          dots: true,
-          fade: true,
-          draggable: true,
-          prevArrow: true
-      });
+        $('.beer-img-slider').slick({
+            adaptiveHeight: false,
+            dots: true,
+            fade: true,
+            draggable: true,
+            prevArrow: true
+        });
     });
 
 

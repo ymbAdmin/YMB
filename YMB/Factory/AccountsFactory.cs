@@ -50,6 +50,14 @@ namespace YMB.Factory
             _db.SaveChanges();
         }
 
+        internal static void UpdatePaycheckDate(DateTime newDate)
+        {
+            Paycheck paycheck = _db.Paycheck.First<Paycheck>();
+            paycheck.paycheckDate = newDate;
+            _db.Entry(paycheck).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+
         private static decimal GetAccountNewBalance(decimal tranAmount, decimal prevBal, int tranType, int acctType)
         {
             if (tranType == 1)//subtract

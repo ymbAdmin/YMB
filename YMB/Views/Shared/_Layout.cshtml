@@ -17,7 +17,7 @@
     <div id="navBar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div>
-                <img src="~/images/YellowPaw.svg" alt="YMB Yellow Paw" class="mini-logo" />
+                <img src="~/images/svg/YellowPaw.svg" alt="YMB Yellow Paw" class="mini-logo" />
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,7 +27,7 @@
                 </button>
                 @Html.ActionLink("Yellow Mutt Brewery", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse mobile-navbar-padding">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Beers", "Index", "Beers")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -45,6 +45,9 @@
             </div>
         </div>
     </div>
+    <div class="go-fund-me "><a target="_blank" style="border:none;" href="https://www.gofundme.com/ymb_opening?utm_medium=wdgt" title="Visit this page now."><img class="img-responsive" src="~/images/goFundMe.png"></a></div>
+    <div class="go-fund-me-mobile"><a target="_blank" style="border:none;" href="https://www.gofundme.com/ymb_opening?utm_medium=wdgt" title="Visit this page now."><input type="button" class="button-donate-mobile" value="Donate Now"/><img src="~/images/svg/mobile-goFundme.svg" alt="Donate now!" style="padding-left: 40px;"/></a></div>
+    <div class="mobile-top-gofundme-margin"></div>
     <div class="container body-content">
         @RenderBody()
         <hr />

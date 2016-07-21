@@ -20,7 +20,7 @@ namespace YMB.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact us at Yellow Mutt Brewery!";
+            ViewBag.Message = "Contact YMB!";
 
             return View();
         }

@@ -48,5 +48,7 @@ namespace YMB.Models
         public System.Data.Entity.DbSet<YMB.Models.Beers> Beers { get; set; }
 
         public System.Data.Entity.DbSet<YMB.Models.BeerImages> BeerImages { get; set; }
+
+        public System.Data.Entity.DbSet<YMB.Models.Paycheck> Paycheck { get; set; }
     }
 }
