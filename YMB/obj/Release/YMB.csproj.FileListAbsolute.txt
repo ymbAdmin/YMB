@@ -53,5 +53,5 @@ K:\source\Projects\YMB\YMB\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 K:\source\Projects\YMB\YMB\obj\Release\YMB.dll
 K:\source\Projects\YMB\YMB\obj\Release\YMB.pdb
 K:\source\Projects\YMB\YMB\obj\Release\YMB.csprojResolveAssemblyReference.cache
-K:\source\Projects\YMB\YMB\obj\Release\YMB.Migrations.InitialModel.resources
 K:\source\Projects\YMB\YMB\obj\Release\YMB.csproj.GenerateResource.Cache
+K:\source\Projects\YMB\YMB\obj\Release\YMB.Migrations.Init.resources

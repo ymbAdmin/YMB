@@ -1,0 +1,12 @@
+﻿<div id="requestForm">
+
+        <h2 style="text-align: center;" id="requestFormTitle"></h2>
+        <input type="hidden" id="requestId" />
+        Your name:<input type="text" id="requesterName" placeholder="John Smith" /> <br />
+        Address:<input type="text" id="requesterMailAddr"  placeholder="123 Easy St"  /><br />
+        City:<input type="text" id="requesterMailCity"  size="8" placeholder="Somewhere"  />State:<input type="text"  id="requesterMailState"  size="1" maxlength="2" placeholder="MA" />Zip:<input type="text"  id="requesterMailZip" size="2" maxlength="5" placeholder="12345"  /><br />
+        Email:<input type="text" id="requesterEmail" name="email" placeholder="my@email.com" /><br />
+        Comments:<textarea id="requesterComments" cols="50" rows="3" placeholder="Enter any comments..."></textarea> <br />
+        <input type="button" class="ymb-yellow-background" value="Cancel" onclick="javascript: hideRequestForm();" /><input type="submit" class="ymb-yellow-background" value="Submit" onclick="javascript: sendRequest();" />
+    
+</div>

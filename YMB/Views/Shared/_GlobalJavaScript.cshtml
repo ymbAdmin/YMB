@@ -1,0 +1,81 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        hideRequestForm();
+        $("#fade").hide();
+        //image slider init
+        $('.img-slider').slick({
+            adaptiveHeight: true,
+            //autoplay: true,
+            autoplaySpeed: 3500,
+            dots: true,
+            fade: true,
+            draggable: true
+        });
+
+
+
+    });
+
+    function showRequestForm(requestId) {
+        $("#requestId").val(requestId)
+        $("body").css("overflow", "hidden");
+        $("#requestForm").show();
+        $("#requestFormTitle").html(buildFormTitle(requestId));
+    }
+
+    function sendRequest() {
+        var requestId = $("#requestId").val();
+        var name = $("#requesterName").val();
+        var addr = $("#requesterMailAddr").val();
+        var city = $("#requesterMailCity").val();
+        var state = $("#requesterMailState").val();
+        var zip = $("#requesterMailZip").val();
+        var email = $("#requesterEmail").val();
+        var comments = $("#requesterComments").val();
+        if (name == "" || addr == "" || city == "" || state == "" || zip == "" || email == "") {
+            alert("Enter at least name, mailing address, and email. Thanks!");
+            return false;
+        }
+
+        var url = "/Home/SendRequest";
+        if (window.location.hostname == 'localhost') {
+            url = "/YMB/Home/SendRequest";
+        }
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: { reqId: requestId, name: name, addr: addr, city: city, state: state, zip: zip, email: email, comments: comments },
+            success: function (result) {
+                location.reload();
+                $("body").css("overflow", "auto");
+            }
+        });
+    }
+
+    function hideRequestForm() {
+        $("#requestForm").hide();
+        $("body").css("overflow", "auto");
+    }
+
+    function buildFormTitle(id) {
+        var title = "";
+
+        switch (id) {
+            case 1:
+                title = "Sticker Request Form";
+                break;
+            default:
+                title = "Request Form";
+        }
+        return title;
+    }
+    function openLoadingModal() {
+        $("#fade").show();
+    }
+
+    function closeLoadingModal() {
+        $("#fade").hide();
+    }
+</script>

@@ -50,8 +50,8 @@ K:\source\Projects\YMB\YMB\bin\Microsoft.Owin.Security.OAuth.xml
 K:\source\Projects\YMB\YMB\bin\Microsoft.Owin.Security.Google.xml
 K:\source\Projects\YMB\YMB\bin\Microsoft.Owin.Security.Twitter.xml
 K:\source\Projects\YMB\YMB\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-K:\source\Projects\YMB\YMB\obj\Debug\YMB.Migrations.InitialModel.resources
-K:\source\Projects\YMB\YMB\obj\Debug\YMB.csproj.GenerateResource.Cache
 K:\source\Projects\YMB\YMB\obj\Debug\YMB.dll
 K:\source\Projects\YMB\YMB\obj\Debug\YMB.pdb
 K:\source\Projects\YMB\YMB\obj\Debug\YMB.csprojResolveAssemblyReference.cache
+K:\source\Projects\YMB\YMB\obj\Debug\YMB.Migrations.Init.resources
+K:\source\Projects\YMB\YMB\obj\Debug\YMB.csproj.GenerateResource.Cache
