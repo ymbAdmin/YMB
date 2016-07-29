@@ -180,7 +180,7 @@
     height: 100px;
     margin-top: 20%;
     border-radius: 15px;
-    background: rgba(134,179,36,255);
+    /*background: rgba(134,179,36,255);*/
 }
 
 #requestForm {
@@ -197,9 +197,29 @@
     border-radius: 5px;
 }
 
-    #requestForm input {
-        margin: 5px;
-    }
+#requestForm input {
+    margin: 5px;
+}
+
+.request-not-processed{
+    font-weight: bolder;
+}
+.table th{
+    font-style: italic;
+    color: lightgray;
+}
+
+.go-fund-me-close-button{
+    float: right;
+    z-index: 10000000;
+    margin-bottom: -2px;
+    margin-right: -11px;
+}
+
+.go-fund-me-close-button-mobile{
+    float: right;
+    z-index: 10000000;
+}
 
 /*iPhone 5*/
 @media (max-width: 800px) {
@@ -219,6 +239,7 @@
 
     .add-tran-div {
         left: 25%;
+        top: 15%;
     }
 
     #loading {
@@ -297,5 +318,12 @@
 
     .go-fund-me {
         display: none;
+    }
+}
+
+@media (max-width: 1750px) {
+    .go-fund-me {
+        margin-left: 1%;
+        width: 10%;
     }
 }

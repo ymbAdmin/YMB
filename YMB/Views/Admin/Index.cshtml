@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="ymb-yellow-text">YMB Admin</h2>
+<ul>
+    @if (Request.IsAuthenticated)
+    {
+        var userName = User.Identity.GetUserName();
+        if (userName == "asutton")
+        {
+            <li>@Html.ActionLink("Requests", "Requests", "Admin")</li>
+        }
+    }
+</ul>
+
+
+

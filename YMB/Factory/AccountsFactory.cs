@@ -11,6 +11,11 @@ namespace YMB.Factory
     {
         private static ApplicationDbContext _db = new ApplicationDbContext();
 
+        internal static List<Accounts> GetAccounts()
+        {
+            return  _db.Accounts.OrderBy(a => a.acctType).ThenBy(a => a.acctBalance).ToList();
+        }
+
         internal static List<AccountTransactions> GetAccountTransactions(int acctId)
         {
             List<AccountTransactions> acctTrans = new List<AccountTransactions>();

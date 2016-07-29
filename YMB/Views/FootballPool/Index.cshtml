@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@{
+    ViewBag.Title = "Football Pool";
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">2016 YMB Pick'em NFL Football Pool</h2>
+
+<p>
+    <span style="padding-left: 25px;">P</span>leased to annouce the Yellow Mutt Brewery Pick'em NFL Football Pool is back for the 2016 season, 
+    I know everyone's season wasn't the same last year. If you played the pool during the 2014 NFL season, the rules will be very similiar to what you remember. 
+</p>
+<p>
+    <h3>Registering</h3>
+    @if (Request.IsAuthenticated)
+    {
+        Boolean isPlaying;
+        Boolean.TryParse(User.Identity.IsUserPlayingPool(), out isPlaying);
+        var userName = User.Identity.GetUserName();
+        var userRealName = User.Identity.GetUserFirstName();
+        var simpleUserId = User.Identity.GetSimpleUserId();
+        var userId = User.Identity.GetUserId();
+        if (!isPlaying)
+        {
+            <span>You are already registered with YMB! One step to go.
+            Please click <a href="#" onclick="registerUserForPool('@(new HtmlString(userId))', @simpleUserId, '@userName');">here</a> to join to pool.</span>
+        }
+        else
+        {
+            <span>@userRealName, you are all ready to go. Enjoy!</span>
+        }
+    }
+    else
+    {
+        <span>1. Please @Html.ActionLink("create", "Register", "Account", new { @Action = "registerFootballPool" }, null) an account to join the football pool.</span>
+    }
+
+</p>

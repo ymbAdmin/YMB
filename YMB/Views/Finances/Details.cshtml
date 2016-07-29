@@ -23,9 +23,9 @@
     }
     function deleteTransaction(acctId, tranId){
         openLoadingModal();
-        var url = "/MyFinances/DeleteTransaction";
+        var url = "/Finances/DeleteTransaction";
         if (window.location.hostname == 'localhost'){
-            url = "/YMB/MyFinances/DeleteTransaction";
+            url = "/YMB/Finances/DeleteTransaction";
         }
         $.ajax({
             type: "post",
@@ -40,9 +40,9 @@
     }
     function addTransaction(acctId, acctType){
         openLoadingModal();
-        var url = "/MyFinances/AddTransactions";
+        var url = "/Finances/AddTransactions";
         if (window.location.hostname == 'localhost'){
-            url = "/YMB/MyFinances/AddTransactions";
+            url = "/YMB/Finances/AddTransactions";
         }
         var tranDesc = $("#tranDesc").val();
         var tranAmount = $("#tranAmount").val();

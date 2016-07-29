@@ -19,7 +19,7 @@ namespace YMB.Models
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? acctBalance { get; set; }
         [Display(Name = "Bill Due Date")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime? acctBillDueDate { get; set; }
         [Display(Name = "Amount Due")]
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
@@ -44,7 +44,7 @@ namespace YMB.Models
         [Key]
         public int id { get; set; }
         public string paycheck { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime paycheckDate { get; set; }
     }
 }

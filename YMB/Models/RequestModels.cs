@@ -8,9 +8,11 @@ namespace YMB.Models
 {
     public class Requests
     {
-        public Requests(int RequestId, string ReqName, string ReqEmail, string ReqAddr, string ReqState, string RegCity, string ReqZip, string Comments)
+        public Requests() { }
+
+        public Requests(string RequestType, string ReqName, string ReqEmail, string ReqAddr, string ReqState, string RegCity, string ReqZip, string Comments)
         {
-            this.requestId = RequestId;
+            this.requestType = RequestType;
             this.requesterName = ReqName;
             this.requesterEmail = ReqEmail;
             this.requesterAddress = ReqAddr;
@@ -24,7 +26,8 @@ namespace YMB.Models
 
         [Key]
         public int id { get; set; }
-        public int requestId { get; set; }
+        [Display(Name = "Request Type")]
+        public string requestType { get; set; }
         [Display(Name="Name")]
         public string requesterName { get; set; }
         [Display(Name = "Email")]
@@ -40,6 +43,7 @@ namespace YMB.Models
         [Display(Name = "Name")]
         public string comments { get; set; }
         public Boolean isProcessed { get; set; }
+        [Display(Name = "Date")]
         public DateTime dateRequested { get; set; }
     }
 }

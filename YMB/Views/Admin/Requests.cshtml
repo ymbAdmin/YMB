@@ -1,0 +1,82 @@
+﻿@model IEnumerable<YMB.Models.Requests>
+
+@{
+    ViewBag.Title = "Admin";
+    var rowClass = "";
+}
+
+<h2>Admin</h2>
+
+<div>
+    <h4>Requests</h4>
+    <table class="table">       
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.requesterName)
+            </th>
+            <th class="hide-on-phone">
+                @Html.DisplayNameFor(model => model.requesterEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requestType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateRequested)
+            </th>
+            <th class="hide-on-phone">
+                Requester Info
+            </th>
+            <th class="hide-on-phone">
+                Comments
+            </th>
+            <td></td>
+        </tr>
+
+        @foreach (var request in Model)
+        {
+            if (!request.isProcessed)
+            {
+                rowClass = "request-not-processed";
+            }
+            else
+            {
+                rowClass = "";
+            }
+            var requesterInfo = String.Format("{0} {1} {2} {3}", request.requesterAddress, request.requesterCity, request.requesterState, request.requesterZip);
+            <tr class="@rowClass"  requestid="@request.id">
+                <td>
+                    @Html.DisplayFor(modelItem => request.requesterName)
+                </td>
+                <td class="hide-on-phone">
+                    @Html.DisplayFor(modelItem => request.requesterEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.requestType)
+                </td>
+                <td>
+                    @request.dateRequested.ToString("MMM dd yyyy")
+                </td>
+                <td class="hide-on-phone">
+                    @requesterInfo
+                </td>
+                <td class="hide-on-phone">
+                    @Html.DisplayFor(modelItem => request.comments)
+                </td>
+                @if(request.isProcessed){
+                    <td>
+                        <a href="#" onclick="javascript:unprocessRequest(@request.id);"><img src="~/images/undo.gif" alt="Un-process me." /></a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" onclick="javascript:processRequest(@request.id);"><img src="~/images/Edit_icon.gif" alt="Process me." /></a>
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>
+

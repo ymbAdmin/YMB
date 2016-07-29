@@ -1,5 +1,4 @@
 ﻿<div id="requestForm">
-
         <h2 style="text-align: center;" id="requestFormTitle"></h2>
         <input type="hidden" id="requestId" />
         Your name:<input type="text" id="requesterName" placeholder="John Smith" /> <br />
@@ -8,5 +7,6 @@
         Email:<input type="text" id="requesterEmail" name="email" placeholder="my@email.com" /><br />
         Comments:<textarea id="requesterComments" cols="50" rows="3" placeholder="Enter any comments..."></textarea> <br />
         <input type="button" class="ymb-yellow-background" value="Cancel" onclick="javascript: hideRequestForm();" /><input type="submit" class="ymb-yellow-background" value="Submit" onclick="javascript: sendRequest();" />
-    
+        <label style="color: green; font-weight: bold; display: none;" id="requestSuccess">Your request was successful! Thank you.</label>
+        <label style="color: red; font-weight: bold; display: none;" id="requestError">Please try again or <a href="mailto:andrew@yellowmuttbrewery.com?subject=Request Error">email</a>.</label>
 </div>

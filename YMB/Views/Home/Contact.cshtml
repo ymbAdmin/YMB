@@ -1,4 +1,5 @@
-﻿@{
+﻿@model YMB.Models.Requests
+@{
     ViewBag.Title = "Contact";
 }
 <h2 class="ymb-yellow-text">@ViewBag.Message</h2>
@@ -13,3 +14,28 @@
 <address>
     <strong>Head Brewer:</strong>   <a href="mailto:headbrewer@yellowmuttbrewery.com">Andrew Sutton</a><br />
 </address>
+
+<div>
+    <h3>Contact Form</h3>
+    <input type="hidden" id="requestId" value="2" />
+    <table>
+        <tr>
+            <td>Your name:</td>
+            <td><input type="text" id="requesterName" placeholder="John Smith" /></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" id="requesterEmail" name="email" placeholder="my@email.com" /></td>
+        </tr>
+        <tr>
+            <td>Comments:</td>
+            <td><textarea id="requesterComments" cols="50" rows="3" placeholder="Enter any comments..."></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="ymb-yellow-background" value="Submit" onclick="javascript: sendRequest();" /></td>
+        </tr>
+    </table>
+    <label style="color: green; font-weight: bold; display: none;" id="requestSuccess">Your request was successful! Thank you.</label>
+    <label style="color: red; font-weight: bold; display: none;" id="requestError">Please try again or <a href="mailto:andrew@yellowmuttbrewery.com?subject=Request Error">email</a>.</label>
+</div>

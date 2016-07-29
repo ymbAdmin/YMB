@@ -1,19 +1,32 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace YMB.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int simpleUserId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public Boolean hasPaid { get; set; }
+        public Boolean isPlayingFootballPool { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("simpleUserId", this.simpleUserId.ToString()));
+            userIdentity.AddClaim(new Claim("isPlayingFootballPool", this.isPlayingFootballPool.ToString()));
+            userIdentity.AddClaim(new Claim("firstName", this.firstName.ToString()));
             return userIdentity;
         }
     }
@@ -41,16 +54,25 @@ namespace YMB.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<YMB.Models.Accounts> Accounts { get; set; }
+        public DbSet<Accounts> Accounts { get; set; }
 
-        public System.Data.Entity.DbSet<YMB.Models.AccountTransactions> AccountTransactions { get; set; }
+        public DbSet<AccountTransactions> AccountTransactions { get; set; }
 
-        public System.Data.Entity.DbSet<YMB.Models.Beers> Beers { get; set; }
+        public DbSet<Beers> Beers { get; set; }
 
-        public System.Data.Entity.DbSet<YMB.Models.BeerImages> BeerImages { get; set; }
+        public DbSet<BeerImages> BeerImages { get; set; }
 
-        public System.Data.Entity.DbSet<YMB.Models.Paycheck> Paycheck { get; set; }
+        public DbSet<Paycheck> Paycheck { get; set; }
 
-        public System.Data.Entity.DbSet<YMB.Models.Requests> Requests { get; set; }
+        public DbSet<Requests> Requests { get; set; }
+
+        public DbSet<FootballGame> FootballGame { get; set; }
+
+        public DbSet<FootballSchedule> FootballSchedule { get; set; }
+
+        public DbSet<FootballTeam> FootballTeam { get; set; }
+
+        public DbSet<FootballPoolUsers> FootballPoolUser { get; set; }
+        
     }
 }
