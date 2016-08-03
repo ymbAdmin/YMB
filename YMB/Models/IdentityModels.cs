@@ -68,11 +68,13 @@ namespace YMB.Models
 
         public DbSet<FootballGame> FootballGame { get; set; }
 
-        public DbSet<FootballSchedule> FootballSchedule { get; set; }
-
         public DbSet<FootballTeam> FootballTeam { get; set; }
 
         public DbSet<FootballPoolUsers> FootballPoolUser { get; set; }
-        
+
+        public DbSet<FootballPoolUserPicks> FootballPoolUserPicks { get; set; }
+
+        public DbSet<FootballGameResults> FootballGameResults { get; set; }
+
     }
 }

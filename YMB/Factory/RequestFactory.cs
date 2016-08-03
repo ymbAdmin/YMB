@@ -49,7 +49,15 @@ namespace YMB.Factory
         internal static void TestMe(){
             GetString("test");
         }
-        
 
+
+
+        internal static void DeleteRequest(int reqId)
+        {
+            Requests thisRequest = _db.Requests.Where(r => r.id == reqId).First<Requests>();
+            _db.Requests.Attach(thisRequest);
+            _db.Requests.Remove(thisRequest);
+            _db.SaveChanges();
+        }
     }
 }

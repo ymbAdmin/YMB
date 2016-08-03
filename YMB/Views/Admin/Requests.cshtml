@@ -30,6 +30,7 @@
                 Comments
             </th>
             <td></td>
+            <td></td>
         </tr>
 
         @foreach (var request in Model)
@@ -73,7 +74,9 @@
                         <a href="#" onclick="javascript:processRequest(@request.id);"><img src="~/images/Edit_icon.gif" alt="Process me." /></a>
                     </td>
                 }
-
+                <td>
+                    <a href="#" onclick="javascript:deleteRequest(@request.id);"><img src="~/images/delete_button.png" alt="Delete me." /></a>
+                </td>
             </tr>
         }
 

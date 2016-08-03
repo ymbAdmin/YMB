@@ -10,7 +10,7 @@ namespace YMB
     public class AuthorizeAttribute : System.Web.Mvc.AuthorizeAttribute
     {
         // Set default Unauthorized Page Url here
-        private string _notifyUrl = "/Account/Login";
+        private string _notifyUrl = "~/Account/Login";
 
         public string NotifyUrl
         {

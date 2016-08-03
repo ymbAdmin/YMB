@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,10 +9,11 @@ namespace YMB.Models
 {
     public class FootballPoolViewModel
     {
-        public FootballTeam footballTeam { get; set; }
-        public FootballSchedule footballSchedule { get; set; }
-        public FootballGame footballGame { get; set; }
-        public FootballPoolUsers user { get; set; }
+        public IEnumerable<FootballTeam> footballTeams { get; set; }
+        public IEnumerable<FootballGame> footballGames { get; set; }
+        public IEnumerable<FootballPoolUsers> users { get; set; }
+        public IEnumerable<FootballGameResults> gameResults { get; set; }
+        public IEnumerable<FootballPoolUserPicks> userPicks { get; set; }
 
     }
     public class FootballTeam
@@ -29,18 +31,12 @@ namespace YMB.Models
         public int pointsAgainst { get; set; }
     }
 
-    public class FootballSchedule
-    {
-        [Key]
-        public int id { get; set; }
-        public FootballGame game { get; set; }
-    }
-
     public class FootballGame
     {
-        public int id { get; set; }
-        public FootballTeam homeTeam { get; set; }
-        public FootballTeam awayTeam { get; set; }
+        [Key]
+        public int gameId { get; set; }
+        virtual public FootballTeam homeTeam { get; set; }
+        virtual public FootballTeam awayTeam { get; set; }
         public int homeTeamScore { get; set; }
         public int awayTeamScore { get; set; }
         public int weekId { get; set; }
@@ -50,11 +46,32 @@ namespace YMB.Models
     public class FootballPoolUsers
     {
         [Key]
+        public int id { get; set; }
+        [Index(IsUnique = true)]
         public int simpleUserId { get; set; }
         public string userName { get; set; }
-        public ApplicationUser userId { get; set; }
+        virtual public ApplicationUser userId { get; set; }
         public decimal userScore { get; set; }
         public int win { get; set; }
         public int loss { get; set; }
     }
+
+    public class FootballPoolUserPicks
+    {
+        [Key]
+        public int id { get; set; }
+        public int simpleUserId { get; set; }
+        public int weekId { get; set; }
+        virtual public FootballGame gameId { get; set; }
+        public int pick { get; set; }
+    }
+
+    public class FootballGameResults
+    {
+        [Key]
+        public int id { get; set; }
+        virtual public FootballGame gameId { get; set; }
+        public int winningTeamId { get; set; }
+    }
+
 }

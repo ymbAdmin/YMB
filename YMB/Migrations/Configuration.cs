@@ -1,7 +1,6 @@
 namespace YMB.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using YMB.Models;
@@ -18,10 +17,10 @@ namespace YMB.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            Boolean toSeed = false;
+            Boolean toSeed = true;
             if (toSeed)
             {
-                SeedTeamData(context);
+                //SeedTeamData(context);
                 SeedGameData(context);
             }
             
@@ -30,7 +29,7 @@ namespace YMB.Migrations
 
         }
 
-        protected void SeedGameData(ApplicationDbContext context)
+        private void SeedGameData(ApplicationDbContext context)
         {
             //week 1
             context.FootballGame.Add(new FootballGame() { weekId = 1, homeTeam = context.FootballTeam.Single(f => f.teamId == 13), awayTeam = context.FootballTeam.Single(f => f.teamId == 26), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 9, 8, 20, 30, 0) });
@@ -68,7 +67,7 @@ namespace YMB.Migrations
             context.FootballGame.Add(new FootballGame() { weekId = 2, homeTeam = context.FootballTeam.Single(f => f.teamId == 24), awayTeam = context.FootballTeam.Single(f => f.teamId == 19), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 9, 19, 20, 30, 0) });
         }
 
-        protected void SeedTeamData(ApplicationDbContext context)
+        private void SeedTeamData(ApplicationDbContext context)
         {
             context.FootballTeam.Add(new FootballTeam() { teamName = "New York Jets", win = 0, loss = 0, tie = 0, division = "ACE", conference = "AFC", winPercentage = .000m, pointsFor = 0, pointsAgainst = 0 });
             context.FootballTeam.Add(new FootballTeam() { teamName = "Buffalo Bills", win = 0, loss = 0, tie = 0, division = "ACE", conference = "AFC", winPercentage = .000m, pointsFor = 0, pointsAgainst = 0 });

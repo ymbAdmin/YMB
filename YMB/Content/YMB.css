@@ -229,8 +229,32 @@
     z-index: 10000000;
 }
 
+.football-pool-dashboard-button{
+    height: 100px;
+    width: 170px;
+    border-radius: 5px;
+    background: rgba(255,204,0,255);
+    margin-bottom: 8px;
+}
+.mobile{
+    display: none;
+}
+
+.mock{
+    height: 100px;
+    width: auto;
+    border-radius: 5px;
+    background: rgba(255,204,0,255);
+    margin-bottom: 8px;
+}
 /*iPhone 5*/
 @media (max-width: 800px) {
+    .pc{
+        display: none;
+    }
+    .mobile{
+        display: inherit;
+    }
     .top-quote {
         font-size: 0.75em;
         margin-top: -25px;
@@ -285,6 +309,7 @@
 
     .mobile-navbar-padding {
         padding-top: 25px;
+        max-height: inherit;
     }
 
     .mobile-top-gofundme-margin {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YMB.Factory;
+using YMB.Models;
 
 namespace YMB.Controllers
 {
@@ -17,16 +18,26 @@ namespace YMB.Controllers
         }
 
         [Authorize(Roles = "FootballPool", NotifyUrl = "~/FootballPool")]
-        public ActionResult MyDashboard(int simpleUserId)
+        public ActionResult MyDashboard()
         {
+            WeeklySchedule(1);
             return View();
         }
 
         [HttpPost]
-        public ActionResult RegisterUserForPool(string userId, int simpleUserId, string userName)
+        public void RegisterUserForPool(string userId, int simpleUserId, string userName)
         {
-            FootballPoolFactory.RegisterUserForPool(userId, simpleUserId, userName);
-            return View("MyDashboard", new { @simpleUserId = simpleUserId });
+            try
+            {
+                FootballPoolFactory.RegisterUserForPool(userId, simpleUserId, userName);
+            }
+            catch (Exception e) { }
+        }
+
+        public ActionResult WeeklySchedule(int weekId)
+        {
+            FootballPoolViewModel vw = FootballPoolFactory.GetWeeklyFootballBallSchedule(weekId);
+            return View(vw);
         }
     }
 }

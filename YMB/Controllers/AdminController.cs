@@ -8,6 +8,7 @@ using YMB.Models;
 
 namespace YMB.Controllers
 {
+    [Authorize(Roles = "SiteAdmin")]
     public class AdminController : Controller
     {
         
@@ -23,6 +24,7 @@ namespace YMB.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public Boolean SendRequest(string reqType, string name, string addr, string city, string state, string zip, string email, string comments)
         {
             try
@@ -60,6 +62,21 @@ namespace YMB.Controllers
             try
             {
                 RequestFactory.UnprocessRequest(reqId);
+            }
+            catch (Exception e)
+            {
+                var error_text = e.InnerException.InnerException.Message;
+                return false;
+            }
+
+            return true;
+        }
+
+        public Boolean DeleteRequest(int reqId)
+        {
+            try
+            {
+                RequestFactory.DeleteRequest(reqId);
             }
             catch (Exception e)
             {

@@ -1,7 +1,51 @@
-﻿
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
 @{
     ViewBag.Title = "Mydashboard";
+    var userName = User.Identity.GetUserName();
+    var userRealName = User.Identity.GetUserFirstName();
+    var simpleUserId = User.Identity.GetSimpleUserId();
+    var userId = User.Identity.GetUserId();
 }
+<h2 class="text-center">My Dashboard</h2>
 
-<h2>Mydashboard</h2>
+<div class="mobile center-text">
+    <div class="football-pool-dashboard-button-div">
+        <input type="button" value="View Leader Board" class="football-pool-dashboard-button" onclick="javascript:showFootballPoolSection(1);"/>
+        <input type="button" value="Make Weekly Picks" class="football-pool-dashboard-button" onclick="javascript:showFootballPoolSection(2);" />
+        <input type="button" value="View Team Info" class="football-pool-dashboard-button" onclick="javascript:showFootballPoolSection(3);" />
+        <input type="button" value="Who's playing?" class="football-pool-dashboard-button" onclick="javascript:showFootballPoolSection(4);" />
+    </div>
+    <div id="back-to-dashboard" style="text-align: left;"><a onclick="javascript: resetDashboard();">Back to Dashboard</a></div>
+    <div id="leaderboard-div" class="mock">
+        Leader board
+    </div>
+    <div id="weekly-picks-div" class="mock">
+        make yo picks yo
+    </div>
+    <div id="team-info-div" class="mock">
+        NFL Team info
+    </div>
+    <div id="whos-playing-div" class="mock">
+        This is who is playing
+    </div>
+    
+</div>
+<div class="pc">
+    <div class="row">
+        <div class="col-md-3 center-text">
+            <input type="button" value="View Leader Board" class="football-pool-dashboard-button" />
+        </div>
+        <div class="col-md-3 center-text">
+            <input type="button" value="Make Weekly Picks" class="football-pool-dashboard-button" />
+        </div>
 
+        <div class="col-md-3 center-text">
+            <input type="button" value="View Team Info" class="football-pool-dashboard-button" />
+        </div>
+        <div class="col-md-3 center-text">
+            <input type="button" value="Who's playing?" class="football-pool-dashboard-button" />
+        </div>
+    </div>
+</div>

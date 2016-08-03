@@ -37,12 +37,22 @@
                     {
                         var userName = User.Identity.GetUserName();
                         var simpleUserId = User.Identity.GetSimpleUserId();
-                        
-                        
-                        if (userName == "asutton")
+                        Boolean isPlaying;
+                        Boolean.TryParse(User.Identity.IsUserPlayingPool(), out isPlaying);
+
+                        if (User.IsInRole("SiteAdmin"))
+                        {
+                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        }
+
+                        if (User.IsInRole("FinanceAdmin"))
                         {
                             <li>@Html.ActionLink("Finances", "Index", "Finances")</li>
-                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        }
+
+                        if (User.IsInRole("FootballPool"))
+                        {
+                            <li>@Html.ActionLink("Football Pool", "MyDashboard", "FootballPool")</li>
                         }
                     }
                 </ul>
@@ -71,7 +81,7 @@
         @RenderBody()
         <hr />
         <footer style="text-align: center;">
-            <p>Andrew Sutton <b>Yellow Mutt Brewery</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:headbrewer@yellowmuttbrewery.com">headbrewer@yellowmuttbrewery.com</a></p>
+            <p>Andrew Sutton <b>Yellow Mutt Brewery</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:andrew@yellowmuttbrewery.com">Head Brewer</a></p>
         </footer>
     </div>
 
