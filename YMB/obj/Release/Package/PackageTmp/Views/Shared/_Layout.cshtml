@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
 @using YMB.Extensions;
+@using YMB.Utility;
+@{
+    var dateNow2 = CustomDateFunctions.GetDateTime();
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +16,14 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <link rel="stylesheet" type="text/css" href="~/slick/slick.css" />
+    @*<link rel="stylesheet" type="text/css" href="~/Content/YMB.css" />*@
     <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
 </head>
 <body>
+    <span style="display: none;">Unformatted UTC: @dateNow2 Formatted: @dateNow2.ToString("dddd"), @dateNow2.ToString("m"), @dateNow2.ToString("t")</span>
+    <div id="fade">
+        <img id="loading" src="~/images/loading_new.gif" />
+    </div>
     <div id="navBar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div>
@@ -35,6 +44,7 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
+                        
                         var userName = User.Identity.GetUserName();
                         var simpleUserId = User.Identity.GetSimpleUserId();
                         Boolean isPlaying;
@@ -79,12 +89,12 @@
     <div class="mobile-top-gofundme-margin"></div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer style="text-align: center;">
+            <hr />
             <p>Andrew Sutton <b>Yellow Mutt Brewery</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:andrew@yellowmuttbrewery.com">Head Brewer</a></p>
         </footer>
     </div>
-
+    
     <script type="text/javascript" src="~/slick/slick.js"></script>
     <script type="text/javascript" src="~/slick/slick.min.js"></script>
     @Html.Partial("_GlobalJavaScript")

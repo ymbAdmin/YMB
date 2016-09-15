@@ -229,6 +229,7 @@ namespace YMB.Controllers
                 return View(model);
             }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -236,11 +237,38 @@ namespace YMB.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("AccountProfile", "FootballPool", new { Message = "Your password has been changed." });
             }
             AddErrors(result);
             return View(model);
         }
+        //public ActionResult ResetPassword()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+        //    var result = await UserManager.ResetPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //        if (user != null)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //        }
+        //        return RedirectToAction("AccountProfile", "FootballPool", new { Message = "Your password has been changed." });
+        //    }
+        //    AddErrors(result);
+        //    return View(model);
+        //}
+        
 
         //
         // GET: /Manage/SetPassword

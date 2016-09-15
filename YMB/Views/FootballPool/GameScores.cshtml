@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "GameScores";
+}
+<style>
+    .game-score-table td, th{
+        padding: 3px;
+    }
+    .game-score-table th{
+        width: 10px;
+    }
+</style>
+<h2 class="center-text ymb-yellow-text-and-shadow">Game Scores</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+
+@if (Model != null)
+{
+    <form method="post" action="~/FootballPool/GameScores">
+        <h4>Please choose a week:</h4>
+        <select name="weekId" id="weekId">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+        </select>
+        <input type="submit" value="Show Week" />
+    </form>
+    var footballGames = Model.footballGames.ToList();
+    var numFootballGames = Model.footballGames.Count();
+    <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
+    using (Html.BeginForm("SubmitGameScores", "FootballPool", FormMethod.Post))
+    {
+        <table class="table game-score-table">
+            <tr>
+                <th>Away Score</th>
+                <th></th>
+                <th>Away Team</th>
+                <th></th>
+                <th><span>&#64;</span> @* Here is the @ symbol *@</th>
+                <th></th>
+                <th>Home Team</th>
+                <th></th>
+                <th>Home Score</th>
+            </tr>
+            
+            @for (int i = 0; i < numFootballGames; i++)
+            {
+                var homeScore = footballGames[i].homeTeamScore;
+                var awayScore = footballGames[i].awayTeamScore;
+                <tr>
+                    @if (awayScore > 0)
+                    {
+                        <td><span onclick="javascript: editScore();">@awayScore</span></td>
+                    }
+                    else
+                    {
+                        <td>@Html.TextBoxFor(m => footballGames[i].awayTeamScore,  new { @size = "2" })</td>
+                    }
+                    @*<td><input type="text" name="@footballGames[i].awayTeamScore" id="@footballGames[i].awayTeamScore" size="2" maxlength="2"/></td>*@
+                    <td> </td>
+                    <td><img src="@footballGames[i].awayTeam.imageURL" /></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><img src="@footballGames[i].homeTeam.imageURL" /></td>
+                    <td></td>
+                    
+                    @if (homeScore > 0)
+                    {
+                        <td><span>@homeScore</span></td>
+                    }
+                    else
+                    {
+                        <td>@Html.TextBoxFor(m => footballGames[i].homeTeamScore, new { @size = "2" })</td>
+                    }
+                    @*<td><input type="text" name="@footballGames[i].homeTeamScore" id="@footballGames[i].homeTeamScore" size="2" maxlength="2" /></td>*@
+                    @*hidden inputs to complete model*@
+                    @Html.HiddenFor(m => footballGames[i].homeTeam.teamName)
+                    @Html.HiddenFor(m => footballGames[i].homeTeam.teamId)
+                    @Html.HiddenFor(m => footballGames[i].homeTeamScore)
+                    @Html.HiddenFor(m => footballGames[i].awayTeam.teamName)
+                    @Html.HiddenFor(m => footballGames[i].awayTeam.teamId)
+                    @Html.HiddenFor(m => footballGames[i].awayTeamScore)
+                    @Html.HiddenFor(m => footballGames[i].gameId)
+                    @Html.HiddenFor(m => footballGames[i].gameDate)
+                    @Html.HiddenFor(m => footballGames[i].weekId)
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Submit Scores" />
+    }
+}
+else
+{
+    <form method="post" action="~/FootballPool/GameScores">
+        <h4>Please choose a week:</h4>
+        <select name="weekId" id="weekId">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+        </select>
+        <input type="submit" value="Show Week" />
+    </form>
+}

@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "Leaderboard";
+    var counter = 1;
+
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">2016 YMB Football Pool Leaderboard</h2>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>Position</th>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Wins</th>
+            <th>Losses</th>
+        </tr>
+
+        @foreach (var user in Model.users)
+        {
+            var myUserName = User.Identity.GetUserName();
+            var userName = user.userName;
+            if (!userName.Contains("test") && userName != "asutton")
+            {
+
+                <tr class="@(myUserName == userName ? "highlight-me" : "")" >
+                    <td>@counter</td>
+                    <td>@user.userName</td>
+                    <td>@user.userScore</td>
+                    <td>@user.win</td>
+                    <td>@user.loss</td>
+                </tr>
+                counter++;
+            }
+            else if (User.Identity.GetSimpleUserId() == "3")
+            {
+                <tr class="@(myUserName == userName ? "highlight-me" : "")">
+                    <td>@counter</td>
+                    <td>@user.userName</td>
+                    <td>@user.userScore</td>
+                    <td>@user.win</td>
+                    <td>@user.loss</td>
+                </tr>
+                counter++;
+            }
+        }
+    </table>
+
+
+}

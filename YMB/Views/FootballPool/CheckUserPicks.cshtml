@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "CheckUserPicks";
+    var counter = 1;
+
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Check User Picks</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+
+@if (Model != null)
+{
+    var totalPicklessUsers = Model.userPicksCheck.Where(up => up.hasMadePicks == false).Count();
+    <form method="post" action="~/FootballPool/CheckUserPicks">
+        <h4>Please choose a week:</h4>
+        <select name="weekId" id="weekId">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+        </select>
+        <input type="submit" value="Show Week" />
+    </form>
+    <br/>
+    <p>Total users without picks: <b style="font-size: larger;">@totalPicklessUsers</b></p>
+    <table>
+        <tr>
+            <th> </th>
+            <th>Username</th>
+            <th>Made Pick?</th>
+        </tr>
+
+        @foreach (var userCheck in Model.userPicksCheck)
+        {
+            <tr>
+                <td>@counter.</td>
+                <td>@userCheck.userName</td>
+                <td>@(userCheck.hasMadePicks ? "Yes" : "No")</td>
+            </tr>
+            counter++;
+        }
+    </table>
+}
+else
+{
+    <form method="post" action="~/FootballPool/CheckUserPicks">
+        <h4>Please choose a week:</h4>
+        <select name="weekId" id="weekId">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+        </select>
+        <input type="submit" value="Show Week" />
+    </form>
+}

@@ -10,3 +10,92 @@
         <label style="color: green; font-weight: bold; display: none;" id="requestSuccess">Your request was successful! Thank you.</label>
         <label style="color: red; font-weight: bold; display: none;" id="requestError">Please try again or <a href="mailto:andrew@yellowmuttbrewery.com?subject=Request Error">email</a>.</label>
 </div>
+
+<script type="text/javascript">
+    function showRequestForm(requestId) {
+        $("#requestId").val(requestId)
+        $("body").css("overflow", "hidden");
+        $("#requestForm").show();
+        $("#requestFormTitle").html(buildFormTitle(requestId));
+    }
+
+    function sendRequest() {
+        var requestId = $("#requestId").val();
+        var requestType = buildFormTitle(requestId);
+        var name = $("#requesterName").val();
+        var addr = $("#requesterMailAddr").val();
+        var city = $("#requesterMailCity").val();
+        var state = $("#requesterMailState").val();
+        var zip = $("#requesterMailZip").val();
+        var email = $("#requesterEmail").val();
+        var comments = $("#requesterComments").val();
+        if (requestId == 2) {//contact form only need name, email, comments
+            if (name == "" || email == "" || comments == "") {
+                alert("Enter at least name, email, and a comment. Thanks!");
+                return false;
+            }
+        } else {
+            if (name == "" || addr == "" || city == "" || state == "" || zip == "" || email == "") {
+                alert("Enter at least name, mailing address, and email. Thanks!");
+                return false;
+            }
+        }
+
+
+        var url = "/Admin/SendRequest";
+        if (window.location.hostname == 'localhost') {
+            url = "/YMB/Admin/SendRequest";
+        }
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: { reqType: requestType, name: name, addr: addr, city: city, state: state, zip: zip, email: email, comments: comments },
+            success: function (result) {
+                //location.reload();
+                if (result == "True") {
+                    $("body").css("overflow", "auto");
+                    $("#requestSuccess").show();
+                    setTimeout(hideRequestForm, 1500);
+                    resetFormValues();
+                } else {
+                    $("body").css("overflow", "auto");
+                    $("#requestError").show();
+                }
+            },
+            error: function (result) {
+                $("body").css("overflow", "auto");
+                $("#requestError").show();
+            }
+        });
+
+    }
+
+    function hideRequestForm() {
+        $("#requestError").hide();
+        $("#requestSuccess").hide();
+        $("#requestForm").hide();
+        $("body").css("overflow", "auto");
+        resetFormValues();
+    }
+
+    function resetFormValues() {
+        $("body").find("input:text").val("");
+        $("body").find("textarea").val("");
+    }
+    function buildFormTitle(id) {
+        var title = "";
+
+        switch (parseInt(id)) {
+            case 1:
+                title = "Sticker Request";
+                break;
+            case 2:
+                title = "Contact Request";
+                break;
+            default:
+                title = "General Request";
+        }
+        return title;
+    }
+</script>

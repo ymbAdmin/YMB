@@ -11,6 +11,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using YMB.Models;
+using System.Net.Mail;
+using System.Configuration;
+using System.Net;
 
 namespace YMB
 {
@@ -19,7 +22,12 @@ namespace YMB
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            SmtpClient client = new SmtpClient();
+            client.UseDefaultCredentials = false;
+            client.Host = "webmail.yellowmuttbrewery.com";
+            client.Credentials = new NetworkCredential("andrew@yellowmuttbrewery.com", "ymbpwdRuger42412");
+            
+            return client.SendMailAsync("andrew@yellowmuttbrewery.com", message.Destination, message.Subject, message.Body);
         }
     }
 
@@ -51,14 +59,14 @@ namespace YMB
             };
 
             // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
-            };
+            //manager.PasswordValidator = new PasswordValidator
+            //{
+            //    //RequiredLength = 6,
+            //    //RequireNonLetterOrDigit = true,
+            //    //RequireDigit = true,
+            //    //RequireLowercase = true,
+            //    //RequireUppercase = true,
+            //};
 
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;

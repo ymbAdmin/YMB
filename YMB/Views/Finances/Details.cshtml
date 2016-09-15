@@ -6,15 +6,13 @@
     var counter = 0;
     var rowClass = "";
 }
-<div id="fade">
-    <img id="loading" src="~/images/loading_new.gif" />
-</div>
+
 <p>
     <br/>
     @Html.ActionLink("Edit", "Edit", new { id = Model.acctId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-<script>
+<script type="text/javascript">
     function showAddTran() {
         $("#add-tran-div").show();
     }

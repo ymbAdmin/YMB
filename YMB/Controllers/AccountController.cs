@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using YMB.Models;
+using YMB.Factory;
+using YMB.Extensions;
 
 namespace YMB.Controllers
 {
@@ -22,7 +24,7 @@ namespace YMB.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +36,9 @@ namespace YMB.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -79,7 +81,16 @@ namespace YMB.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    if (String.IsNullOrEmpty(returnUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return Redirect(returnUrl);
+                    }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -120,7 +131,7 @@ namespace YMB.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -137,8 +148,13 @@ namespace YMB.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string postAction)
         {
+            if (String.IsNullOrWhiteSpace(postAction))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.PostAction = postAction;
             return View();
         }
 
@@ -147,25 +163,57 @@ namespace YMB.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string postAction)
         {
+            
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, hasPaid = false, firstName = model.firstName, lastName = model.lastName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                try
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    LoggerFactory.LogInfo("Register", "Attempting to create user.", "Will be user: " + model.UserName, "not a user yet");
+                    var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        LoggerFactory.LogInfo("Register", "Created User Successfully", "User name: " + user.UserName, Convert.ToString(user.simpleUserId));
+                        if (!String.IsNullOrEmpty(postAction))
+                        {
+                            if (postAction == "reguserfpool2016")
+                            {
+                                LoggerFactory.LogInfo("FootballRegister", user.UserName, "Postaction flag: reguserfpool2016 found in URL. Attempting to register for pool.", Convert.ToString(user.simpleUserId));
+                                try
+                                {
+                                    FootballPoolFactory.RegisterUserForPool(user.Id, user.simpleUserId, user.UserName);
+                                    LoggerFactory.LogInfo("FootballRegister", user.UserName, "Successfully Registered for pool. Redirecting to football home page.", Convert.ToString(user.simpleUserId));
+                                }
+                                catch (Exception e)
+                                {
+                                    LoggerFactory.LogError("Registering Football Pool", string.Format("Message: {0} more details: {1}", e.Message, e.InnerException.Message), e.StackTrace, User.Identity.GetSimpleUserId());
+                                    //if i get here need to try again
+                                }
+                                
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                                return RedirectToAction("MyDashboard", "FootballPool");
+                            }
+                            LoggerFactory.LogError("Registering Football Pool", "postAction was not reguserfpool2016", "Value of postAction: " + postAction, Convert.ToString(user.simpleUserId));
+                        }
+                        LoggerFactory.LogError("Registering Football Pool", "postAction was null or empty", "failed to completely register for football pool", Convert.ToString(user.simpleUserId));
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return View(model);
+                    //AddErrors(result);
                 }
-                AddErrors(result);
+                catch (Exception ex)
+                {
+                    LoggerFactory.LogError("General Registering", string.Format("User creation failed. Message: {0} more details: {1}", ex.Message, ex.InnerException.Message), ex.StackTrace, "User could not be created");
+                }
             }
 
             // If we got this far, something failed, redisplay form
@@ -202,8 +250,9 @@ namespace YMB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                var confirmedEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
+                if (user == null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -211,10 +260,19 @@ namespace YMB.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                try
+                {
+                    LoggerFactory.LogInfo("ForgotPassword", "Sending email to reset password to: " + user.Email, "User resetting password: " + user.UserName, Convert.ToString(user.simpleUserId));
+                    await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking the following link:     " + callbackUrl);
+                }
+                catch (Exception e)
+                {
+                    LoggerFactory.LogError("ForgotPassword", string.Format("Message: {0} more details: {1}", e.Message, e.InnerException.Message), e.StackTrace, "");
+                }
+                
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -248,15 +306,18 @@ namespace YMB.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
+                LoggerFactory.LogError("ResetPassword", "User not found based on email", "Email entered: " + model.Email, "");
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+            LoggerFactory.LogInfo("ResetPassword", "User found based on email", "Username: " + user.UserName, Convert.ToString(user.simpleUserId));
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
+                LoggerFactory.LogInfo("ResetPassword", "Password reset successful. Redirecting to success page.", "Username: " + user.UserName, Convert.ToString(user.simpleUserId));
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             AddErrors(result);
@@ -393,6 +454,14 @@ namespace YMB.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOffAndRedirect(string redirectURL)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return Redirect(redirectURL);
         }
 
         //

@@ -1,281 +1,62 @@
 ﻿
 <script type="text/javascript">
-    $(document).ready(function () {
-        if (getCookie('hide-go-fund-me') == '1') {
-            $(".go-fund-me").hide();
-        } else if (getCookie('hide-go-fund-me') == '2') {
-            $(".go-fund-me-mobile").hide();
-        }
-        $("#footballRegisterLink").hide();
-        if (window.location.hostname == 'localhost') {
-            $("#footballRegisterLink").show();
-        }
-        hideRequestForm();
-        $("#fade").hide();
-        //image slider init
-        $('.img-slider').slick({
-            adaptiveHeight: true,
-            //autoplay: true,
-            autoplaySpeed: 3500,
-            dots: true,
-            fade: true,
-            draggable: true
-        });
-
-        resetDashboard();
-        
-
-
+$(document).ready(function () {
+    hideRequestForm();
+    $("#fade").hide();
+    //$("#footballRegisterLink").hide();
+    if (getCookie('hide-go-fund-me') == '1') {
+        $(".go-fund-me").hide();
+    } else if (getCookie('hide-go-fund-me') == '2') {
+        $(".go-fund-me-mobile").hide();
+    }
+    
+    //if (window.location.hostname == 'localhost') {
+    //    $("#footballRegisterLink").show();
+    //}
+    
+    
+    //image slider init
+    $('.img-slider').slick({
+        adaptiveHeight: true,
+        //autoplay: true,
+        autoplaySpeed: 3500,
+        dots: true,
+        fade: true,
+        draggable: true
     });
+});
 
-    function showRequestForm(requestId) {
-        $("#requestId").val(requestId)
-        $("body").css("overflow", "hidden");
-        $("#requestForm").show();
-        $("#requestFormTitle").html(buildFormTitle(requestId));
+function openLoadingModal() {
+    $("#fade").show();
+}
+
+function closeLoadingModal() {
+    $("#fade").hide();
+}
+
+function hideGoFundMe(widgetId) {
+    switch (widgetId) {
+        case 1://hide left widget i.e. big screens
+            $(".go-fund-me").hide();
+            setCookie('hide-go-fund-me', '1', 2);
+            break;
+        case 2://hide top widget i.e. phone, smaller screens
+            $(".go-fund-me-mobile").hide();
+            setCookie('hide-go-fund-me', '2');
+            break;
+        default:
+            break;
     }
+}
 
-    function sendRequest() {
-        var requestId = $("#requestId").val();
-        var requestType = buildFormTitle(requestId);
-        var name = $("#requesterName").val();
-        var addr = $("#requesterMailAddr").val();
-        var city = $("#requesterMailCity").val();
-        var state = $("#requesterMailState").val();
-        var zip = $("#requesterMailZip").val();
-        var email = $("#requesterEmail").val();
-        var comments = $("#requesterComments").val();
-        if (requestId == 2) {//contact form only need name, email, comments
-            if (name == "" || email == "" || comments == "") {
-                alert("Enter at least name, email, and a comment. Thanks!");
-                return false;
-            }
-        } else {
-            if (name == "" || addr == "" || city == "" || state == "" || zip == "" || email == "") {
-                alert("Enter at least name, mailing address, and email. Thanks!");
-                return false;
-            }
-        }
+function setCookie(key, value, expiresInDays) {
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (1 * (expiresInDays * 24) * 60 * 60 * 1000));
+    document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+}
 
-
-        var url = "/Admin/SendRequest";
-        if (window.location.hostname == 'localhost') {
-            url = "/YMB/Admin/SendRequest";
-        }
-        $.ajax({
-            type: "post",
-            async: true,
-            url: url,
-            data: { reqType: requestType, name: name, addr: addr, city: city, state: state, zip: zip, email: email, comments: comments },
-            success: function (result) {
-                //location.reload();
-                if (result == "True") {
-                    $("body").css("overflow", "auto");
-                    $("#requestSuccess").show();
-                    setTimeout(hideRequestForm, 1500);
-                    resetFormValues();
-                } else {
-                    $("body").css("overflow", "auto");
-                    $("#requestError").show();
-                }
-            },
-            error: function (result) {
-                $("body").css("overflow", "auto");
-                $("#requestError").show();
-            }
-        });
-
-    }
-
-    function hideRequestForm() {
-        $("#requestError").hide();
-        $("#requestSuccess").hide();
-        $("#requestForm").hide();
-        $("body").css("overflow", "auto");
-        resetFormValues();
-    }
-
-    function resetFormValues() {
-        $("body").find("input:text").val("");
-        $("body").find("textarea").val("");
-    }
-    function buildFormTitle(id) {
-        var title = "";
-
-        switch (parseInt(id)) {
-            case 1:
-                title = "Sticker Request";
-                break;
-            case 2:
-                title = "Contact Request";
-                break;
-            default:
-                title = "General Request";
-        }
-        return title;
-    }
-    function openLoadingModal() {
-        $("#fade").show();
-    }
-
-    function closeLoadingModal() {
-        $("#fade").hide();
-    }
-
-    function processRequest(id) {
-        if (confirm('Are you sure you want to mark this as processed?')) {
-            var url = "/Admin/ProcessRequest";
-            if (window.location.hostname == 'localhost') {
-                url = "/YMB/Admin/ProcessRequest";
-            }
-            $.ajax({
-                type: "post",
-                async: true,
-                url: url,
-                data: { reqId: id },
-                success: function (result) {
-                    //location.reload();
-                    var tblRequestElement = $("tr").find("[requestId='" + id + "']");
-                    tblRequestElement.removeClass("request-not-processed");
-                    location.reload();
-                },
-                error: function (result) {
-
-                }
-            });
-        } else {
-            return false;
-        }
-
-    }
-
-    function unprocessRequest(id) {
-        if (confirm('Are you sure you want to mark this as unprocessed?')) {
-            var url = "/Admin/UnprocessRequest";
-            if (window.location.hostname == 'localhost') {
-                url = "/YMB/Admin/UnprocessRequest";
-            }
-            $.ajax({
-                type: "post",
-                async: true,
-                url: url,
-                data: { reqId: id },
-                success: function (result) {
-                    //location.reload();
-                    var tblRequestElement = $("tr").find("[requestId='" + id + "']");
-                    tblRequestElement.addClass("request-not-processed");
-                    location.reload();
-                },
-                error: function (result) {
-
-                }
-            });
-        } else {
-            return false;
-        }
-
-    }
-
-    function deleteRequest(id) {
-        if (confirm('Are you sure you want to delete this request?')) {
-            var url = "/Admin/DeleteRequest";
-            if (window.location.hostname == 'localhost') {
-                url = "/YMB/Admin/DeleteRequest";
-            }
-            $.ajax({
-                type: "post",
-                async: true,
-                url: url,
-                data: { reqId: id },
-                success: function (result) {
-                    location.reload();
-                },
-                error: function (result) {
-
-                }
-            });
-        } else {
-            return false;
-        }
-    }
-    function hideGoFundMe(widgetId) {
-        switch (widgetId) {
-            case 1://hide left widget i.e. big screens
-                $(".go-fund-me").hide();
-                setCookie('hide-go-fund-me', '1', 2);
-                break;
-            case 2://hide top widget i.e. phone, smaller screens
-                $(".go-fund-me-mobile").hide();
-                setCookie('hide-go-fund-me', '2');
-                break;
-            default:
-                break;
-        }
-    }
-
-    function setCookie(key, value, expiresInDays) {
-        var expires = new Date();
-        expires.setTime(expires.getTime() + (1 * (expiresInDays * 24) * 60 * 60 * 1000));
-        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
-    }
-
-    function getCookie(key) {
-        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-        return keyValue ? keyValue[2] : null;
-    }
-
-    function registerUserForPool(userId, simpleUserId, userName) {
-        var url = "/FootballPool/RegisterUserForPool";
-        if (window.location.hostname == 'localhost') {
-            url = "/YMB/FootballPool/RegisterUserForPool";
-        }
-        $.ajax({
-            type: "post",
-            async: true,
-            url: url,
-            data: { userId: userId, simpleUserId: simpleUserId, userName: userName },
-            success: function (result) {
-                var url = "/FootballPool/MyDashboard/";
-                if (window.location.hostname == 'localhost') {
-                    url = "/YMB/FootballPool/MyDashboard/";
-                }
-                window.location.replace(url);
-            },
-            error: function (result) {
-                alert(result);
-            }
-        });
-
-    }
-
-    function showFootballPoolSection(id) {
-        $(".football-pool-dashboard-button-div").hide();
-        
-        $("#back-to-dashboard").show();
-        switch (id) {
-            case 1:
-                $("#leaderboard-div").show();
-                break;
-            case 2:
-                $("#weekly-picks-div").show();
-                break;
-            case 3:
-                $("#team-info-div").show();
-                break;
-            case 4:
-                $("#whos-playing-div").show();
-                break;
-            default:
-                break;
-        }
-    }
-
-    function resetDashboard() {
-        $(".football-pool-dashboard-button-div").show();
-        $("#back-to-dashboard").hide();
-        $("#leaderboard-div").hide();
-        $("#weekly-picks-div").hide();
-        $("#team-info-div").hide();
-        $("#whos-playing-div").hide();
-    }
+function getCookie(key) {
+    var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+    return keyValue ? keyValue[2] : null;
+}
 </script>

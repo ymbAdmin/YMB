@@ -26,7 +26,8 @@ namespace YMB
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/YMB.css"));
+                      "~/Content/YMB.css",
+                      "~/Content/YMB_Mobile.css"));
         }
     }
 }

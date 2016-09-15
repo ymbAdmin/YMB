@@ -14,9 +14,12 @@ namespace YMB.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int simpleUserId { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
         public string firstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
         public string lastName { get; set; }
-        public Boolean hasPaid { get; set; }
         public Boolean isPlayingFootballPool { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -74,7 +77,8 @@ namespace YMB.Models
 
         public DbSet<FootballPoolUserPicks> FootballPoolUserPicks { get; set; }
 
-        public DbSet<FootballGameResults> FootballGameResults { get; set; }
+        public DbSet<FootballPoolUserWeeklyScores> FootballPoolUserWeeklyScores { get; set; }
 
+        public DbSet<AppEvent> AppEvent { get; set; }
     }
 }

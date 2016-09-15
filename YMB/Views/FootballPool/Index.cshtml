@@ -2,42 +2,145 @@
 @using YMB.Extensions;
 @{
     ViewBag.Title = "Football Pool";
+    Boolean isPlaying;
+    Boolean.TryParse(User.Identity.IsUserPlayingPool(), out isPlaying);
+    var userName = User.Identity.GetUserName();
+    var userRealName = User.Identity.GetUserFirstName();
+    var simpleUserId = User.Identity.GetSimpleUserId();
+    var userId = User.Identity.GetUserId();
 }
 
 <h2 class="center-text ymb-yellow-text-and-shadow">2016 YMB Pick'em NFL Football Pool</h2>
+@if (Request.IsAuthenticated && isPlaying)
+{
+    <span>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")</span>
+}
 
 <p>
-    <span style="padding-left: 25px;">P</span>leased to annouce the Yellow Mutt Brewery Pick'em NFL Football Pool is back for the 2016 season. If you played the pool during the 2014 NFL season, the rules will be very similiar to what you remember. 
+    <span style="padding-left: 25px;">P</span>leased to annouce the Yellow Mutt Brewery Pick'em NFL Football Pool is back for the 2016 season. If you played the pool during the 2014 NFL season, the rules will be very similiar to what you remember.
 </p>
 <p>
-    <h3>Registering</h3>
+
     @if (Request.IsAuthenticated)
     {
-        Boolean isPlaying;
-        Boolean.TryParse(User.Identity.IsUserPlayingPool(), out isPlaying);
-        var userName = User.Identity.GetUserName();
-        var userRealName = User.Identity.GetUserFirstName();
-        var simpleUserId = User.Identity.GetSimpleUserId();
-        var userId = User.Identity.GetUserId();
+
+
         if (!isPlaying)
         {
-            <span>You are already registered with YMB! One step to go.
-            Please click <a href="#" onclick="registerUserForPool('@(new HtmlString(userId))', @simpleUserId, '@userName');">here</a> to join to pool.</span>
-        }
-        else
-        {
-            <span>@userRealName, you are all ready to go. Enjoy!</span>
+            <h3>Registering</h3>
+            <span>
+                You are already registered with YMB! @*One step to go.
+                Please register <a onclick="javascript:registerUserForPool('@(new HtmlString(userId))', @simpleUserId, '@userName');">here</a> to join to pool.*@
+            </span>
         }
     }
     else
     {
-        <span>1. Please @Html.ActionLink("create", "Register", "Account", new { @Action = "registerFootballPool" }, null) an account to join the football pool.</span>
+        <h3>Registering</h3>
+
+        var domain = Request.Url.Authority;
+
+
+        if (domain == "localhost")
+        {
+            <span>Please @Html.ActionLink("create", "Register", "Account", new { postAction = "reguserfpool2016", @Action = "registerFootballPool" }, null) an account to join the football pool.</span>
+        }
+        else
+        {
+            @*<span>Registration will begin Sept. 3<sup>rd</sup></span>*@
+            <span>Please @Html.ActionLink("create", "Register", "Account", new { postAction = "reguserfpool2016", @Action = "registerFootballPool" }, null) an account to join the football pool.</span>
+        }
+
+
     }
 
 </p>
 <p>
     <h3>Rules</h3>
     <ul>
-        <li>no rules!</li>
+        <li>Each week you will pick a winning team for each game being played that week (14-16 games depending on BYE week)</li>
+        <li>
+            You can make/update your picks up until 5 minutes prior to EACH game
+            <ul>
+                <li>For example: after Thursday night games kick off, you can still update your picks for Sunday or after the 1 pm games on Sunday kick off, you can still update Sunday evening games, etc.</li>
+            </ul>
+        </li>
+        <li>If you miss the pick deadline, you will not be eligible for a point, no exceptions</li>
+        <li>
+            You can make as many or as little picks at the same time as you want
+            <ul>
+                <li>For example: you can make your Thursday night pick by itself and come back at a later time to finish the rest of the games for that given week</li>
+            </ul>
+        </li>
     </ul>
 </p>
+<p>
+    <h3>Scoring</h3>
+    <ul>
+        <li>1 point is rewarded for every correct pick</li>
+        <li>For every 5 wins within the same week, an additional 0.25 points is rewarded
+        <ul><li><i style="font-size: smaller">Ex: Week 1 John picks 15 of the 16 games correctly. John gets 0.75 extra points on top of his base 15 for a Week 1 total: 15.75 pts.</i></li>
+            <li>Weeks 1-4,6,7, &amp; 12-17 have a max. potential bonus of 0.75 points <i>(15+ games these weeks)</i></li>
+            <li>Weeks 5 &amp; 8-11 have a max. potential bonus of 0.50 points <i>(14 or less games these weeks)</i></li></ul></li>
+
+        
+    </ul>
+</p>
+<p>
+    <h3>Buy In</h3>
+    <ul>
+        <li>The pool entry fee is $25.00
+            <ul>
+                <li>Payable via Venmo, PayPal, Cash/Check</li>
+                <li>Payment due by week 10 otherwise you will be disqualififed for any prizes.</li>
+            </ul>
+        </li>
+    </ul>
+</p>
+<p>
+    <h3>Prizes</h3>
+<p>Exact prize payouts will be determined after the pool begins and will be based on total number of contestants. The top 3 positions will be paid out in the following percentages:</p>
+<ol>
+    <li>50% of entry fees</li>
+    <li>30% of entry fees</li>
+    <li>10% of entry fees</li>
+
+</ol>
+<i style="font-size: xx-small;">Remaining 10% goes towards pool maintenance</i>
+<script type="text/javascript">
+    function registerUserForPool(userId, simpleUserId, userName) {
+        var url = "/FootballPool/RegisterUserForPool";
+        if (window.location.hostname == 'localhost') {
+            url = "/YMB/FootballPool/RegisterUserForPool";
+        }
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: { userId: userId, simpleUserId: simpleUserId, userName: userName },
+            success: function (result) {
+                var logoffAction = "/Account/LogOff";
+                if (window.location.hostname == 'localhost') {
+                    logoffAction = "/YMB/Account/LogOff";
+                }
+                if (result == "True") {
+                    // setCookie('REG2016NFL', 'YES', 12);
+                    alert("Thank you for signing up! Enjoy.\nPlease log back in to continue.");
+                    document.getElementById('logoutFormForFootballPool').submit();
+                } else {
+                    alert('Something happened, please try again.');
+                }
+
+            },
+            error: function (result) {
+                alert('Something bad happened, please try again.');
+            }
+        });
+
+    }
+</script>
+@using (Html.BeginForm("LogOffAndRedirect", "Account", FormMethod.Post, new { redirectURL = "/Account/Login", id = "logoutFormForFootballPool" }))
+{
+    <input type="hidden" name="redirectURL" id="redirectURL" value="./Login?ReturnUrl=~/FootballPool/MyDashboard" />
+    @Html.AntiForgeryToken()
+}

@@ -1,12 +1,27 @@
 ﻿@model IEnumerable<YMB.Models.Accounts>
 @{
     ViewBag.Title = "Accounts";
+    var totalBillAmount = 0.0M;
 }
 
 <h2 class="ymb-yellow-text">Accounts</h2>
 
 <p>
     Next Paycheck:  <b>@ViewBag.NextPaycheck</b>
+</p>
+<p>
+    Bills Due This Paycheck:<br/>
+    <div class="row">
+        @foreach (var bill in ViewBag.BillsListPayCheck)
+        {
+            totalBillAmount += bill.acctBillDueAmount;
+            <div class="col-sm-3">
+                <span class="acct-bill-spacing">@bill.acctName</span>&raquo;<span class="acct-bill-spacing">$@bill.acctBillDueAmount</span>
+            </div><br />
+        }
+    </div>
+    <br/>
+    <b>Total:</b>  @totalBillAmount
 </p>
 <table class="table">
     <tr>
@@ -27,42 +42,45 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.acctName)
-            </td>
-            <td>
-                @if (item.acctType == 2 && item.acctBalance > 0)
-                {
-                    <span class="red">
-                        @Html.DisplayFor(modelItem => item.acctBalance)
-                    </span>
-                }
-                else
-                {
-                    <span class="green">
-                        @Html.DisplayFor(modelItem => item.acctBalance)
-                    </span>
-                }
-            </td>
-            <td class="no-show-on-phone">
-                @if (item.acctBillDueAmount > 0)
-                {
-                    @Html.DisplayFor(modelItem => item.acctBillDueDate)
-                }
-            </td>
-            <td class="no-show-on-phone">
-                @if (item.acctBillDueAmount > 0)
-                {
-                    @Html.DisplayFor(modelItem => item.acctBillDueAmount)
-                }
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.acctId })
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.acctId })*@
-            </td>
-        </tr>
+        if (item.display)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.acctName)
+                </td>
+                <td>
+                    @if (item.acctType == 2 && item.acctBalance > 0)
+                    {
+                        <span class="red">
+                            @Html.DisplayFor(modelItem => item.acctBalance)
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="green">
+                            @Html.DisplayFor(modelItem => item.acctBalance)
+                        </span>
+                    }
+                </td>
+                <td class="no-show-on-phone">
+                    @if (item.acctBillDueAmount > 0)
+                    {
+                        @Html.DisplayFor(modelItem => item.acctBillDueDate)
+                    }
+                </td>
+                <td class="no-show-on-phone">
+                    @if (item.acctBillDueAmount > 0)
+                    {
+                        @Html.DisplayFor(modelItem => item.acctBillDueAmount)
+                    }
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.acctId }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.acctId })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.acctId })*@
+                </td>
+            </tr>
+        }
     }
 
 </table>

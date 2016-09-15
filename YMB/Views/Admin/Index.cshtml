@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="ymb-yellow-text">YMB Admin</h2>
+<h2 class="center-text ymb-yellow-text-and-shadow">YMB Admin</h2>
 <ul>
     @if (Request.IsAuthenticated)
     {
@@ -11,6 +11,10 @@
         if (userName == "asutton")
         {
             <li>@Html.ActionLink("Requests", "Requests", "Admin")</li>
+            <li>@Html.ActionLink("Football Game Results", "GameScores", "FootballPool")</li>
+            <li>@Html.ActionLink("Generate User Scores", "GenerateUserScores", "FootballPool")</li>
+            <li>@Html.ActionLink("Check User Picks", "CheckUserPicks", "FootballPool")</li>
+            <li>@Html.ActionLink("Send Email Reminder", "SendEmailReminder", "FootballPool")</li>
         }
     }
 </ul>

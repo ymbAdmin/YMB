@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "SendEmailReminder";
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Email Reminder</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+
+<form method="post" action="~/FootballPool/SendEmailReminder">
+    <h4>Please choose a week:</h4>
+    <select name="weekId" id="weekId">
+        <option value="1">Week 1</option>
+        <option value="2">Week 2</option>
+        <option value="3">Week 3</option>
+    </select>
+    <input type="submit" value="Send Reminders" />
+</form>
+

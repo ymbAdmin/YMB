@@ -1,0 +1,208 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@using YMB.Utility;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "WeeklySchedule";
+    var pickId = 0;
+}
+<style>
+
+</style>
+<h2 class="center-text ymb-yellow-text-and-shadow">Weekly Schedule</h2>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
+<label style="color: green; font-weight: bold; display: none;" id="picksSubmitted">Your picks were submitted.</label>
+<label style="color: red; font-weight: bold; display: none;" id="picksSubmittedError">Something went wrong when submitting picks, please try again. If issue persists, contact <a href="mailto:andrew@yellowmuttbrewery.com?subject=Football Picks Issue">Admin</a></label>
+<div class="weekly-pick-container">
+    @if (Model == null)
+    {
+        <form method="post" action="~/FootballPool/weeklyschedule">
+            <h5>Select a week:</h5>
+            <select name="weekId" id="weekId">
+                <option value="1">Week 1</option>
+                <option value="2">Week 2</option>
+                <option value="3">Week 3</option>
+            </select>
+            <input type="submit" value="Show Week" />
+            @if(User.Identity.GetSimpleUserId() == "3"){
+               <br/><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
+            }
+            else
+            {
+                <input name="simpleUserId" value="@(User.Identity.GetSimpleUserId())" type="hidden" />
+            }
+        </form>
+
+    }
+    else
+    {
+        <form method="post" action="~/FootballPool/weeklyschedule">
+            <h5>Select a week:</h5>
+            <select name="weekId" id="weekId">
+                <option value="1">Week 1</option>
+                <option value="2">Week 2</option>
+                <option value="3">Week 3</option>
+            </select>
+            <input type="submit" value="Show Week" />
+            @if (User.Identity.GetSimpleUserId() == "3")
+            {
+                <br /><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
+            }
+            else
+            {
+                <input name="simpleUserId" value="@(User.Identity.GetSimpleUserId())" type="hidden" />
+            }
+        </form>
+        DateTime timeNow = CustomDateFunctions.GetDateTime();
+        var previousDateTime = new DateTime();
+        <form id="submitPicksForm" method="post">
+            <input type="hidden" id="numOfGames" value="@Model.footballGames.Count()" />
+            <input type="hidden" id="firstGameId" value="@Model.footballGames.First().gameId"/>
+            <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
+            @*<p>Right now it is: @timeNow.ToString("MMM dd, h:mm tt")</p>*@
+            @foreach (var game in Model.footballGames)
+            {
+                var thisGamesDate = game.gameDate;
+                if (timeNow.AddHours(3) < thisGamesDate)
+                {
+
+                    <div class="row text-center">
+                        @if (thisGamesDate != previousDateTime)
+                        {
+                            <u>  @thisGamesDate.ToString("MMM dd, h:mm tt") </u><br />
+                            previousDateTime = thisGamesDate;
+                        }
+                        @if (Model.userPicks.Count() > 0)
+                        {
+                            var pickObj = Model.userPicks.Where(p => p.gameId == game.gameId).FirstOrDefault();
+                           
+                            pickId = pickObj.pick;
+                        }
+                        @*Start of away team binding*@
+
+                        <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
+                        <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
+                        <div class="img-thumbnail">
+                            <img class="team-img" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" onclick="javascript:selectThisTeamForPick(@game.gameId, @game.awayTeam.teamId);" />
+                        </div>
+                        @*End of away team binding*@
+                        <span>&#64;</span> @* Here is the @ symbol *@
+                        @*Start of home team binding*@
+                        <div class="img-thumbnail">
+                            <img class="team-img" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL" onclick="javascript:selectThisTeamForPick(@game.gameId, @game.homeTeam.teamId);" />
+                        </div>
+                        <div class="selected-circle @(pickId == game.homeTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.homeTeam.teamId"></div>
+                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss)</i><br /><h4>@game.homeTeam.teamName </h4>
+                        <input style="display: none;" type="radio" name="gameId_@game.gameId" value="@game.homeTeam.teamId" @(pickId == game.homeTeam.id ? "checked='checked'" : "") />
+                        @*End of home team binding*@
+                    </div>
+                    <br />
+                }
+                else
+                {
+                    <div class="row text-center">
+                        @if (date != previousDateTime)
+                        {
+                            <u>  @date.ToString("MMM dd, h:mm tt") </u><br />
+                            previousDateTime = date;
+                        }
+                        @if (Model.userPicks.Count() > 0)
+                        {
+                            var pickObj = Model.userPicks.Where(p => p.gameId == game.gameId).FirstOrDefault();
+                            pickId = pickObj.pick;
+                        }
+                        @*Start of away team binding*@
+
+                        <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
+                        <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>&raquo;Win&laquo;</b></span>
+                        <span style="font-size: larger; color: red; @(pickId == game.winningTeamId ? "display: none" : "display: inherit;")"><b>&raquo;Loss&laquo;</b></span>
+                        <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" />
+                        </div>
+                        @*End of away team binding*@
+                        <span>&#64;</span> @* Here is the @ symbol *@
+                        @*Start of home team binding*@
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL"/>
+                        </div>
+                        <div class="selected-circle @(pickId == game.homeTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.homeTeam.teamId"></div>
+                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss)</i><br /><h4>@game.homeTeam.teamName </h4>
+                        <input style="display: none;" type="radio" name="gameId_@game.gameId" value="@game.homeTeam.teamId" @(pickId == game.homeTeam.id ? "checked='checked'" : "") />
+                        @*End of home team binding*@
+                    </div>
+                    <br />
+                }
+
+            }
+            <input type="submit" value="Submit Picks" onclick="javascript: submitPicks(this, @Model.footballGames.First().weekId); return false;" />
+        </form>
+
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("[name=userPickCircle]").hide();
+    });
+    function submitPicks(formData, weekId) {
+        openLoadingModal();
+        var pickArray = {};//[gameId,pickId]
+        var numOfGames = $("#numOfGames").val();
+        var firstGameIdThisWeek = $("#firstGameId").val();
+        var gamePickFinderId = parseInt(firstGameIdThisWeek);
+        for (var i = 1; i <= numOfGames; i++) {
+            var pick = $('input[id=userPickForGame_' + gamePickFinderId + ']').val();
+            pickArray[gamePickFinderId] = pick;
+            gamePickFinderId += 1;
+        }
+        var url = "/FootballPool/SubmitPicks";
+        if (window.location.hostname == 'localhost') {
+            url = "/YMB/FootballPool/SubmitPicks";
+        }
+
+        $.ajax({
+            type: "post",
+            async: true,
+            url: url,
+            data: { picks: pickArray, weekId: weekId },
+            success: function (result) {
+                //location.reload();
+                if (result == "True") {
+                    $("#picksSubmitted").show();
+                    closeLoadingModal();
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    setTimeout(hidePicksMessage, 1500);
+                } else {
+                    closeLoadingModal();
+                    $("#picksSubmittedError").show();
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                }
+            },
+            error: function (result) {
+                closeLoadingModal();
+                $("#picksSubmittedError").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+    }
+
+    function hidePicksMessage() {
+        $("#picksSubmitted").hide();
+    }
+
+    function selectThisTeamForPick(gameId, teamId) {
+        //set green frame so they know what they picked
+        var partialImgElementId = $("[id^=img-" + gameId + "]");
+        var userpickImgElementId = $("#img-" + gameId + "-" + teamId);
+        partialImgElementId.css("border", "none");
+        userpickImgElementId.css("border", "3px solid green");
+
+        //set the hidden input to checked for the given gameId and team Id
+        var userPickHiddenInput = $("#userPickForGame_" + gameId);
+        userPickHiddenInput.val(teamId);
+
+        $("[id^=circle-" + gameId + "]").removeClass("show-circle hide-circle").addClass("hide-circle");
+        $("#circle-" + gameId + "-" + teamId).removeClass("show-circle hide-circle").addClass("show-circle")
+    }
+</script>

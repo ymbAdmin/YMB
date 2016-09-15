@@ -5,10 +5,10 @@
     var rowClass = "";
 }
 
-<h2>Admin</h2>
+<h2 class="center-text ymb-yellow-text-and-shadow">Requests</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
 
-<div>
-    <h4>Requests</h4>
+@*<div>
+   
     <table class="table">       
         <tr>
             <th>
@@ -81,5 +81,229 @@
         }
 
     </table>
+</div>*@
+
+<div class="mobile center-text">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.requesterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requestType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateRequested)
+            </th>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var request in Model)
+        {
+            if (!request.isProcessed)
+            {
+                rowClass = "request-not-processed";
+            }
+            else
+            {
+                rowClass = "";
+            }
+            var requesterInfo = String.Format("{0} {1} {2} {3}", request.requesterAddress, request.requesterCity, request.requesterState, request.requesterZip);
+            <tr class="@rowClass" requestid="@request.id" onclick="javascript:showMoreDetails(@request.id);">
+                <td>
+                    @Html.DisplayFor(modelItem => request.requesterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.requestType)
+                </td>
+                <td>
+                    @request.dateRequested.ToString("MMM dd yyyy")
+                </td>
+
+                @if (request.isProcessed)
+                {
+                    <td>
+                        <a href="#" onclick="javascript:unprocessRequest(@request.id);"><img src="~/images/undo.gif" alt="Un-process me." /></a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" onclick="javascript:processRequest(@request.id);"><img src="~/images/Edit_icon.gif" alt="Process me." /></a>
+                    </td>
+                }
+                <td>
+                    <a href="#" onclick="javascript:deleteRequest(@request.id);"><img src="~/images/delete_button.png" alt="Delete me." /></a>
+                </td>
+            </tr>
+            <tr style="display: none;" id="requestIdComments_@request.id" onclick="javascript:hideMoreDetails(@request.id);">
+                <td colspan="5" style="background: lightgray;">
+                    @request.comments
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="pc">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.requesterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requesterEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requestType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateRequested)
+            </th>
+            <th>
+                Requester Info
+            </th>
+            <th>
+                Comments
+            </th>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var request in Model)
+        {
+            if (!request.isProcessed)
+            {
+                rowClass = "request-not-processed";
+            }
+            else
+            {
+                rowClass = "";
+            }
+            var requesterInfo = String.Format("{0} {1} {2} {3}", request.requesterAddress, request.requesterCity, request.requesterState, request.requesterZip);
+            <tr class="@rowClass" requestid="@request.id">
+                <td>
+                    @Html.DisplayFor(modelItem => request.requesterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.requesterEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.requestType)
+                </td>
+                <td>
+                    @request.dateRequested.ToString("MMM dd yyyy")
+                </td>
+                <td>
+                    @requesterInfo
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.comments)
+                </td>
+                @if (request.isProcessed)
+                {
+                    <td>
+                        <a href="#" onclick="javascript:unprocessRequest(@request.id);"><img src="~/images/undo.gif" alt="Un-process me." /></a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" onclick="javascript:processRequest(@request.id);"><img src="~/images/Edit_icon.gif" alt="Process me." /></a>
+                    </td>
+                }
+                <td>
+                    <a href="#" onclick="javascript:deleteRequest(@request.id);"><img src="~/images/delete_button.png" alt="Delete me." /></a>
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 
+<script type="text/javascript">
+    function processRequest(id) {
+        if (confirm('Are you sure you want to mark this as processed?')) {
+            var url = "/Admin/ProcessRequest";
+            if (window.location.hostname == 'localhost') {
+                url = "/YMB/Admin/ProcessRequest";
+            }
+            $.ajax({
+                type: "post",
+                async: true,
+                url: url,
+                data: { reqId: id },
+                success: function (result) {
+                    //location.reload();
+                    var tblRequestElement = $("tr").find("[requestId='" + id + "']");
+                    tblRequestElement.removeClass("request-not-processed");
+                    location.reload();
+                },
+                error: function (result) {
+
+                }
+            });
+        } else {
+            return false;
+        }
+
+    }
+
+    function unprocessRequest(id) {
+        if (confirm('Are you sure you want to mark this as unprocessed?')) {
+            var url = "/Admin/UnprocessRequest";
+            if (window.location.hostname == 'localhost') {
+                url = "/YMB/Admin/UnprocessRequest";
+            }
+            $.ajax({
+                type: "post",
+                async: true,
+                url: url,
+                data: { reqId: id },
+                success: function (result) {
+                    //location.reload();
+                    var tblRequestElement = $("tr").find("[requestId='" + id + "']");
+                    tblRequestElement.addClass("request-not-processed");
+                    location.reload();
+                },
+                error: function (result) {
+
+                }
+            });
+        } else {
+            return false;
+        }
+
+    }
+
+    function deleteRequest(id) {
+        if (confirm('Are you sure you want to delete this request?')) {
+            var url = "/Admin/DeleteRequest";
+            if (window.location.hostname == 'localhost') {
+                url = "/YMB/Admin/DeleteRequest";
+            }
+            $.ajax({
+                type: "post",
+                async: true,
+                url: url,
+                data: { reqId: id },
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+
+                }
+            });
+        } else {
+            return false;
+        }
+    }
+
+    function showMoreDetails(id) {
+        $("#requestIdComments_"+id).show();
+    }
+    
+    function hideMoreDetails(id) {
+        $("#requestIdComments_"+id).hide();
+    }
+</script>

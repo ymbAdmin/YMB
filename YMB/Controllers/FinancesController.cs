@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using YMB.Models;
 using YMB.Factory;
+using YMB.Utility;
 
 namespace YMB.Controllers
 {
@@ -21,23 +22,25 @@ namespace YMB.Controllers
         public async Task<ActionResult> Index()
         {
 
-            var date = _db.Paycheck.Find(1).paycheckDate;
-            if (DateTime.Now > date){
-                // make next paycheck in 2 weeks at 7am
-                date = date.AddDays(14);
-                date = date.AddHours(7);
-                AccountsFactory.UpdatePaycheckDate(date);
+            var thisPaycheckDate = _db.Paycheck.Find(1).paycheckDate;
+            // make next paycheck in 2 weeks
+            var nextPaycheckDate = thisPaycheckDate.AddDays(14);
+            
+            //test now with thisPaycheckDate to update date or not
+            if (CustomDateFunctions.GetDateTime() > thisPaycheckDate)
+            {
+                FinanceFactory.UpdatePaycheckDate(nextPaycheckDate);
             }
-            ViewBag.NextPaycheck = (string.Format("{0}/{1}/{2}", date.Month, date.Day, date.Year));
-
-            return View(AccountsFactory.GetAccounts());
+            ViewBag.NextPaycheck = (string.Format("{0}/{1}/{2}", thisPaycheckDate.Month, thisPaycheckDate.Day, thisPaycheckDate.Year));
+            ViewBag.BillsListPayCheck = FinanceFactory.GetBillsDue(thisPaycheckDate, nextPaycheckDate);
+            return View(FinanceFactory.GetAccounts());
         }
 
         // GET: MyFinances/Details/5
         public async Task<ActionResult> Details(int id)
         {
             Accounts accounts = await _db.Accounts.FindAsync(id);
-            accounts.acctTrans = AccountsFactory.GetAccountTransactions(id);
+            accounts.acctTrans = FinanceFactory.GetAccountTransactions(id);
             if (accounts == null)
             {
                 return HttpNotFound();
@@ -136,14 +139,14 @@ namespace YMB.Controllers
         [HttpPost]
         public ActionResult AddTransactions(int acctId, int tranType, string tranDesc, decimal tranAmount, int acctType)
         {
-            AccountsFactory.AddTransaction(acctId, tranType, tranDesc, tranAmount, acctType);
+            FinanceFactory.AddTransaction(acctId, tranType, tranDesc, tranAmount, acctType);
             return RedirectToAction("Details", new { id = acctId });
         }
 
         [HttpPost]
         public ActionResult DeleteTransaction(int acctId, int tranId)
         {
-            AccountsFactory.DeleteTransaction(acctId, tranId);
+            FinanceFactory.DeleteTransaction(acctId, tranId);
             return RedirectToAction("Details", new { id = acctId });
         }
     }

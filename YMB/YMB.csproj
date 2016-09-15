@@ -166,33 +166,44 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FinancesController.cs" />
     <Compile Include="Extensions\AuthorizeAttribute.cs" />
+    <Compile Include="Extensions\CustomDataAttributes.cs" />
+    <Compile Include="Extensions\CustomHtmlHelpers.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
-    <Compile Include="Factory\AccountsFactory.cs" />
+    <Compile Include="Factory\FinanceFactory.cs" />
     <Compile Include="Factory\BeersFactory.cs" />
     <Compile Include="Factory\FootballPoolFactory.cs" />
+    <Compile Include="Factory\LoggerFactory.cs" />
     <Compile Include="Factory\RequestFactory.cs" />
+    <Compile Include="Factory\UtilFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201607251600559_Init.cs" />
+    <Compile Include="Migrations\201607251600559_Init.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201607251600559_Init.Designer.cs">
       <DependentUpon>201607251600559_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BeerModels.cs" />
     <Compile Include="Models\FinancialAccountModels.cs" />
     <Compile Include="Models\FootballPoolModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\AppEventModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RequestModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\CustomDateFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\YMB.css" />
+    <Content Include="Content\YMB_Mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +223,38 @@
     <Content Include="images\close_box_hover.png" />
     <Content Include="images\Close_button_icon.png" />
     <Content Include="images\Edit_icon.gif" />
+    <Content Include="images\NFL\49ers.png" />
+    <Content Include="images\NFL\atlanta.png" />
+    <Content Include="images\NFL\bears.png" />
+    <Content Include="images\NFL\bengals.png" />
+    <Content Include="images\NFL\bills.png" />
+    <Content Include="images\NFL\broncos.png" />
+    <Content Include="images\NFL\cardinals.png" />
+    <Content Include="images\NFL\chargers.png" />
+    <Content Include="images\NFL\chiefs.png" />
+    <Content Include="images\NFL\cleveland.png" />
+    <Content Include="images\NFL\colts.png" />
+    <Content Include="images\NFL\cowboys.png" />
+    <Content Include="images\NFL\eagles.png" />
+    <Content Include="images\NFL\giants.png" />
+    <Content Include="images\NFL\jaguars.png" />
+    <Content Include="images\NFL\jets.png" />
+    <Content Include="images\NFL\lions.png" />
+    <Content Include="images\NFL\miami.png" />
+    <Content Include="images\NFL\oakland.png" />
+    <Content Include="images\NFL\packers.png" />
+    <Content Include="images\NFL\panthers.png" />
+    <Content Include="images\NFL\patriots.png" />
+    <Content Include="images\NFL\rams.png" />
+    <Content Include="images\NFL\ravens.png" />
+    <Content Include="images\NFL\redskins.png" />
+    <Content Include="images\NFL\saints.png" />
+    <Content Include="images\NFL\seahawks.png" />
+    <Content Include="images\NFL\steelers.png" />
+    <Content Include="images\NFL\tampa.png" />
+    <Content Include="images\NFL\texans.png" />
+    <Content Include="images\NFL\titans.png" />
+    <Content Include="images\NFL\vikings.png" />
     <Content Include="images\stickers\HiResOvalBlacktextWhitebackgroundyellowpaw.jpg" />
     <Content Include="images\stickers\HiResYellowPawBlacInitials.jpg" />
     <Content Include="images\stickers\HiResYellowPayInitialsInPaw.jpg" />
@@ -305,6 +348,7 @@
     <Content Include="fonts\Arual.ttf" />
     <Content Include="fonts\Magneto Bold.ttf" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Properties\PublishProfiles\ToServer.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -327,7 +371,9 @@
     <Content Include="slick\slick.css" />
     <Content Include="slick\slick.js" />
     <Content Include="slick\slick.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -336,7 +382,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Error.cshtml" />
+    <Content Include="Error.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -388,10 +434,15 @@
     <Content Include="Views\FootballPool\Index.cshtml" />
     <Content Include="Views\FootballPool\Mydashboard.cshtml" />
     <Content Include="Views\FootballPool\WeeklySchedule.cshtml" />
+    <Content Include="Views\FootballPool\Leaderboard.cshtml" />
+    <Content Include="Views\FootballPool\GameScores.cshtml" />
+    <Content Include="Views\FootballPool\GenerateUserScores.cshtml" />
+    <Content Include="Views\FootballPool\AccountProfile.cshtml" />
+    <Content Include="Views\FootballPool\CheckUserPicks.cshtml" />
+    <Content Include="Views\FootballPool\SendEmailReminder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Requests\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

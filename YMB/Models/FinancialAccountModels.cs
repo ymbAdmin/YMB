@@ -24,6 +24,7 @@ namespace YMB.Models
         [Display(Name = "Amount Due")]
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? acctBillDueAmount { get; set; }
+        public Boolean display { get; set; }
     }
 
     public class AccountTransactions
