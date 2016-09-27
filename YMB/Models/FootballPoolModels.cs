@@ -95,5 +95,6 @@ namespace YMB.Models
         public Boolean hasMadePicks { get; set; }
         public int weekId { get; set; }
         public string userName { get; set; }
+        public int numberOfPicksMade { get; set; }
     }
 }

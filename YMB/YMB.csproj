@@ -440,6 +440,7 @@
     <Content Include="Views\FootballPool\AccountProfile.cshtml" />
     <Content Include="Views\FootballPool\CheckUserPicks.cshtml" />
     <Content Include="Views\FootballPool\SendEmailReminder.cshtml" />
+    <Content Include="Views\FootballPool\CheckEntryFees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

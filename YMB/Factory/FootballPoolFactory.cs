@@ -308,8 +308,9 @@ namespace YMB.Factory
 
             foreach (var user in users)
             {
-               CheckUserPicks thisUserCheck = new CheckUserPicks() { simpleUserId = user.simpleUserId, weekId = weekId, userName = user.userName,  };
+               CheckUserPicks thisUserCheck = new CheckUserPicks() { simpleUserId = user.simpleUserId, weekId = weekId, userName = user.userName };
                thisUserCheck.hasMadePicks = usersPicksNotMade.Contains(user.simpleUserId) ?  false :  true;
+               thisUserCheck.numberOfPicksMade = _db.FootballPoolUserPicks.Where(fp => fp.weekId == weekId && fp.simpleUserId == user.simpleUserId && fp.pick != 0).Count();
                userPickChecks.Add(thisUserCheck);
             }
 
@@ -340,6 +341,25 @@ namespace YMB.Factory
         {
             ApplicationDbContext _db = new ApplicationDbContext();
             return _db.FootballGame.Where(fg => fg.gameId == gameId).Select(fg => fg.gameDate).First();
+        }
+
+        internal static FootballPoolViewModel CheckEntryFees()
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            FootballPoolViewModel vw = new FootballPoolViewModel();
+
+            vw.users = _db.FootballPoolUser.ToList();
+
+            return vw;
+        }
+
+        internal static void UpdateEntryFeeFlag(int simpleUserId)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            FootballPoolUsers thisUser = _db.FootballPoolUser.Where(u => u.simpleUserId == simpleUserId).First();
+            thisUser.hasPaid = true;
+            _db.Entry(thisUser).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
         }
     }
 }

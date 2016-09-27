@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "CheckEntryFees";
+    var unpaid = Model.users.Where(u => u.hasPaid == false).Count();
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Check Entry Fees</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+<br/><br /><span><b>@unpaid</b> people unpaid</span><br /><br />
+<table>
+    <tr>
+        <th>User</th>
+        <th>Paid?</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var user in Model.users)
+    {
+        <tr>
+            <td>@user.userName</td>
+            <td>@(user.hasPaid ? "Yes" : "No")</td>
+            <td>
+                @using (Html.BeginForm("UpdateEntryFees", "FootballPool", FormMethod.Post))
+                {
+                    <input name="simpleUserId" value="@user.simpleUserId" type="hidden" />
+                    if (!user.hasPaid)
+                    {
+                        <input type="submit" value="Paid" />
+                    }
+                }
+
+            </td>
+        </tr>
+
+    }
+</table>

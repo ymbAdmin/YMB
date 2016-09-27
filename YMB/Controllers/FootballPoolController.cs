@@ -159,7 +159,7 @@ namespace YMB.Controllers
                 //LoggerFactory.LogError("GenerateUserScores", string.Format("Message: {0} more details: {1}", e.Message, Convert.ToString(e.InnerException.Message)), e.StackTrace, "Admin");
             }
 
-            return View();
+            return RedirectToAction("Index", "Admin");
         }
 
         public ActionResult AccountProfile(string message)
@@ -222,10 +222,9 @@ namespace YMB.Controllers
             {
                 foreach (var user in userList)
                 {
-                    if (user.UserName == "asutton")
-                    {
+
                         await UserManager.SendEmailAsync(user.Id, string.Format("Football Pick Reminder Week {0}", weekId), string.Format("You are recieving this reminder because you have not submitted a pick for the next game(s) on {0} {1} at {2} ", nextGameTime.ToString("dddd"), nextGameTime.ToString("m"), nextGameTime.ToString("t"))); 
-                    }
+                    
 
                 }
 
@@ -236,6 +235,18 @@ namespace YMB.Controllers
             }
 
             return RedirectToAction("Index", "Admin");
+        }
+
+        public ActionResult CheckEntryFees()
+        {
+            FootballPoolViewModel vw = FootballPoolFactory.CheckEntryFees();
+            return View(vw);
+        }
+        [HttpPost]
+        public ActionResult UpdateEntryFees(int simpleUserId)
+        {
+            FootballPoolFactory.UpdateEntryFeeFlag(simpleUserId);
+            return RedirectToAction("CheckEntryFees", "FootballPool");
         }
     }
 }

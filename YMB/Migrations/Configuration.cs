@@ -17,12 +17,12 @@ namespace YMB.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            if (false)
+            if (true)
             {
                 //SeedTeamData(context);
-                //SeedGameData(context);
+                SeedGameData(context);
                 //SeedUserPickData(context, 3);
-                ResetFootballTables(context);
+                //ResetFootballTables(context);
             }
         }
 
@@ -107,6 +107,22 @@ namespace YMB.Migrations
             //context.FootballGame.Add(new FootballGame() { gameId = 46, weekId = 3, homeTeam = context.FootballTeam.Single(f => f.teamId == 12), awayTeam = context.FootballTeam.Single(f => f.teamId == 15), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 9, 25, 16, 25, 0) });
             //context.FootballGame.Add(new FootballGame() { gameId = 47, weekId = 3, homeTeam = context.FootballTeam.Single(f => f.teamId == 17), awayTeam = context.FootballTeam.Single(f => f.teamId == 24), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 9, 25, 10, 30, 0) });
             //context.FootballGame.Add(new FootballGame() { gameId = 48, weekId = 3, homeTeam = context.FootballTeam.Single(f => f.teamId == 28), awayTeam = context.FootballTeam.Single(f => f.teamId == 25), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 9, 26, 22, 30, 0) });
+            //week 4
+            context.FootballGame.Add(new FootballGame() { gameId = 49, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 5), awayTeam = context.FootballTeam.Single(f => f.teamId == 4), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 29, 20, 25, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 50, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 10), awayTeam = context.FootballTeam.Single(f => f.teamId == 12), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 9, 30, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 51, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 3), awayTeam = context.FootballTeam.Single(f => f.teamId == 2), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 52, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 11), awayTeam = context.FootballTeam.Single(f => f.teamId == 9), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 53, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 24), awayTeam = context.FootballTeam.Single(f => f.teamId == 22), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 54, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 25), awayTeam = context.FootballTeam.Single(f => f.teamId == 26), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 55, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 1), awayTeam = context.FootballTeam.Single(f => f.teamId == 31), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 56, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 6), awayTeam = context.FootballTeam.Single(f => f.teamId == 16), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 57, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 18), awayTeam = context.FootballTeam.Single(f => f.teamId == 8), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 13, 00, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 58, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 27), awayTeam = context.FootballTeam.Single(f => f.teamId == 13), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 16, 05, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 59, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 29), awayTeam = context.FootballTeam.Single(f => f.teamId == 32), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 16, 25, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 60, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 30), awayTeam = context.FootballTeam.Single(f => f.teamId == 17), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 16, 25, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 61, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 15), awayTeam = context.FootballTeam.Single(f => f.teamId == 28), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 16, 25, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 62, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 7), awayTeam = context.FootballTeam.Single(f => f.teamId == 14), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 2, 10, 30, 0) });
+            context.FootballGame.Add(new FootballGame() { gameId = 63, weekId = 4, homeTeam = context.FootballTeam.Single(f => f.teamId == 23), awayTeam = context.FootballTeam.Single(f => f.teamId == 20), homeTeamScore = 0, awayTeamScore = 0, gameDate = new DateTime(2016, 10, 3, 20, 30, 0) });
         }
 
         private void SeedTeamData(ApplicationDbContext context)

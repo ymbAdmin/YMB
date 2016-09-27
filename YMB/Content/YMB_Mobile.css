@@ -115,3 +115,9 @@
         width: 10%;
     }
 }
+
+@media (min-width: 995px) {
+  .navbar-toggle {
+    display: none;
+  }
+}

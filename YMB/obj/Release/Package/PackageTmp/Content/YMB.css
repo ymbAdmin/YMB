@@ -130,6 +130,10 @@
     color: green;
 }
 
+.bold-me {
+    font-weight: bold;
+}
+
 #fade {
     display: none;
     background-color: #ababab;
@@ -237,7 +241,7 @@
     border-radius: 5px;
     background: rgba(255,204,0,255);
     margin-bottom: 8px;
-    font-family: Franklin Gothic Medium,Franklin Gothic,ITC Franklin Gothic,Arial,sans-serif; 
+    font-family: Franklin Gothic Medium,Franklin Gothic,ITC Franklin Gothic,Arial,sans-serif;
 }
 
 .mobile {
@@ -292,11 +296,10 @@
     display: none;
 }
 
-.highlight-me{
+.highlight-me {
     background: yellow;
 }
 
-.acct-bill-spacing
-{
+.acct-bill-spacing {
     padding-right: 7px;
 }

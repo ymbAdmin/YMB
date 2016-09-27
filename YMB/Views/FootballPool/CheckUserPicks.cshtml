@@ -11,16 +11,20 @@
 
 @if (Model != null)
 {
-    var totalPicklessUsers = Model.userPicksCheck.Where(up => up.hasMadePicks == false).Count();
     <form method="post" action="~/FootballPool/CheckUserPicks">
         <h4>Please choose a week:</h4>
         <select name="weekId" id="weekId">
             <option value="1">Week 1</option>
             <option value="2">Week 2</option>
             <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
         </select>
         <input type="submit" value="Show Week" />
     </form>
+    var numGames = Model.footballGames.Where(fp => fp.weekId == Model.footballGames.First().weekId).Count();
+    var totalPicklessUsers = Model.userPicksCheck.Where(up => up.hasMadePicks == false).Count();
+
+    <h4 class="ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
     <br/>
     <p>Total users without picks: <b style="font-size: larger;">@totalPicklessUsers</b></p>
     <table>
@@ -28,6 +32,7 @@
             <th> </th>
             <th>Username</th>
             <th>Made Pick?</th>
+            <th>Number of Picks</th>
         </tr>
 
         @foreach (var userCheck in Model.userPicksCheck)
@@ -36,6 +41,7 @@
                 <td>@counter.</td>
                 <td>@userCheck.userName</td>
                 <td>@(userCheck.hasMadePicks ? "Yes" : "No")</td>
+                <td><span class="@(userCheck.numberOfPicksMade == numGames ? "green" : "bold-me red")">@userCheck.numberOfPicksMade / @numGames</span></td>
             </tr>
             counter++;
         }
@@ -49,7 +55,20 @@ else
             <option value="1">Week 1</option>
             <option value="2">Week 2</option>
             <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
         </select>
         <input type="submit" value="Show Week" />
     </form>
 }
+
+<script type="text/javascript">
+$(document).ready(function () {
+    setWeekDropDown();
+});
+
+function setWeekDropDown() {
+    var weekValue = 4;
+   $("#weekId option[value="+ weekValue +"]").prop('selected', true);
+}
+
+</script>

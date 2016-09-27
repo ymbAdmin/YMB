@@ -21,6 +21,7 @@
                 <option value="1">Week 1</option>
                 <option value="2">Week 2</option>
                 <option value="3">Week 3</option>
+                <option value="4">Week 4</option>
             </select>
             <input type="submit" value="Show Week" />
             @if(User.Identity.GetSimpleUserId() == "3"){
@@ -41,6 +42,7 @@
                 <option value="1">Week 1</option>
                 <option value="2">Week 2</option>
                 <option value="3">Week 3</option>
+                <option value="4">Week 4</option>
             </select>
             <input type="submit" value="Show Week" />
             @if (User.Identity.GetSimpleUserId() == "3")
@@ -62,7 +64,7 @@
             @foreach (var game in Model.footballGames)
             {
                 var thisGamesDate = game.gameDate;
-                if (timeNow.AddHours(3) < thisGamesDate)
+                if (timeNow < thisGamesDate)
                 {
 
                     <div class="row text-center">
@@ -101,10 +103,10 @@
                 else
                 {
                     <div class="row text-center">
-                        @if (date != previousDateTime)
+                        @if (thisGamesDate != previousDateTime)
                         {
-                            <u>  @date.ToString("MMM dd, h:mm tt") </u><br />
-                            previousDateTime = date;
+                            <u>  @thisGamesDate.ToString("MMM dd, h:mm tt") </u><br />
+                            previousDateTime = thisGamesDate;
                         }
                         @if (Model.userPicks.Count() > 0)
                         {
@@ -115,8 +117,12 @@
 
                         <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
                         <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
-                        <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>&raquo;Win&laquo;</b></span>
-                        <span style="font-size: larger; color: red; @(pickId == game.winningTeamId ? "display: none" : "display: inherit;")"><b>&raquo;Loss&laquo;</b></span>
+                        @if (game.winningTeamId != 0)
+                        {
+                            <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>&raquo;Win&laquo;</b></span>
+                            <span style="font-size: larger; color: red; @(pickId == game.winningTeamId  ? "display: none" : "display: inherit;")"><b>&raquo;Loss&laquo;</b></span>
+                        }
+                        
                         <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
                         <div class="img-thumbnail">
                             <img class="team-img-picked" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" />
@@ -169,10 +175,10 @@
             success: function (result) {
                 //location.reload();
                 if (result == "True") {
+                    alert('Your picks have been submitted for week ' + weekId);
                     $("#picksSubmitted").show();
                     closeLoadingModal();
                     $("html, body").animate({ scrollTop: 0 }, "slow");
-                    setTimeout(hidePicksMessage, 1500);
                 } else {
                     closeLoadingModal();
                     $("#picksSubmittedError").show();
@@ -205,4 +211,16 @@
         $("[id^=circle-" + gameId + "]").removeClass("show-circle hide-circle").addClass("hide-circle");
         $("#circle-" + gameId + "-" + teamId).removeClass("show-circle hide-circle").addClass("show-circle")
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setWeekDropDown();
+    });
+
+    function setWeekDropDown() {
+        var weekValue = 4;
+        $("#weekId option[value=" + weekValue + "]").prop('selected', true);
+    }
+
 </script>

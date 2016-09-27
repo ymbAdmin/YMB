@@ -13,7 +13,19 @@
         <option value="1">Week 1</option>
         <option value="2">Week 2</option>
         <option value="3">Week 3</option>
+        <option value="4">Week 4</option>
     </select>
     <input type="submit" value="Send Reminders" />
 </form>
 
+<script type="text/javascript">
+$(document).ready(function () {
+    setWeekDropDown();
+});
+
+function setWeekDropDown() {
+    var weekValue = 4;
+   $("#weekId option[value="+ weekValue +"]").prop('selected', true);
+}
+
+</script>
