@@ -80,6 +80,12 @@
         top: 20%;
         margin-left: 3px;
     }
+
+    #alertMobileTextDiv {
+        margin-top: 30%;
+        margin-left: 10%;
+        margin-right: 15%;
+    }
 }
 
 
@@ -107,6 +113,13 @@
     .go-fund-me {
         display: none;
     }
+
+    
+    #alertMobileTextDiv {
+        margin-top: 30%;
+        margin-left: 10%;
+        margin-right: 15%;
+    }
 }
 
 @media (max-width: 1750px) {
@@ -114,10 +127,24 @@
         margin-left: 1%;
         width: 10%;
     }
+
+    
+    #alertMobileTextDiv {
+        margin-top: 30%;
+        margin-left: 10%;
+        margin-right: 15%;
+    }
 }
 
 @media (min-width: 995px) {
-  .navbar-toggle {
-    display: none;
-  }
+    .navbar-toggle {
+        display: none;
+    }
+
+    
+    #alertMobileTextDiv {
+        margin-top: 30%;
+        margin-left: 10%;
+        margin-right: 15%;
+    }
 }

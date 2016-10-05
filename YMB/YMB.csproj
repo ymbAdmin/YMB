@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BeersController.cs" />
+    <Compile Include="Controllers\FootballPoolAdminController.cs" />
     <Compile Include="Controllers\FootballPoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,6 +221,8 @@
     <Content Include="images\brewery_overview2.png" />
     <Content Include="images\chilling.png" />
     <Content Include="images\circlelogotall.png" />
+    <Content Include="images\CircleLogoWithBlackTextandYellowPawWhiteBackground.png" />
+    <Content Include="images\close-button.png" />
     <Content Include="images\close_box_hover.png" />
     <Content Include="images\Close_button_icon.png" />
     <Content Include="images\Edit_icon.gif" />
@@ -326,7 +329,7 @@
     <Content Include="images\svg\YellowPaw.svg" />
     <Content Include="images\svg\YellowPawWithBlackInitials.svg" />
     <Content Include="images\svg\YellowPawWithWhiteInitials.svg" />
-    <Content Include="images\svg\YellowPayInitialsInPaw.svg" />
+    <Content Include="images\svg\YellowPawInitialsInPaw.svg" />
     <Content Include="images\svg\YMBclothingLine.svg" />
     <Content Include="images\svg\YMBlogo2.svg" />
     <Content Include="images\svg\YMBlogo3.svg" />
@@ -435,12 +438,15 @@
     <Content Include="Views\FootballPool\Mydashboard.cshtml" />
     <Content Include="Views\FootballPool\WeeklySchedule.cshtml" />
     <Content Include="Views\FootballPool\Leaderboard.cshtml" />
-    <Content Include="Views\FootballPool\GameScores.cshtml" />
-    <Content Include="Views\FootballPool\GenerateUserScores.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\GameScores.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\GenerateUserScores.cshtml" />
     <Content Include="Views\FootballPool\AccountProfile.cshtml" />
-    <Content Include="Views\FootballPool\CheckUserPicks.cshtml" />
-    <Content Include="Views\FootballPool\SendEmailReminder.cshtml" />
-    <Content Include="Views\FootballPool\CheckEntryFees.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\CheckUserPicks.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\SendEmailReminder.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\CheckEntryFees.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\SendEmail.cshtml" />
+    <Content Include="Views\FootballPoolAdmin\AddAlert.cshtml" />
+    <Content Include="Views\Shared\_WeekDropDown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

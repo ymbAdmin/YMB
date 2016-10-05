@@ -16,14 +16,7 @@
     @if (Model == null)
     {
         <form method="post" action="~/FootballPool/weeklyschedule">
-            <h5>Select a week:</h5>
-            <select name="weekId" id="weekId">
-                <option value="1">Week 1</option>
-                <option value="2">Week 2</option>
-                <option value="3">Week 3</option>
-                <option value="4">Week 4</option>
-            </select>
-            <input type="submit" value="Show Week" />
+            @Html.Partial("_WeekDropDown")
             @if(User.Identity.GetSimpleUserId() == "3"){
                <br/><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
             }
@@ -37,14 +30,7 @@
     else
     {
         <form method="post" action="~/FootballPool/weeklyschedule">
-            <h5>Select a week:</h5>
-            <select name="weekId" id="weekId">
-                <option value="1">Week 1</option>
-                <option value="2">Week 2</option>
-                <option value="3">Week 3</option>
-                <option value="4">Week 4</option>
-            </select>
-            <input type="submit" value="Show Week" />
+            @Html.Partial("_WeekDropDown")
             @if (User.Identity.GetSimpleUserId() == "3")
             {
                 <br /><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
@@ -219,7 +205,7 @@
     });
 
     function setWeekDropDown() {
-        var weekValue = 4;
+        var weekValue = 5;
         $("#weekId option[value=" + weekValue + "]").prop('selected', true);
     }
 

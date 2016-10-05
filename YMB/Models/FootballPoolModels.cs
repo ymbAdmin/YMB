@@ -13,7 +13,7 @@ namespace YMB.Models
         public IEnumerable<FootballGame> footballGames { get; set; }
         public IEnumerable<FootballPoolUsers> users { get; set; }
         public IEnumerable<FootballPoolUserPicks> userPicks { get; set; }
-        public IEnumerable<FootballAlerts> alerts { get; set; }
+        public IEnumerable<UserAlerts> alerts { get; set; }
         public IEnumerable<CheckUserPicks> userPicksCheck { get; set; }
     }
     public class FootballTeam
@@ -84,11 +84,6 @@ namespace YMB.Models
         public int losses { get; set; }
     }
 
-    public class FootballAlerts
-    {
-
-    }
-
     public class CheckUserPicks
     {
         public int simpleUserId { get; set; }
@@ -96,5 +91,18 @@ namespace YMB.Models
         public int weekId { get; set; }
         public string userName { get; set; }
         public int numberOfPicksMade { get; set; }
+    }
+
+    public class UserAlerts
+    {
+        [Key]
+        public int id { get; set; }
+        public string alertTitle { get; set; }
+        public string alertText { get; set; }
+        public int simpleUserId { get; set; }
+        public Boolean alertRead { get; set; }
+        public Boolean alertActive { get; set; }
+        public DateTime alertDate { get; set; }
+        public Boolean userCanDelete { get; set; }
     }
 }

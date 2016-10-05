@@ -1,0 +1,42 @@
+﻿@model List<YMB.Models.ApplicationUser>
+@{
+    ViewBag.Title = "AddAlert";
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Add Alert</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+
+@using (Html.BeginForm("AddAlert", "FootballPoolAdmin", FormMethod.Post))
+{
+
+    <div style="margin-bottom: 5px;">
+        <span>Alert Title: <input type="text" id="alertTitle" name="alertTitle" /></span><br />
+    </div>
+    <div>
+        <span>Alert Text: <textarea id="alertText" name="alertText" cols="50" rows="10"></textarea></span>
+    </div><br />
+    <div>
+        <input type="hidden" id="modelCount" value="@Model.Count()" />
+        <span>User can delete:</span><input type="checkbox" name="userCanDelete" value="true"/><br /><br />
+        <input type="checkbox" id="checkAllUsers" onchange="javascript:checkUsers(this);" /><span><b>All</b></span><br />
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <input type="checkbox" name="simpleUserIds" value="@Model[i].simpleUserId" /><span>@Model[i].UserName</span><br />
+        }
+    </div>
+    <input type="submit" value="Add Alert" />
+
+}
+<script type="text/javascript">
+    function checkUsers(element) {
+        var userCount = $("#modelCount").val();
+        if (element.checked) {
+            for (i = 0; i < userCount; i++) {
+                $("input[name='simpleUserIds']").prop('checked', true);
+            }
+        } else {
+            for (i = 0; i < userCount; i++) {
+                $("input[name='simpleUserIds']").prop('checked', false);
+            }
+        }
+    }
+</script>

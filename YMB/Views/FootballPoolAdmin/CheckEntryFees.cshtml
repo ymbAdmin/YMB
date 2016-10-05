@@ -20,7 +20,7 @@
             <td>@user.userName</td>
             <td>@(user.hasPaid ? "Yes" : "No")</td>
             <td>
-                @using (Html.BeginForm("UpdateEntryFees", "FootballPool", FormMethod.Post))
+                @using (Html.BeginForm("UpdateEntryFees", "FootballPoolAdmin", FormMethod.Post))
                 {
                     <input name="simpleUserId" value="@user.simpleUserId" type="hidden" />
                     if (!user.hasPaid)

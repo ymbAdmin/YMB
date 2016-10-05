@@ -361,5 +361,52 @@ namespace YMB.Factory
             _db.Entry(thisUser).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
         }
+
+        internal static FootballPoolViewModel GetUserAlerts(int simpleUserId)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            FootballPoolViewModel vw = new FootballPoolViewModel() { alerts = _db.UserAlerts.Where(a => a.simpleUserId == simpleUserId).ToList() };
+            return vw;
+        }
+
+        internal static List<ApplicationUser> GetUserListFromIds(List<int> simpleUserIds)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            List<ApplicationUser> userList = _db.Users.Where(u => simpleUserIds.Contains(u.simpleUserId)).ToList();
+            return userList;
+        }
+
+        internal static List<ApplicationUser> GetAllUsers()
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            List<ApplicationUser> userList = _db.Users.ToList();
+            return userList;
+        }
+
+        internal static void AddAlert(int simpleUserId, string alertTitle, string alertText, Boolean userCanDelete)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            UserAlerts newAlert = new UserAlerts() { alertRead = false, alertText = alertText, alertTitle = alertTitle, simpleUserId = simpleUserId, alertActive = true, alertDate = DateTime.Now, userCanDelete = userCanDelete };
+            _db.UserAlerts.Add(newAlert);
+            _db.SaveChanges();
+        }
+
+        internal static void UpdateAlertReadFlag(int alertId)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            UserAlerts thisAlert = _db.UserAlerts.Where(a => a.id == alertId).First();
+            thisAlert.alertRead = true;
+            _db.Entry(thisAlert).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+
+        internal static void DeleteAlert(int alertId)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            UserAlerts thisAlert = _db.UserAlerts.Where(a => a.id == alertId).First();
+            thisAlert.alertActive = false;
+            _db.Entry(thisAlert).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
     }
 }

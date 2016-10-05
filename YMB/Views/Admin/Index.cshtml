@@ -4,18 +4,20 @@
 }
 
 <h2 class="center-text ymb-yellow-text-and-shadow">YMB Admin</h2>
-<ul>
+<ul class="admin-link-list">
     @if (Request.IsAuthenticated)
     {
         var userName = User.Identity.GetUserName();
         if (userName == "asutton")
         {
             <li>@Html.ActionLink("Requests", "Requests", "Admin")</li>
-            <li>@Html.ActionLink("Football Game Results", "GameScores", "FootballPool")</li>
-            <li>@Html.ActionLink("Generate User Scores", "GenerateUserScores", "FootballPool")</li>
-            <li>@Html.ActionLink("Check User Picks", "CheckUserPicks", "FootballPool")</li>
-            <li>@Html.ActionLink("Send Email Reminder", "SendEmailReminder", "FootballPool")</li>
-            <li>@Html.ActionLink("Check Entry Fees", "CheckEntryFees", "FootballPool")</li>
+            <li>@Html.ActionLink("Football Game Results", "GameScores", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Generate User Scores", "GenerateUserScores", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Check User Picks", "CheckUserPicks", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Send Game Picks Reminder", "SendEmailReminder", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Check Entry Fees", "CheckEntryFees", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Send Email Message to Users", "SendEmail", "FootballPoolAdmin")</li>
+            <li>@Html.ActionLink("Add User Alert", "AddAlert", "FootballPoolAdmin")</li>
         }
     }
 </ul>

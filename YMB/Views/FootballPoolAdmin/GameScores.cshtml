@@ -16,20 +16,13 @@
 
 @if (Model != null)
 {
-    <form method="post" action="~/FootballPool/GameScores">
-        <h4>Please choose a week:</h4>
-        <select name="weekId" id="weekId">
-            <option value="1">Week 1</option>
-            <option value="2">Week 2</option>
-            <option value="3">Week 3</option>
-            <option value="4">Week 4</option>
-        </select>
-        <input type="submit" value="Show Week" />
+    <form method="post" action="~/FootballPoolAdmin/GameScores">
+        @Html.Partial("_WeekDropDown")
     </form>
     var footballGames = Model.footballGames.ToList();
     var numFootballGames = Model.footballGames.Count();
     <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
-    using (Html.BeginForm("SubmitGameScores", "FootballPool", FormMethod.Post))
+    using (Html.BeginForm("SubmitGameScores", "FootballPoolAdmin", FormMethod.Post))
     {
         <table class="table game-score-table">
             <tr>
@@ -93,15 +86,8 @@
 }
 else
 {
-    <form method="post" action="~/FootballPool/GameScores">
-        <h4>Please choose a week:</h4>
-        <select name="weekId" id="weekId">
-            <option value="1">Week 1</option>
-            <option value="2">Week 2</option>
-            <option value="3">Week 3</option>
-            <option value="4">Week 4</option>
-        </select>
-        <input type="submit" value="Show Week" />
+    <form method="post" action="~/FootballPoolAdmin/GameScores">
+        @Html.Partial("_WeekDropDown")
     </form>
 }
 <script type="text/javascript">
@@ -110,7 +96,7 @@ else
     });
 
     function setWeekDropDown() {
-        var weekValue = 4;
+        var weekValue = 5;
         $("#weekId option[value=" + weekValue + "]").prop('selected', true);
     }
 

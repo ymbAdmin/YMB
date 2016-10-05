@@ -89,10 +89,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:43</publishTime>
     </File>
     <File Include="bin/YMB.dll">
-      <publishTime>06/29/2016 10:41:34</publishTime>
+      <publishTime>10/04/2016 12:53:42</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>06/27/2016 13:54:40</publishTime>
+      <publishTime>09/21/2016 07:11:03</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>06/27/2016 13:54:40</publishTime>
@@ -107,7 +107,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 07:40:17</publishTime>
     </File>
     <File Include="Content/YMB.css">
-      <publishTime>06/29/2016 10:34:55</publishTime>
+      <publishTime>09/29/2016 08:57:34</publishTime>
+    </File>
+    <File Include="Content/YMB_Mobile.css">
+      <publishTime>09/28/2016 14:13:36</publishTime>
+    </File>
+    <File Include="Controllers/AccountController.cs">
+      <publishTime>08/30/2016 15:24:51</publishTime>
+    </File>
+    <File Include="Error.cshtml">
+      <publishTime>07/22/2016 15:01:24</publishTime>
+    </File>
+    <File Include="error.html">
+      <publishTime>08/09/2016 07:18:02</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>08/18/2014 14:36:47</publishTime>
@@ -166,6 +178,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/a02.png">
       <publishTime>06/28/2016 14:11:07</publishTime>
     </File>
+    <File Include="images/add_button.png">
+      <publishTime>07/05/2016 11:52:22</publishTime>
+    </File>
     <File Include="images/beer-comp.jpg">
       <publishTime>11/11/2015 10:01:56</publishTime>
     </File>
@@ -217,11 +232,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/CircleLogoWithBlackTextandYellowPawTanBackground.svg">
       <publishTime>05/17/2016 09:29:45</publishTime>
     </File>
+    <File Include="images/CircleLogoWithBlackTextandYellowPawWhiteBackground.png">
+      <publishTime>07/20/2016 13:01:28</publishTime>
+    </File>
     <File Include="images/CircleLogoWithBlackTextandYellowPawWhiteBackground.svg">
       <publishTime>05/18/2016 09:02:35</publishTime>
     </File>
     <File Include="images/circlelogo_turned.svg">
       <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/close-button.png">
+      <publishTime>09/28/2016 13:09:58</publishTime>
+    </File>
+    <File Include="images/close_box_hover.png">
+      <publishTime>11/17/2015 09:30:15</publishTime>
+    </File>
+    <File Include="images/Close_button_icon.png">
+      <publishTime>07/01/2014 10:12:36</publishTime>
     </File>
     <File Include="images/clothing/AllDesigns.svg">
       <publishTime>05/05/2015 16:02:36</publishTime>
@@ -295,11 +322,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/delete_button.png">
       <publishTime>03/20/2015 07:46:57</publishTime>
     </File>
+    <File Include="images/Edit_icon.gif">
+      <publishTime>09/17/2008 15:45:38</publishTime>
+    </File>
     <File Include="images/facebook.png">
       <publishTime>05/27/2015 15:40:55</publishTime>
     </File>
     <File Include="images/fermenting.png">
       <publishTime>06/05/2015 13:55:07</publishTime>
+    </File>
+    <File Include="images/goFundMe.png">
+      <publishTime>07/20/2016 10:28:28</publishTime>
     </File>
     <File Include="images/hopback.png">
       <publishTime>06/05/2015 13:54:24</publishTime>
@@ -331,6 +364,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/loading.gif">
       <publishTime>06/28/2016 14:11:07</publishTime>
     </File>
+    <File Include="images/loading_new.gif">
+      <publishTime>12/11/2015 14:43:43</publishTime>
+    </File>
     <File Include="images/medals/medal_bronze.png">
       <publishTime>05/19/2016 11:16:25</publishTime>
     </File>
@@ -343,14 +379,239 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/me_sarah_bio.JPG">
       <publishTime>11/11/2015 10:00:14</publishTime>
     </File>
+    <File Include="images/mobile-goFundme.png">
+      <publishTime>07/20/2016 11:37:50</publishTime>
+    </File>
+    <File Include="images/mobile-goFundme.svg">
+      <publishTime>07/20/2016 11:39:07</publishTime>
+    </File>
+    <File Include="images/NFL/49ers.png">
+      <publishTime>08/10/2016 10:57:09</publishTime>
+    </File>
+    <File Include="images/NFL/atlanta.png">
+      <publishTime>08/10/2016 10:50:35</publishTime>
+    </File>
+    <File Include="images/NFL/bears.png">
+      <publishTime>08/10/2016 10:53:48</publishTime>
+    </File>
+    <File Include="images/NFL/bengals.png">
+      <publishTime>08/10/2016 10:52:04</publishTime>
+    </File>
+    <File Include="images/NFL/bills.png">
+      <publishTime>08/10/2016 10:53:24</publishTime>
+    </File>
+    <File Include="images/NFL/broncos.png">
+      <publishTime>08/10/2016 10:40:52</publishTime>
+    </File>
+    <File Include="images/NFL/cardinals.png">
+      <publishTime>08/10/2016 10:56:26</publishTime>
+    </File>
+    <File Include="images/NFL/chargers.png">
+      <publishTime>08/10/2016 10:52:59</publishTime>
+    </File>
+    <File Include="images/NFL/chiefs.png">
+      <publishTime>08/10/2016 10:53:13</publishTime>
+    </File>
+    <File Include="images/NFL/cleveland.png">
+      <publishTime>08/10/2016 10:51:30</publishTime>
+    </File>
+    <File Include="images/NFL/colts.png">
+      <publishTime>08/10/2016 10:56:00</publishTime>
+    </File>
+    <File Include="images/NFL/cowboys.png">
+      <publishTime>08/10/2016 10:55:38</publishTime>
+    </File>
+    <File Include="images/NFL/eagles.png">
+      <publishTime>08/10/2016 10:51:52</publishTime>
+    </File>
+    <File Include="images/NFL/giants.png">
+      <publishTime>08/10/2016 10:55:27</publishTime>
+    </File>
+    <File Include="images/NFL/jaguars.png">
+      <publishTime>08/10/2016 10:54:32</publishTime>
+    </File>
+    <File Include="images/NFL/jets.png">
+      <publishTime>08/10/2016 10:52:19</publishTime>
+    </File>
+    <File Include="images/NFL/lions.png">
+      <publishTime>08/10/2016 10:55:50</publishTime>
+    </File>
+    <File Include="images/NFL/miami.png">
+      <publishTime>08/10/2016 10:55:01</publishTime>
+    </File>
+    <File Include="images/NFL/oakland.png">
+      <publishTime>08/10/2016 10:52:31</publishTime>
+    </File>
+    <File Include="images/NFL/packers.png">
+      <publishTime>08/10/2016 10:54:11</publishTime>
+    </File>
+    <File Include="images/NFL/panthers.png">
+      <publishTime>08/10/2016 10:40:28</publishTime>
+    </File>
+    <File Include="images/NFL/patriots.png">
+      <publishTime>08/10/2016 10:56:13</publishTime>
+    </File>
+    <File Include="images/NFL/rams.png">
+      <publishTime>08/10/2016 10:56:59</publishTime>
+    </File>
+    <File Include="images/NFL/ravens.png">
+      <publishTime>08/10/2016 10:53:37</publishTime>
+    </File>
+    <File Include="images/NFL/redskins.png">
+      <publishTime>08/10/2016 10:56:50</publishTime>
+    </File>
+    <File Include="images/NFL/saints.png">
+      <publishTime>08/10/2016 10:52:45</publishTime>
+    </File>
+    <File Include="images/NFL/seahawks.png">
+      <publishTime>08/10/2016 10:55:16</publishTime>
+    </File>
+    <File Include="images/NFL/steelers.png">
+      <publishTime>08/10/2016 10:56:38</publishTime>
+    </File>
+    <File Include="images/NFL/tampa.png">
+      <publishTime>08/10/2016 10:41:04</publishTime>
+    </File>
+    <File Include="images/NFL/texans.png">
+      <publishTime>08/10/2016 10:53:59</publishTime>
+    </File>
+    <File Include="images/NFL/titans.png">
+      <publishTime>08/10/2016 10:50:58</publishTime>
+    </File>
+    <File Include="images/NFL/vikings.png">
+      <publishTime>08/10/2016 10:50:47</publishTime>
+    </File>
     <File Include="images/signature.jpg">
       <publishTime>02/05/2015 14:33:01</publishTime>
     </File>
     <File Include="images/signature.svg">
       <publishTime>05/05/2015 17:03:57</publishTime>
     </File>
+    <File Include="images/stickers/HiResOvalBlacktextWhitebackgroundyellowpaw.jpg">
+      <publishTime>07/21/2016 11:01:19</publishTime>
+    </File>
+    <File Include="images/stickers/HiResYellowPawBlacInitials.jpg">
+      <publishTime>07/21/2016 11:06:25</publishTime>
+    </File>
+    <File Include="images/stickers/HiResYellowPayInitialsInPaw.jpg">
+      <publishTime>07/21/2016 11:23:46</publishTime>
+    </File>
+    <File Include="images/stickers/HiResYellowPayInitialsInPaw2_background.jpg">
+      <publishTime>07/21/2016 12:04:41</publishTime>
+    </File>
+    <File Include="images/stickers/test1.png">
+      <publishTime>07/21/2016 10:53:51</publishTime>
+    </File>
+    <File Include="images/stickers/YellowPaw.png">
+      <publishTime>07/21/2016 11:05:58</publishTime>
+    </File>
+    <File Include="images/stickers/yellowPawBlackYMB.png">
+      <publishTime>07/20/2016 14:08:16</publishTime>
+    </File>
+    <File Include="images/stickers/YellowPayInitialsInPaw.png">
+      <publishTime>07/21/2016 11:23:02</publishTime>
+    </File>
+    <File Include="images/stickers/YellowPayInitialsInPaw2.png">
+      <publishTime>07/21/2016 12:00:23</publishTime>
+    </File>
+    <File Include="images/svg/AllDesigns.svg">
+      <publishTime>05/05/2015 16:02:36</publishTime>
+    </File>
+    <File Include="images/svg/BlackPaw.svg">
+      <publishTime>05/05/2015 11:46:19</publishTime>
+    </File>
+    <File Include="images/svg/BlackPawWithInitials.svg">
+      <publishTime>05/05/2015 11:52:21</publishTime>
+    </File>
+    <File Include="images/svg/BlackTextLogoWithYellowPaw.svg">
+      <publishTime>05/05/2015 13:59:03</publishTime>
+    </File>
+    <File Include="images/svg/circlelogo.svg">
+      <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/svg/circlelogotall.svg">
+      <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/svg/CircleLogoWithBlackTextandYellowPaw.svg">
+      <publishTime>05/05/2015 16:02:19</publishTime>
+    </File>
+    <File Include="images/svg/CircleLogoWithBlackTextandYellowPawClearBackground.svg">
+      <publishTime>10/03/2016 07:58:44</publishTime>
+    </File>
+    <File Include="images/svg/CircleLogoWithBlackTextandYellowPawTanBackground.svg">
+      <publishTime>05/17/2016 09:29:45</publishTime>
+    </File>
+    <File Include="images/svg/CircleLogoWithBlackTextandYellowPawWhiteBackground.svg">
+      <publishTime>05/18/2016 09:02:35</publishTime>
+    </File>
+    <File Include="images/svg/circlelogo_turned.svg">
+      <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/svg/hopLogo.svg">
+      <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/svg/hops.svg">
+      <publishTime>03/17/2015 11:34:57</publishTime>
+    </File>
+    <File Include="images/svg/mobile-goFundme.svg">
+      <publishTime>07/20/2016 11:39:07</publishTime>
+    </File>
+    <File Include="images/svg/signature.svg">
+      <publishTime>05/05/2015 17:03:57</publishTime>
+    </File>
+    <File Include="images/svg/sticker_CircleLogoWithBlackTextandYellowPaw.svg">
+      <publishTime>05/07/2015 10:40:07</publishTime>
+    </File>
+    <File Include="images/svg/WhiteTextLogoWithYellowPaw.svg">
+      <publishTime>05/05/2015 14:41:32</publishTime>
+    </File>
+    <File Include="images/svg/YellowPaw.svg">
+      <publishTime>07/20/2016 14:10:12</publishTime>
+    </File>
+    <File Include="images/svg/YellowPawInitialsInPaw.svg">
+      <publishTime>07/21/2016 11:59:55</publishTime>
+    </File>
+    <File Include="images/svg/YellowPawWithBlackInitials.svg">
+      <publishTime>05/07/2015 12:12:53</publishTime>
+    </File>
+    <File Include="images/svg/YellowPawWithWhiteInitials.svg">
+      <publishTime>09/27/2016 08:02:09</publishTime>
+    </File>
+    <File Include="images/svg/YellowPayInitialsInPaw.svg">
+      <publishTime>07/21/2016 11:59:55</publishTime>
+    </File>
+    <File Include="images/svg/YMBclothingLine.svg">
+      <publishTime>04/30/2015 15:01:53</publishTime>
+    </File>
+    <File Include="images/svg/YMBlogo2.svg">
+      <publishTime>04/22/2015 15:56:52</publishTime>
+    </File>
+    <File Include="images/svg/YMBlogo3.svg">
+      <publishTime>04/22/2015 15:57:41</publishTime>
+    </File>
+    <File Include="images/svg/YMBlogo4.svg">
+      <publishTime>04/28/2015 15:29:31</publishTime>
+    </File>
+    <File Include="images/svg/YMBlogo5.svg">
+      <publishTime>04/30/2015 14:12:06</publishTime>
+    </File>
+    <File Include="images/svg/YMBlogo6.svg">
+      <publishTime>05/05/2015 15:29:53</publishTime>
+    </File>
+    <File Include="images/svg/YMBwords_black.svg">
+      <publishTime>04/28/2015 15:40:03</publishTime>
+    </File>
+    <File Include="images/svg/YMBwords_yellow.svg">
+      <publishTime>04/28/2015 15:40:18</publishTime>
+    </File>
     <File Include="images/TextLogoYellowPaw.png">
       <publishTime>05/05/2015 12:13:30</publishTime>
+    </File>
+    <File Include="images/undo.gif">
+      <publishTime>08/06/2007 13:01:20</publishTime>
+    </File>
+    <File Include="images/widget.png">
+      <publishTime>07/20/2016 10:02:30</publishTime>
     </File>
     <File Include="images/yeast_harvest.png">
       <publishTime>06/05/2015 13:55:18</publishTime>
@@ -394,6 +655,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/YMBwords_yellow.svg">
       <publishTime>04/28/2015 15:40:18</publishTime>
     </File>
+    <File Include="Models/FinancialAccountModels.cs">
+      <publishTime>07/11/2016 16:01:57</publishTime>
+    </File>
     <File Include="Models/IdentityModels.cs">
       <publishTime>06/27/2016 15:40:25</publishTime>
     </File>
@@ -417,6 +681,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/jquery-1.11.3.min.js">
       <publishTime>06/28/2016 14:11:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>08/03/2016 11:59:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.min.js">
+      <publishTime>08/03/2016 11:59:28</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>06/27/2016 13:54:43</publishTime>
@@ -452,7 +722,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 07:40:17</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>06/29/2016 08:45:29</publishTime>
+      <publishTime>08/03/2016 12:01:22</publishTime>
     </File>
     <File Include="slick/ajax-loader.gif">
       <publishTime>06/29/2016 07:40:17</publishTime>
@@ -512,10 +782,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:44</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>06/27/2016 13:54:44</publishTime>
+      <publishTime>09/08/2016 07:33:37</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>06/27/2016 13:54:44</publishTime>
+      <publishTime>09/02/2016 12:46:17</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>06/27/2016 13:54:44</publishTime>
@@ -532,17 +802,110 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>06/27/2016 13:54:44</publishTime>
     </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>09/28/2016 12:28:40</publishTime>
+    </File>
+    <File Include="Views/Admin/Requests.cshtml">
+      <publishTime>09/29/2016 08:24:23</publishTime>
+    </File>
+    <File Include="Views/Beers/Create.cshtml">
+      <publishTime>07/21/2016 15:28:36</publishTime>
+    </File>
+    <File Include="Views/Beers/Delete.cshtml">
+      <publishTime>07/01/2016 12:55:29</publishTime>
+    </File>
+    <File Include="Views/Beers/Details.cshtml">
+      <publishTime>07/01/2016 12:55:29</publishTime>
+    </File>
+    <File Include="Views/Beers/Edit.cshtml">
+      <publishTime>07/01/2016 12:55:29</publishTime>
+    </File>
+    <File Include="Views/Beers/Index.cshtml">
+      <publishTime>07/21/2016 15:28:36</publishTime>
+    </File>
+    <File Include="Views/Finances/Create.cshtml">
+      <publishTime>06/30/2016 15:56:58</publishTime>
+    </File>
+    <File Include="Views/Finances/Delete.cshtml">
+      <publishTime>06/30/2016 15:56:42</publishTime>
+    </File>
+    <File Include="Views/Finances/Details.cshtml">
+      <publishTime>08/08/2016 11:23:46</publishTime>
+    </File>
+    <File Include="Views/Finances/Edit.cshtml">
+      <publishTime>06/30/2016 15:56:09</publishTime>
+    </File>
+    <File Include="Views/Finances/Index.cshtml">
+      <publishTime>09/12/2016 12:21:12</publishTime>
+    </File>
+    <File Include="Views/FootballPool/AccountProfile.cshtml">
+      <publishTime>09/07/2016 15:41:51</publishTime>
+    </File>
+    <File Include="Views/FootballPool/CheckEntryFees.cshtml">
+      <publishTime>09/26/2016 12:58:55</publishTime>
+    </File>
+    <File Include="Views/FootballPool/CheckUserPicks.cshtml">
+      <publishTime>09/27/2016 08:29:43</publishTime>
+    </File>
+    <File Include="Views/FootballPool/GameScores.cshtml">
+      <publishTime>09/27/2016 08:29:43</publishTime>
+    </File>
+    <File Include="Views/FootballPool/GenerateUserScores.cshtml">
+      <publishTime>09/27/2016 08:29:43</publishTime>
+    </File>
+    <File Include="Views/FootballPool/Index.cshtml">
+      <publishTime>09/06/2016 10:15:55</publishTime>
+    </File>
+    <File Include="Views/FootballPool/Leaderboard.cshtml">
+      <publishTime>09/26/2016 08:37:54</publishTime>
+    </File>
+    <File Include="Views/FootballPool/Mydashboard.cshtml">
+      <publishTime>09/29/2016 13:19:26</publishTime>
+    </File>
+    <File Include="Views/FootballPool/Players.cshtml">
+      <publishTime>08/09/2016 07:24:30</publishTime>
+    </File>
+    <File Include="Views/FootballPool/SendEmailReminder.cshtml">
+      <publishTime>09/27/2016 08:29:43</publishTime>
+    </File>
+    <File Include="Views/FootballPool/ViewPicks.cshtml">
+      <publishTime>09/11/2016 17:38:21</publishTime>
+    </File>
+    <File Include="Views/FootballPool/WeeklySchedule.cshtml">
+      <publishTime>10/04/2016 12:53:08</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/AddAlert.cshtml">
+      <publishTime>09/29/2016 13:24:12</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/CheckEntryFees.cshtml">
+      <publishTime>09/28/2016 08:34:48</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/CheckUserPicks.cshtml">
+      <publishTime>10/04/2016 12:49:14</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/GameScores.cshtml">
+      <publishTime>10/04/2016 12:49:55</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/GenerateUserScores.cshtml">
+      <publishTime>10/04/2016 12:49:54</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/SendEmail.cshtml">
+      <publishTime>09/29/2016 13:24:12</publishTime>
+    </File>
+    <File Include="Views/FootballPoolAdmin/SendEmailReminder.cshtml">
+      <publishTime>10/04/2016 12:50:07</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>06/28/2016 14:37:20</publishTime>
+      <publishTime>07/26/2016 13:36:39</publishTime>
     </File>
     <File Include="Views/Home/Beers.cshtml">
       <publishTime>06/28/2016 14:36:17</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>06/28/2016 13:15:31</publishTime>
+      <publishTime>08/02/2016 15:09:50</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/29/2016 10:40:44</publishTime>
+      <publishTime>09/27/2016 08:34:27</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>06/27/2016 13:54:45</publishTime>
@@ -562,6 +925,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>06/27/2016 13:54:45</publishTime>
     </File>
+    <File Include="Views/MyFinances/Create.cshtml">
+      <publishTime>06/30/2016 15:56:58</publishTime>
+    </File>
+    <File Include="Views/MyFinances/Delete.cshtml">
+      <publishTime>06/30/2016 15:56:42</publishTime>
+    </File>
+    <File Include="Views/MyFinances/Details.cshtml">
+      <publishTime>07/21/2016 15:43:34</publishTime>
+    </File>
+    <File Include="Views/MyFinances/Edit.cshtml">
+      <publishTime>06/30/2016 15:56:09</publishTime>
+    </File>
+    <File Include="Views/MyFinances/Index.cshtml">
+      <publishTime>07/21/2016 15:28:36</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>06/27/2016 13:54:44</publishTime>
     </File>
@@ -569,16 +947,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:45</publishTime>
     </File>
     <File Include="Views/Shared/_DocReady.cshtml">
-      <publishTime>06/29/2016 10:27:54</publishTime>
+      <publishTime>07/20/2016 10:18:20</publishTime>
+    </File>
+    <File Include="Views/Shared/_GlobalJavaScript.cshtml">
+      <publishTime>09/20/2016 10:11:55</publishTime>
     </File>
     <File Include="Views/Shared/_ImageSlider.cshtml">
-      <publishTime>06/29/2016 10:46:23</publishTime>
+      <publishTime>07/21/2016 12:46:48</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/29/2016 08:44:39</publishTime>
+      <publishTime>09/28/2016 13:04:31</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>06/27/2016 13:54:45</publishTime>
+      <publishTime>08/10/2016 16:50:11</publishTime>
+    </File>
+    <File Include="Views/Shared/_RequestForm.cshtml">
+      <publishTime>08/08/2016 08:37:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_WeekDropDown.cshtml">
+      <publishTime>10/04/2016 12:50:18</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/27/2016 13:54:37</publishTime>
@@ -587,7 +974,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/27/2016 15:44:11</publishTime>
+      <publishTime>09/29/2016 09:24:35</publishTime>
     </File>
   </ItemGroup>
 </Project>

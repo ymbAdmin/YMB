@@ -80,5 +80,7 @@ namespace YMB.Models
         public DbSet<FootballPoolUserWeeklyScores> FootballPoolUserWeeklyScores { get; set; }
 
         public DbSet<AppEvent> AppEvent { get; set; }
+
+        public DbSet<UserAlerts> UserAlerts { get; set; }
     }
 }

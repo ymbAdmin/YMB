@@ -1,0 +1,41 @@
+﻿@model List<YMB.Models.ApplicationUser>
+@{
+    ViewBag.Title = "EmailMessage";
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Email Message</h2>&laquo;@Html.ActionLink("Back to Admin", "Index", "Admin")
+
+@using (Html.BeginForm("SendEmail", "FootballPoolAdmin", FormMethod.Post))
+{
+
+    <div style="margin-bottom: 5px;">
+        <span>Subject: <input type="text" id="emailSubject" name="emailSubject" /></span><br />
+    </div>
+    <div>
+        <span>Message: <textarea id="emailSubject" name="emailMessage" cols="50" rows="10"></textarea></span>
+    </div>
+    <div>
+        <input type="hidden" id="modelCount" value="@Model.Count()" />
+        <input type="checkbox" id="checkAllUsers" onchange="javascript:checkUsers(this);" /><span><b>All</b></span><br />
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <input type="checkbox" name="simpleUserIds" value="@Model[i].simpleUserId" /><span>@Model[i].UserName</span><br />
+        }
+    </div>
+    <input type="submit" value="Send Email" />
+
+}
+<script type="text/javascript">
+function checkUsers(element) {
+    var userCount = $("#modelCount").val();
+    if (element.checked) {
+        for (i = 0; i < userCount; i++){
+            $("input[name='simpleUserIds']").prop('checked', true);
+        }
+    } else {
+        for (i = 0; i < userCount; i++) {
+            $("input[name='simpleUserIds']").prop('checked', false);
+        }
+    }
+}
+</script>
