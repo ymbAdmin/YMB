@@ -130,11 +130,11 @@ namespace YMB.Controllers
                 foreach (var user in userList)
                 {
 
-                    await UserManager.SendEmailAsync(user.Id, string.Format("Football Pick Reminder Week {0}", weekId), string.Format("You are recieving this reminder because you have not submitted a pick for the next game(s) on {0} {1} at {2} ", nextGameTime.ToString("dddd"), nextGameTime.ToString("m"), nextGameTime.ToString("t")));
+                    await UserManager.SendEmailAsync(user.Id, string.Format("Football Pick Reminder Week {0}", weekId), string.Format("You are receiving this reminder because you have not submitted a pick for the next game(s) on {0} {1} at {2} ", nextGameTime.ToString("dddd"), nextGameTime.ToString("m"), nextGameTime.ToString("t")));
 
 
                 }
-
+                await UserManager.SendEmailAsync("9bfa7dfb-36f3-4112-9bd7-4784cb0f07ba", string.Format("Football Pick Reminder Week {0}", weekId), string.Format("You are receiving this reminder because you have not submitted a pick for the next game(s) on {0} {1} at {2} ", nextGameTime.ToString("dddd"), nextGameTime.ToString("m"), nextGameTime.ToString("t")));
             }
             catch (Exception e)
             {
@@ -154,7 +154,7 @@ namespace YMB.Controllers
         public ActionResult UpdateEntryFees(int simpleUserId)
         {
             FootballPoolFactory.UpdateEntryFeeFlag(simpleUserId);
-            return RedirectToAction("CheckEntryFees", "FootballPool");
+            return RedirectToAction("CheckEntryFees", "FootballPoolAdmin");
         }
 
         [HttpGet]

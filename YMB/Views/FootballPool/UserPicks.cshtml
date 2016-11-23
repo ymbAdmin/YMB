@@ -1,0 +1,120 @@
+﻿@using YMB.Extensions;
+@using YMB.Utility;
+@model YMB.Models.FootballPoolViewModel
+@{
+    var pickId = 0;
+
+}
+<style>
+
+</style>
+<h2 class="center-text ymb-yellow-text-and-shadow">User Picks</h2>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
+
+
+<div class="weekly-pick-container">
+    @if (Model == null)
+    {
+        <form method="post" action="~/FootballPool/UserPicks">
+            @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
+            <br /><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
+        </form>
+
+    }
+    else
+    {
+        var numUserPicks = Model.userPicks.Count();
+        <form method="post" action="~/FootballPool/UserPicks">
+            @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
+            <br /><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
+        </form>
+        DateTime timeNow = CustomDateFunctions.GetDateTime();
+        var previousDateTime = new DateTime();
+
+        <input type="hidden" id="numOfGames" value="@Model.footballGames.Count()" />
+        <input type="hidden" id="firstGameId" value="@Model.footballGames.First().gameId" />
+        <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
+        if (numUserPicks <= 0)
+        {
+            <span>User has not made any picks to games that have started.</span>
+        }
+        else
+        {
+            foreach (var game in Model.footballGames)
+            {
+                var thisGamesDate = game.gameDate;
+                if (timeNow > thisGamesDate)
+                {
+
+                    <div class="row text-center">
+                        @if (thisGamesDate != previousDateTime)
+                        {
+                            <u>  @thisGamesDate.ToString("MMM dd, h:mm tt") </u><br />
+                            previousDateTime = thisGamesDate;
+                        }
+                        @if (numUserPicks > 0)
+                        {
+                            var pickObj = Model.userPicks.Where(p => p.gameId == game.gameId).FirstOrDefault();
+
+                            pickId = pickObj.pick;
+                        }
+
+                        @if (game.winningTeamId != 0)
+                        {
+                            <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>User Won</b></span>
+                            <span style="font-size: larger; color: red; @(pickId == game.winningTeamId ? "display: none" : "display: inherit;")"><b>User Lost</b></span>
+                        }
+                        else
+                        {
+                            <span style="font-size: larger; color: orange; display: inherit;"><b>Game Not Scored Yet</b></span>
+                        }
+                        @*Start of away team binding*@
+                        <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss - @game.awayTeam.tie)</i></div><br />
+
+                        <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" />
+                        </div>
+                        @*End of away team binding*@
+                        <span>&#64;</span> @* Here is the @ symbol *@
+                        @*Start of home team binding*@
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL" />
+                        </div>
+                        <div class="selected-circle @(pickId == game.homeTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.homeTeam.teamId"></div>
+                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss - @game.homeTeam.tie)</i><br /><h4>@game.homeTeam.teamName </h4>
+                        <input style="display: none;" type="radio" name="gameId_@game.gameId" value="@game.homeTeam.teamId" @(pickId == game.homeTeam.id ? "checked='checked'" : "") />
+                        @*End of home team binding*@
+                    </div>
+                    <br />
+                }
+                else
+                {
+                    <div class="row text-center">
+                        @if (thisGamesDate != previousDateTime)
+                        {
+                            <u>  @thisGamesDate.ToString("MMM dd, h:mm tt") </u><br />
+                            previousDateTime = thisGamesDate;
+                        }
+                        <span style="font-size: larger; color: orange; display: inherit;"><b>Game has not started yet.</b></span>
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" />
+                        </div>
+                        <span>&#64;</span> @* Here is the @ symbol *@
+                        <div class="img-thumbnail">
+                            <img class="team-img-picked" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL" />
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        setWeekDropDown();
+    });
+</script>

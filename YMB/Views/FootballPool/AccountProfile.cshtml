@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNet.Identity;
-@using YMB.Extensions;
-@model YMB.Models.FootballPoolViewModel
+﻿@model YMB.Models.FootballPoolViewModel
 @{
     ViewBag.Title = "Account Profile";
     var user = Model.users.First();
@@ -11,6 +9,10 @@
 <h2 class="center-text ymb-yellow-text-and-shadow">Account Profile</h2>
 &laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
 <p class="text-success">@ViewBag.StatusMessage</p>
-Paid: <b> @(hasPaid ? "Yes" : "No") </b> <br/>
-User name: <b> @userName </b> <br/>
+Paid: <b> @(hasPaid ? "Yes" : "No") </b> <br />
+User name: <b> @userName </b> <br />
 @Html.ActionLink("Change Password", "ChangePassword", "Manage")
+@if (User.IsInRole("SiteAdmin"))
+{
+    <br/>@Html.ActionLink("Admin", "Index", "Admin")
+}

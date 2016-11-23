@@ -27,7 +27,7 @@
     <div id="navBar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div>
-                <img src="~/images/svg/YellowPaw.svg" alt="YMB Yellow Paw" class="mini-logo" />
+                <img src="~/images/svg/YellowPawWithWhiteInitials_wBackground.svg" alt="YMB Yellow Paw" class="mini-logo" />
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,13 +35,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Yellow Mutt Brewery", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div>
+                    <a href="~/Home/Index">
+                        <span class="navbar-brand" > <img class="top-image" src="~/images/svg/YellowMuttBrewery_iconWebsite.svg"/></span>
+                    </a>
+                </div>
             </div>
             <div class="navbar-collapse collapse mobile-navbar-padding">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Beers", "Index", "Beers")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Store", "Index", "Store")</li>
                     @if (Request.IsAuthenticated)
                     {
                         
@@ -49,11 +54,6 @@
                         var simpleUserId = User.Identity.GetSimpleUserId();
                         Boolean isPlaying;
                         Boolean.TryParse(User.Identity.IsUserPlayingPool(), out isPlaying);
-
-                        if (User.IsInRole("SiteAdmin"))
-                        {
-                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                        }
 
                         if (User.IsInRole("FinanceAdmin"))
                         {
@@ -71,30 +71,30 @@
         </div>
     </div>
 
-    <div class="go-fund-me">
+    @*<div class="go-fund-me">
         <img class="img-responsive go-fund-me-close-button" src="~/images/close_box_hover.png" onclick="javascript: hideGoFundMe(1);">
         <a target="_blank" style="border:none;" href="https://www.gofundme.com/OpenYMB?utm_medium=wdgt" title="Visit this page now.">
             <img class="img-responsive" src="~/images/goFundMe.png">
         </a>
-    </div>
+    </div>*@
 
     <div class="go-fund-me-mobile">
         <img class="img-responsive go-fund-me-close-button-mobile" src="~/images/close_box_hover.png" onclick="javascript: hideGoFundMe(2);">
         <a target="_blank" style="border:none;" href="https://www.gofundme.com/OpenYMB?utm_medium=wdgt" title="Visit this page now.">
             <input type="button" class="button-donate-mobile" value="Donate Now" />
-            <img src="~/images/svg/mobile-goFundme.svg" alt="Donate now!" style="padding-left: 40px;" />
+            <img src="~/images/svg/mobile-goFundme.svg" alt="Donate now!" class="mobile-gofundme-text"/>
         </a>
     </div>
 
     <div class="mobile-top-gofundme-margin"></div>
     <div class="container body-content">
         @RenderBody()
-        <footer style="text-align: center;">
-            <hr />
-            <p>Andrew Sutton <b>Yellow Mutt Brewery</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:andrew@yellowmuttbrewery.com">Head Brewer</a></p>
-        </footer>
+
     </div>
-    
+    <footer style="text-align: center;">
+        <hr />
+        <p>Andrew Sutton <b>Yellow Mutt Brewery</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:andrew@yellowmuttbrewery.com">Head Brewer</a></p>
+    </footer>
     <script type="text/javascript" src="~/slick/slick.js"></script>
     <script type="text/javascript" src="~/slick/slick.min.js"></script>
     @Html.Partial("_GlobalJavaScript")

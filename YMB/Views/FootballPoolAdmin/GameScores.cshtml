@@ -18,6 +18,7 @@
 {
     <form method="post" action="~/FootballPoolAdmin/GameScores">
         @Html.Partial("_WeekDropDown")
+        <input type="submit" value="Show Week" />
     </form>
     var footballGames = Model.footballGames.ToList();
     var numFootballGames = Model.footballGames.Count();
@@ -42,7 +43,7 @@
                 var homeScore = footballGames[i].homeTeamScore;
                 var awayScore = footballGames[i].awayTeamScore;
                 <tr>
-                    @if (awayScore > 0)
+                    @if (awayScore >= 0)
                     {
                         <td><span onclick="javascript: editScore();">@awayScore</span></td>
                     }
@@ -59,7 +60,7 @@
                     <td><img src="@footballGames[i].homeTeam.imageURL" /></td>
                     <td></td>
                     
-                    @if (homeScore > 0)
+                    @if (homeScore >= 0)
                     {
                         <td><span>@homeScore</span></td>
                     }
@@ -88,16 +89,11 @@ else
 {
     <form method="post" action="~/FootballPoolAdmin/GameScores">
         @Html.Partial("_WeekDropDown")
+        <input type="submit" value="Show Week" />
     </form>
 }
 <script type="text/javascript">
     $(document).ready(function () {
         setWeekDropDown();
     });
-
-    function setWeekDropDown() {
-        var weekValue = 5;
-        $("#weekId option[value=" + weekValue + "]").prop('selected', true);
-    }
-
 </script>

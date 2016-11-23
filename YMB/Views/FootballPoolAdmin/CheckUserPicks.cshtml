@@ -13,6 +13,7 @@
 {
     <form method="post" action="~/FootballPoolAdmin/CheckUserPicks">
         @Html.Partial("_WeekDropDown")
+        <input type="submit" value="Show Week" />
     </form>
     var numGames = Model.footballGames.Where(fp => fp.weekId == Model.footballGames.First().weekId).Count();
     var totalPicklessUsers = Model.userPicksCheck.Where(up => up.hasMadePicks == false).Count();
@@ -44,17 +45,12 @@ else
 {
     <form method="post" action="~/FootballPoolAdmin/CheckUserPicks">
         @Html.Partial("_WeekDropDown")
+        <input type="submit" value="Show Week" />
     </form>
 }
 
 <script type="text/javascript">
-$(document).ready(function () {
-    setWeekDropDown();
-});
-
-function setWeekDropDown() {
-    var weekValue = 5;
-   $("#weekId option[value="+ weekValue +"]").prop('selected', true);
-}
-
+    $(document).ready(function () {
+        setWeekDropDown();
+    });
 </script>

@@ -15,9 +15,12 @@
         @foreach (var bill in ViewBag.BillsListPayCheck)
         {
             totalBillAmount += bill.acctBillDueAmount;
-            <div class="col-sm-3">
-                <span class="acct-bill-spacing">@bill.acctName</span>&raquo;<span class="acct-bill-spacing">$@bill.acctBillDueAmount</span>
-            </div><br />
+            if (bill.acctBillDueAmount > 0)
+            {
+                <div class="col-sm-3">
+                    <span class="acct-bill-spacing">@bill.acctName</span>&raquo;<span class="acct-bill-spacing">$@bill.acctBillDueAmount</span>
+                </div><br />
+            }
         }
     </div>
     <br/>

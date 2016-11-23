@@ -27,7 +27,8 @@ namespace YMB
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/YMB.css",
-                      "~/Content/YMB_Mobile.css"));
+                      "~/Content/YMB.Store.css",
+                      "~/Content/YMB.Mobile.css"));
         }
     }
 }

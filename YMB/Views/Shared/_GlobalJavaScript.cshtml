@@ -26,6 +26,11 @@ $(document).ready(function () {
     });
 });
 
+function setWeekDropDown() {
+    var weekValue = 11;
+    $("#weekId option[value=" + weekValue + "]").prop('selected', true);
+}
+
 function openLoadingModal() {
     $("#fade").show();
 }

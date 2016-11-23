@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -161,11 +162,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BeersController.cs" />
+    <Compile Include="Controllers\CompetitionsController.cs" />
     <Compile Include="Controllers\FootballPoolAdminController.cs" />
     <Compile Include="Controllers\FootballPoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FinancesController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Extensions\AuthorizeAttribute.cs" />
     <Compile Include="Extensions\CustomDataAttributes.cs" />
     <Compile Include="Extensions\CustomHtmlHelpers.cs" />
@@ -204,12 +207,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\YMB.css" />
-    <Content Include="Content\YMB_Mobile.css" />
+    <Content Include="Content\YMB.Store.css" />
+    <Content Include="Content\YMB.Mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\add_button.png" />
+    <Content Include="images\banner.jpg" />
     <Content Include="images\beer-comp.jpg" />
     <Content Include="images\beer-emoji.png" />
     <Content Include="images\beer_barrels.jpg" />
@@ -225,7 +230,60 @@
     <Content Include="images\close-button.png" />
     <Content Include="images\close_box_hover.png" />
     <Content Include="images\Close_button_icon.png" />
+    <Content Include="images\new-setup\1.mov" />
+    <Content Include="images\new-setup\2.MOV" />
+    <Content Include="images\new-setup\3.mov" />
+    <Content Include="images\new-setup\Barrels.JPG" />
+    <Content Include="images\new-setup\BasementLab.JPG" />
+    <Content Include="images\new-setup\HopRocket1.JPG" />
+    <Content Include="images\new-setup\HopRocket2.JPG" />
+    <Content Include="images\new-setup\StirTheBoil.JPG" />
+    <Content Include="images\storeImages\LongSleeveBack.png" />
+    <Content Include="images\storeImages\LongSleevefront.png" />
+    <Content Include="images\storeImages\MenJacket.png" />
+    <Content Include="images\storeImages\MenJacket_LargeImg.png" />
+    <Content Include="images\storeImages\MenQuarterZip.png" />
+    <Content Include="images\storeImages\MenQuarterZip_LargeImg.png" />
+    <Content Include="images\storeImages\old\greyback.jpg" />
+    <Content Include="images\storeImages\old\greybackTank.jpg" />
+    <Content Include="images\storeImages\old\greyfront.jpg" />
+    <Content Include="images\storeImages\old\greyfrontTank.jpg" />
+    <Content Include="images\storeImages\old\grey_back_shirt.png" />
+    <Content Include="images\storeImages\old\grey_back_tank.png" />
+    <Content Include="images\storeImages\old\grey_front_shirt.png" />
+    <Content Include="images\storeImages\old\grey_front_tank.png" />
+    <Content Include="images\storeImages\old\sweatshirt.png" />
+    <Content Include="images\storeImages\old\sweatshirtlightgrey.png" />
+    <Content Include="images\storeImages\old\sweatshirt_back.png" />
+    <Content Include="images\storeImages\old\white_back_shirt.png" />
+    <Content Include="images\storeImages\old\white_back_tank.png" />
+    <Content Include="images\storeImages\old\white_front_shirt.png" />
+    <Content Include="images\storeImages\old\white_front_tank.png" />
+    <Content Include="images\storeImages\ovalSticker.png" />
+    <Content Include="images\storeImages\ovalStickerSmall.png" />
+    <Content Include="images\storeImages\pawPrintSticker.png" />
+    <Content Include="images\storeImages\WomenQuarterZip.png" />
+    <Content Include="images\storeImages\WomenQuarterZip_LargeImg.png" />
+    <Content Include="images\coming-soon.jpg" />
+    <Content Include="images\delete_button.png" />
     <Content Include="images\Edit_icon.gif" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\fermenting.png" />
+    <Content Include="images\goFundMe.png" />
+    <Content Include="images\hopback.png" />
+    <Content Include="images\hopback2.png" />
+    <Content Include="images\hops.png" />
+    <Content Include="images\icon_chrome.png" />
+    <Content Include="images\info_symbol.png" />
+    <Content Include="images\instagram.png" />
+    <Content Include="images\landlord_stout.jpg" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\loading_new.gif" />
+    <Content Include="images\medals\medal_bronze.png" />
+    <Content Include="images\medals\medal_gold.png" />
+    <Content Include="images\medals\medal_silver.png" />
+    <Content Include="images\me_sarah_bio.JPG" />
+    <Content Include="images\mobile-goFundme.png" />
     <Content Include="images\NFL\49ers.png" />
     <Content Include="images\NFL\atlanta.png" />
     <Content Include="images\NFL\bears.png" />
@@ -258,6 +316,10 @@
     <Content Include="images\NFL\texans.png" />
     <Content Include="images\NFL\titans.png" />
     <Content Include="images\NFL\vikings.png" />
+    <Content Include="images\signature.jpg" />
+    <Content Include="images\stickers\banner.png" />
+    <Content Include="images\stickers\banner_1500x386.png" />
+    <Content Include="images\stickers\golf_ball.png" />
     <Content Include="images\stickers\HiResOvalBlacktextWhitebackgroundyellowpaw.jpg" />
     <Content Include="images\stickers\HiResYellowPawBlacInitials.jpg" />
     <Content Include="images\stickers\HiResYellowPayInitialsInPaw.jpg" />
@@ -265,51 +327,11 @@
     <Content Include="images\stickers\test1.png" />
     <Content Include="images\stickers\YellowPaw.png" />
     <Content Include="images\stickers\yellowPawBlackYMB.png" />
+    <Content Include="images\stickers\YellowPawWhiteInitials.png" />
     <Content Include="images\stickers\YellowPayInitialsInPaw.png" />
     <Content Include="images\stickers\YellowPayInitialsInPaw2.png" />
     <Content Include="images\svg\AllDesigns.svg" />
-    <Content Include="images\svg\BlackTextLogoWithYellowPaw.svg" />
-    <Content Include="images\svg\CircleLogoWithBlackTextandYellowPaw.svg" />
-    <Content Include="images\clothing\greyback.jpg" />
-    <Content Include="images\clothing\greybackTank.jpg" />
-    <Content Include="images\clothing\greyfront.jpg" />
-    <Content Include="images\clothing\greyfrontTank.jpg" />
-    <Content Include="images\clothing\grey_back_shirt.png" />
-    <Content Include="images\clothing\grey_back_tank.png" />
-    <Content Include="images\clothing\grey_front_shirt.png" />
-    <Content Include="images\clothing\grey_front_tank.png" />
-    <Content Include="images\svg\sticker_CircleLogoWithBlackTextandYellowPaw.svg" />
-    <Content Include="images\clothing\sweatshirt.png" />
-    <Content Include="images\clothing\sweatshirtlightgrey.png" />
-    <Content Include="images\clothing\sweatshirt_back.png" />
-    <Content Include="images\svg\WhiteTextLogoWithYellowPaw.svg" />
-    <Content Include="images\clothing\white_back_shirt.png" />
-    <Content Include="images\clothing\white_back_tank.png" />
-    <Content Include="images\clothing\white_front_shirt.png" />
-    <Content Include="images\clothing\white_front_tank.png" />
-    <Content Include="images\svg\YellowPawWithBlackInitials.svg" />
-    <Content Include="images\svg\YellowPawWithWhiteInitials.svg" />
-    <Content Include="images\coming-soon.jpg" />
-    <Content Include="images\delete_button.png" />
-    <Content Include="images\facebook.png" />
-    <Content Include="images\fermenting.png" />
-    <Content Include="images\goFundMe.png" />
-    <Content Include="images\hopback.png" />
-    <Content Include="images\hopback2.png" />
-    <Content Include="images\hops.png" />
-    <Content Include="images\icon_chrome.png" />
-    <Content Include="images\info_symbol.png" />
-    <Content Include="images\instagram.png" />
-    <Content Include="images\landlord_stout.jpg" />
-    <Content Include="images\loading.gif" />
-    <Content Include="images\loading_new.gif" />
-    <Content Include="images\medals\medal_bronze.png" />
-    <Content Include="images\medals\medal_gold.png" />
-    <Content Include="images\medals\medal_silver.png" />
-    <Content Include="images\me_sarah_bio.JPG" />
-    <Content Include="images\mobile-goFundme.png" />
-    <Content Include="images\signature.jpg" />
-    <Content Include="images\svg\AllDesigns.svg" />
+    <Content Include="images\svg\banner.svg" />
     <Content Include="images\svg\BlackPaw.svg" />
     <Content Include="images\svg\BlackPawWithInitials.svg" />
     <Content Include="images\svg\BlackTextLogoWithYellowPaw.svg" />
@@ -320,28 +342,39 @@
     <Content Include="images\svg\CircleLogoWithBlackTextandYellowPawTanBackground.svg" />
     <Content Include="images\svg\CircleLogoWithBlackTextandYellowPawWhiteBackground.svg" />
     <Content Include="images\svg\circlelogo_turned.svg" />
+    <Content Include="images\svg\golf_ball.svg" />
     <Content Include="images\svg\hopLogo.svg" />
     <Content Include="images\svg\hops.svg" />
+    <Content Include="images\svg\LTDEBphrase.svg" />
     <Content Include="images\svg\mobile-goFundme.svg" />
+    <Content Include="images\svg\RISlabel.svg" />
     <Content Include="images\svg\signature.svg" />
     <Content Include="images\svg\sticker_CircleLogoWithBlackTextandYellowPaw.svg" />
+    <Content Include="images\svg\WhitePawInitialsInPawTransparent.svg" />
     <Content Include="images\svg\WhiteTextLogoWithYellowPaw.svg" />
+    <Content Include="images\svg\YellowMuttBrewery_iconWebsite.svg" />
     <Content Include="images\svg\YellowPaw.svg" />
+    <Content Include="images\svg\YellowPawInitialsInPaw.svg" />
+    <Content Include="images\svg\YellowPawWhiteInitials.svg" />
+    <Content Include="images\svg\YellowPawWhiteInitialsLARGE.svg" />
     <Content Include="images\svg\YellowPawWithBlackInitials.svg" />
     <Content Include="images\svg\YellowPawWithWhiteInitials.svg" />
-    <Content Include="images\svg\YellowPawInitialsInPaw.svg" />
+    <Content Include="images\svg\YellowPawWithWhiteInitials_wBackground.svg" />
+    <Content Include="images\svg\YMB.svg" />
     <Content Include="images\svg\YMBclothingLine.svg" />
     <Content Include="images\svg\YMBlogo2.svg" />
     <Content Include="images\svg\YMBlogo3.svg" />
     <Content Include="images\svg\YMBlogo4.svg" />
     <Content Include="images\svg\YMBlogo5.svg" />
     <Content Include="images\svg\YMBlogo6.svg" />
+    <Content Include="images\svg\YMBspelledOut.svg" />
     <Content Include="images\svg\YMBwords_black.svg" />
     <Content Include="images\svg\YMBwords_yellow.svg" />
     <Content Include="images\TextLogoYellowPaw.png" />
     <Content Include="images\undo.gif" />
     <Content Include="images\widget.png" />
     <Content Include="images\yeast_harvest.png" />
+    <Content Include="images\YellowPaw.svg-g4155-199.png" />
     <Content Include="images\YellowPawWithInitials.png" />
     <Content Include="images\YMBlogo4.png" />
     <Content Include="images\YMBlogo5.png" />
@@ -447,6 +480,11 @@
     <Content Include="Views\FootballPoolAdmin\SendEmail.cshtml" />
     <Content Include="Views\FootballPoolAdmin\AddAlert.cshtml" />
     <Content Include="Views\Shared\_WeekDropDown.cshtml" />
+    <Content Include="Views\Competitions\Index.cshtml" />
+    <Content Include="Views\FootballPool\GameResults.cshtml" />
+    <Content Include="Views\FootballPool\UserPicks.cshtml" />
+    <Content Include="Views\Shared\_StoreLayout.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -462,9 +500,15 @@
       <DependentUpon>201607251600559_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -486,6 +530,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:64979/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

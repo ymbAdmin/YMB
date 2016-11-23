@@ -31,6 +31,12 @@
             case 5:
                 window.location.href = ".";
                 break;
+            case 6:
+                window.location.href = "GameResults";
+                break;
+            case 7:
+                window.location.href = "UserPicks";
+                break;
             default:
                 alert('default');
         }
@@ -75,8 +81,10 @@
     <div class="football-pool-dashboard-button-div">
         <input type="button" value="Pool Info & Rules" class="football-pool-dashboard-button" onclick="javascript: loadPage(5);" />
         <input type="button" value="Leader Board" class="football-pool-dashboard-button" onclick="javascript: loadPage(1);" />
+        <input type="button" value="Game Results" class="football-pool-dashboard-button" onclick="javascript: loadPage(6);" />
         <input type="button" value="Submit & View Picks" class="football-pool-dashboard-button" onclick="javascript: loadPage(2);" />
         <input type="button" value="My Account" class="football-pool-dashboard-button" onclick="javascript: loadPage(3);" />
+        <input type="button" value="View User Picks" class="football-pool-dashboard-button" onclick="javascript: loadPage(7);" title="View other user's picks once the game has started."/>
         @*<input type="button" value="View Picks" class="football-pool-dashboard-button" onclick="javascript: loadPage(4);" />*@
     </div>
 </div>
@@ -128,10 +136,16 @@
             <input type="button" value="Leader Board" class="football-pool-dashboard-button" onclick="javascript: loadPage(1);" />
         </div>
         <div class="col-md-3 center-text">
+            <input type="button" value="Game Results" class="football-pool-dashboard-button" onclick="javascript: loadPage(6);" />
+        </div>
+        <div class="col-md-3 center-text">
             <input type="button" value="Submit & View Picks" class="football-pool-dashboard-button" onclick="javascript: loadPage(2);" />
         </div>
         <div class="col-md-3 center-text">
             <input type="button" value="My Account" class="football-pool-dashboard-button" onclick="javascript: loadPage(3);" />
+        </div>
+        <div class="col-md-3 center-text">
+            <input type="button" value="View User Picks" class="football-pool-dashboard-button" onclick="javascript: loadPage(7);" title="View other user's picks once the game has started." />
         </div>
     </div>
 </div>

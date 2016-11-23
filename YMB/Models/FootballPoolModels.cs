@@ -15,6 +15,7 @@ namespace YMB.Models
         public IEnumerable<FootballPoolUserPicks> userPicks { get; set; }
         public IEnumerable<UserAlerts> alerts { get; set; }
         public IEnumerable<CheckUserPicks> userPicksCheck { get; set; }
+        public IEnumerable<ByeWeekTeam> byeWeekTeams { get; set; }
     }
     public class FootballTeam
     {
@@ -105,4 +106,14 @@ namespace YMB.Models
         public DateTime alertDate { get; set; }
         public Boolean userCanDelete { get; set; }
     }
+
+    public class ByeWeekTeam
+    {
+        public string teamName { get; set; }
+        public int teamId { get; set; }
+
+        public string imageURL { get; set; }
+    }
 }
+
+    

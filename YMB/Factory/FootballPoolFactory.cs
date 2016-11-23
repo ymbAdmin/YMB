@@ -33,11 +33,29 @@ namespace YMB.Factory
 
         internal static FootballPoolViewModel BuildFootballPoolViewModel(int weekId, int simpleUserId)
         {
-            FootballPoolViewModel footballPoolViewModel = new FootballPoolViewModel() { footballGames = GetWeeklyGames(weekId), userPicks = GetUsersPicks(weekId, simpleUserId) };
+            FootballPoolViewModel footballPoolViewModel = new FootballPoolViewModel() { footballGames = GetWeeklyGames(weekId), userPicks = GetUsersPicks(weekId, simpleUserId), byeWeekTeams = GetByeWeekTeams(weekId) };
             return footballPoolViewModel;
         }
 
+        private static IEnumerable<ByeWeekTeam> GetByeWeekTeams(int weekId)
+        {
+            ApplicationDbContext _db = new ApplicationDbContext();
+            List<ByeWeekTeam> teamsOnBye = new List<ByeWeekTeam>();
+            List<int> allFootballTeamIds = _db.FootballTeam.Select(ft => ft.teamId).ToList();
+            List<int> allFootballTeamsPlayingIds = _db.FootballGame.Where(fg => fg.weekId == weekId).Select(fg => new[] { fg.homeTeam.teamId, fg.awayTeam.teamId } ).SelectMany(fg => fg).ToList();
+            List<int> allFootballTeamsNotPlayingIds = new List<int>();
+            allFootballTeamsNotPlayingIds = allFootballTeamIds.Except(allFootballTeamsPlayingIds).ToList();
 
+            foreach (var id in allFootballTeamsNotPlayingIds)
+            {
+                string teamName = _db.FootballTeam.Where(ft => ft.teamId == id).Select(ft => ft.teamName).First().ToString();
+                string imageUrl = _db.FootballTeam.Where(ft => ft.teamId == id).Select(ft => ft.imageURL).First().ToString();
+                ByeWeekTeam team = new ByeWeekTeam() { teamId = id, teamName = teamName, imageURL = imageUrl };
+                teamsOnBye.Add(team);
+            }
+
+            return teamsOnBye;
+        }
 
         internal static void SubmitPicks(Dictionary<string, string> picks, int simpleUserId, int weekId)
         {
@@ -87,12 +105,14 @@ namespace YMB.Factory
         {
             ApplicationDbContext _db = new ApplicationDbContext();
             List<FootballTeam> teams = _db.FootballTeam.ToList();
-            var totalGamesPlayed = _db.FootballGame.Where(g => g.winningTeamId != 0 && g.lossingTeamId != 0).Select(g => g.weekId).Distinct().Count();
+            
             
             foreach (var team in teams)
             {
+                var totalGamesPlayed = _db.FootballGame.Where(g => g.winningTeamId != 0 && g.lossingTeamId != 0 && (g.awayTeam.id == team.teamId || g.homeTeam.id == team.id)).Count();
                 team.win = _db.FootballGame.Where(g => g.winningTeamId != 0 && g.winningTeamId == team.teamId).Select(g => g.winningTeamId).Count();
                 team.loss = _db.FootballGame.Where(g => g.lossingTeamId != 0 && g.lossingTeamId == team.teamId).Select(g => g.lossingTeamId).Count();
+                team.tie = _db.FootballGame.Where(g => g.lossingTeamId == -1 && g.winningTeamId == -1 && (g.awayTeam.id == team.teamId || g.homeTeam.id == team.id)).Count();
                 var winPercentage = 0.00M;
                 if (team.loss > 0)
                 {
@@ -129,8 +149,8 @@ namespace YMB.Factory
 
                 if (awayScore == homeScore)
                 {
-                    thisGame.winningTeamId = 0; //tie
-                    thisGame.lossingTeamId = 0;
+                    thisGame.winningTeamId = -1; //tie
+                    thisGame.lossingTeamId = -1;
                 }
             }
             return thisGame;
@@ -204,10 +224,6 @@ namespace YMB.Factory
 
             foreach (var userId in simpleUserIdList)
             {
-                if (userId == 68)
-                {
-                    var jill = true;
-                }
                 decimal userScoreThisWeek = 0.00M;
                 decimal bonusPointsThisWeek = 0.00M;
                 var lossesThisWeek = 0;
@@ -215,7 +231,7 @@ namespace YMB.Factory
                 FootballPoolUsers thisUser = _db.FootballPoolUser.Where(u => u.simpleUserId == userId).First();
                 var thisUsersPicks = _db.FootballPoolUserPicks.OrderBy(up => up.gameId).Where(up => up.simpleUserId == userId && up.weekId == weekId).Select(up => up.pick).ToList();
                 //var thisUsersPicks = _db.FootballPoolUserPicks.Where(up => up.simpleUserId == userId && up.weekId == weekId).Select(up => up.pick).ToList();
-                var gamesScored = _db.FootballGame.Where(fg => fg.winningTeamId != 0 && fg.lossingTeamId != 0).ToList().Count();
+                var gamesScored = _db.FootballGame.Where(fg => fg.winningTeamId != 0 && fg.lossingTeamId != 0 && fg.weekId == weekId).ToList().Count();
                 if (thisUsersPicks.Count > 0)
                 {
                     //need to compare user list to the winning list

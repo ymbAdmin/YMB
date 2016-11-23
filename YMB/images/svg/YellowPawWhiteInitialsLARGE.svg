@@ -9,13 +9,16 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="8.77946in"
-   height="8.1714296in"
-   viewBox="0 0 790.15139 735.42863"
+   width="8.000001in"
+   height="8in"
+   viewBox="0 0 720.00008 719.99996"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="YellowPawWhiteInitialsLARGE.svg">
+   sodipodi:docname="YellowPawWhiteInitialsLARGE.svg"
+   inkscape:export-filename="K:\source\Projects\YMB\YellowPawWhiteInitialsLARGE.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="33.209023"
-     inkscape:cy="87.657764"
+     inkscape:zoom="0.35"
+     inkscape:cx="-312.88305"
+     inkscape:cy="187.6067"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,10 +60,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(1260.7444,-669.19902)">
+     transform="translate(1214.2088,-678.09201)">
+    <rect
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.77891999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="rect3339"
+       width="719.22113"
+       height="719.22107"
+       x="-1213.8193"
+       y="678.48145" />
     <g
        id="g3362"
-       transform="matrix(3.8915687,0,0,3.8915687,3689.1009,-2244.5633)">
+       transform="matrix(2.000945,0,0,2.1705969,1488.4717,-789.82408)">
       <path
          inkscape:connector-curvature="0"
          id="path3381"

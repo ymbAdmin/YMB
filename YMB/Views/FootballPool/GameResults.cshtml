@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNet.Identity;
+@using YMB.Extensions;
+@using YMB.Utility;
+@model YMB.Models.FootballPoolViewModel
+@{
+    ViewBag.Title = "Game Results";
+}
+
+<h2 class="center-text ymb-yellow-text-and-shadow">Game Results</h2>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
+<div class="weekly-pick-container">
+    @if (Model == null)
+    {
+        <form method="post" action="~/FootballPool/GameResults">
+            @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
+        </form>
+
+    }
+    else
+    {
+        <form method="post" action="~/FootballPool/GameResults">
+            @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
+        </form>
+
+        var footballGames = Model.footballGames.ToList();
+        var numFootballGames = Model.footballGames.Count();
+        <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
+
+        <table class="table game-score-table">
+            <tr>
+                <th>Away Score</th>
+                <th></th>
+                <th>Away Team</th>
+                <th></th>
+                <th><span>&#64;</span> @* Here is the @ symbol *@</th>
+                <th></th>
+                <th>Home Team</th>
+                <th></th>
+                <th>Home Score</th>
+            </tr>
+
+            @for (int i = 0; i < numFootballGames; i++)
+            {
+                var homeScore = footballGames[i].homeTeamScore;
+                var awayScore = footballGames[i].awayTeamScore;
+                var winningTeamId = footballGames[i].winningTeamId;
+                <tr>
+                    <td>
+                        <span style="font-size: larger; color: green; @(awayScore > homeScore ? "display: inherit" : "display: none;")">@awayScore</span>
+                        <span style="font-size: larger; color: red; @(awayScore < homeScore  ? "display: inherit" : "display: none;")">@awayScore</span>
+                        <span style="font-size: larger; color: orange; @(winningTeamId == -1 ? "display: inherit" : "display: none;")">@awayScore</span>
+                    </td>
+                    <td>
+                        <span style="font-size: larger; color: green; @(awayScore > homeScore ? "display: inherit" : "display: none;")"><b>Win</b></span>
+                        <span style="font-size: larger; color: orange; @(winningTeamId == -1 ? "display: inherit" : "display: none;")"><b>Tie</b></span>
+                    </td>
+                    
+                    <td><img src="@footballGames[i].awayTeam.imageURL" /></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><img src="@footballGames[i].homeTeam.imageURL" /></td>
+                    <td>
+                        <span style="font-size: larger; color: green; @(awayScore < homeScore ? "display: inherit" : "display: none;")"><b>Win</b></span>
+                        <span style="font-size: larger; color: orange; @(winningTeamId == -1 ? "display: inherit" : "display: none;")"><b>Tie</b></span>
+                    </td>
+                    <td>
+                        <span style="font-size: larger; color: green; @(awayScore < homeScore ? "display: inherit" : "display: none;")">@homeScore</span>
+                        <span style="font-size: larger; color: red; @(awayScore > homeScore  ? "display: inherit" : "display: none;")">@homeScore</span>
+                        <span style="font-size: larger; color: orange; @(winningTeamId == -1 ? "display: inherit" : "display: none;")">@homeScore</span>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        setWeekDropDown();
+    });
+</script>

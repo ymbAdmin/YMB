@@ -8,16 +8,11 @@
 
 <form method="post" action="~/FootballPoolAdmin/GenerateUserScores">
     @Html.Partial("_WeekDropDown")
+    <input type="submit" value="Enter" />
 </form>
 
 <script type="text/javascript">
-$(document).ready(function () {
-    setWeekDropDown();
-});
-
-function setWeekDropDown() {
-    var weekValue = 5;
-   $("#weekId option[value="+ weekValue +"]").prop('selected', true);
-}
-
+    $(document).ready(function () {
+        setWeekDropDown();
+    });
 </script>

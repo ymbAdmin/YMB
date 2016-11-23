@@ -3350,12 +3350,12 @@ input[type="button"].btn-block {
   margin-bottom: 1px;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .navbar-right .dropdown-menu {
     right: 0;
     left: auto;
   }
-}
+}*/
 
 .btn-default .caret {
   border-top-color: #333333;
@@ -4050,11 +4050,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
   clear: both;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
-}
+}*/
 
 .navbar-header:before,
 .navbar-header:after {
@@ -4076,11 +4076,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
   clear: both;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .navbar-header {
     float: left;
   }
-}
+}*/
 
 .navbar-collapse {
   max-height: 340px;
@@ -4116,7 +4116,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   overflow-y: auto;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .navbar-collapse {
     width: auto;
     border-top: 0;
@@ -4140,7 +4140,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
   }
-}
+}*/
 
 .container > .navbar-header,
 .container > .navbar-collapse {
@@ -4234,7 +4234,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar-toggle {
-    display: none;
+    /*display: none;*/
   }
 }
 

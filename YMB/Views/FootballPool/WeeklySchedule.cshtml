@@ -12,11 +12,12 @@
 <h2 class="center-text ymb-yellow-text-and-shadow">Weekly Schedule</h2>&laquo;@Html.ActionLink("Back to Dashboard", "MyDashboard")
 <label style="color: green; font-weight: bold; display: none;" id="picksSubmitted">Your picks were submitted.</label>
 <label style="color: red; font-weight: bold; display: none;" id="picksSubmittedError">Something went wrong when submitting picks, please try again. If issue persists, contact <a href="mailto:andrew@yellowmuttbrewery.com?subject=Football Picks Issue">Admin</a></label>
-<div class="weekly-pick-container">
+<div class="weekly-pick-container"> 
     @if (Model == null)
     {
         <form method="post" action="~/FootballPool/weeklyschedule">
             @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
             @if(User.Identity.GetSimpleUserId() == "3"){
                <br/><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
             }
@@ -31,6 +32,7 @@
     {
         <form method="post" action="~/FootballPool/weeklyschedule">
             @Html.Partial("_WeekDropDown")
+            <input type="submit" value="Show Week" />
             @if (User.Identity.GetSimpleUserId() == "3")
             {
                 <br /><span>Select User:</span> @Html.UserDropDownList(m => m.users.First().simpleUserId)
@@ -46,6 +48,20 @@
             <input type="hidden" id="numOfGames" value="@Model.footballGames.Count()" />
             <input type="hidden" id="firstGameId" value="@Model.footballGames.First().gameId"/>
             <h4 class="center-text ymb-yellow-text-and-shadow">Week @Model.footballGames.First().weekId</h4>
+            <h6 class="ymb-yellow-text-and-shadow"> Teams On Bye</h6>
+            <div>
+                @foreach (var team in Model.byeWeekTeams)
+                {
+                    <div class="row">
+                        <div class="col-md-2">
+                            @team.teamName
+                        </div>
+                        <div class="col-md-2">
+                            <img alt="byeTeamPicId_@team.teamId" src="@team.imageURL" />
+                        </div>
+                    </div>
+                }
+            </div>
             @*<p>Right now it is: @timeNow.ToString("MMM dd, h:mm tt")</p>*@
             @foreach (var game in Model.footballGames)
             {
@@ -68,7 +84,7 @@
                         @*Start of away team binding*@
 
                         <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
-                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss - @game.awayTeam.tie)</i></div><br />
                         <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
                         <div class="img-thumbnail">
                             <img class="team-img" id="img-@game.gameId-@game.awayTeam.teamId" src="@game.awayTeam.imageURL" onclick="javascript:selectThisTeamForPick(@game.gameId, @game.awayTeam.teamId);" />
@@ -80,7 +96,7 @@
                             <img class="team-img" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL" onclick="javascript:selectThisTeamForPick(@game.gameId, @game.homeTeam.teamId);" />
                         </div>
                         <div class="selected-circle @(pickId == game.homeTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.homeTeam.teamId"></div>
-                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss)</i><br /><h4>@game.homeTeam.teamName </h4>
+                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss - @game.homeTeam.tie)</i><br /><h4>@game.homeTeam.teamName </h4>
                         <input style="display: none;" type="radio" name="gameId_@game.gameId" value="@game.homeTeam.teamId" @(pickId == game.homeTeam.id ? "checked='checked'" : "") />
                         @*End of home team binding*@
                     </div>
@@ -102,11 +118,11 @@
                         @*Start of away team binding*@
 
                         <input type="hidden" id="userPickForGame_@game.gameId" name="userPickForGame_@game.gameId" value="@pickId" />
-                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss)</i></div><br />
+                        <div><h4>@game.awayTeam.teamName</h4> <i style="font-size: smaller;">(@game.awayTeam.win - @game.awayTeam.loss - @game.awayTeam.tie)</i></div><br />
                         @if (game.winningTeamId != 0)
                         {
-                            <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>&raquo;Win&laquo;</b></span>
-                            <span style="font-size: larger; color: red; @(pickId == game.winningTeamId  ? "display: none" : "display: inherit;")"><b>&raquo;Loss&laquo;</b></span>
+                            <span style="font-size: larger; color: green; @(pickId == game.winningTeamId ? "display: inherit" : "display: none;")"><b>You Won</b></span>
+                            <span style="font-size: larger; color: red; @(pickId == game.winningTeamId  ? "display: none" : "display: inherit;")"><b>You Lost</b></span>
                         }
                         
                         <div class="selected-circle @(pickId == game.awayTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.awayTeam.teamId"></div>
@@ -120,7 +136,7 @@
                             <img class="team-img-picked" id="img-@game.gameId-@game.homeTeam.teamId" src="@game.homeTeam.imageURL"/>
                         </div>
                         <div class="selected-circle @(pickId == game.homeTeam.id ? "show-circle" : "hide-circle")" name="userPickCircle" id="circle-@game.gameId-@game.homeTeam.teamId"></div>
-                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss)</i><br /><h4>@game.homeTeam.teamName </h4>
+                        <br /><i style="font-size: smaller;">(@game.homeTeam.win - @game.homeTeam.loss - @game.homeTeam.tie)</i><br /><h4>@game.homeTeam.teamName </h4>
                         <input style="display: none;" type="radio" name="gameId_@game.gameId" value="@game.homeTeam.teamId" @(pickId == game.homeTeam.id ? "checked='checked'" : "") />
                         @*End of home team binding*@
                     </div>
@@ -135,8 +151,9 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        //$("[name=userPickCircle]").hide();
+        setWeekDropDown();
     });
+
     function submitPicks(formData, weekId) {
         openLoadingModal();
         var pickArray = {};//[gameId,pickId]
@@ -201,12 +218,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        setWeekDropDown();
+        
     });
 
-    function setWeekDropDown() {
-        var weekValue = 5;
-        $("#weekId option[value=" + weekValue + "]").prop('selected', true);
-    }
+
 
 </script>

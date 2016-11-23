@@ -118,5 +118,32 @@ namespace YMB.Controllers
             return result;
         }
 
+        [HttpGet]
+        public ActionResult GameResults()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GameResults(int weekId)
+        {
+            ModelState.Clear();
+            FootballPoolViewModel vw = FootballPoolFactory.BuildFootballPoolViewModel(weekId, 0);
+            return View(vw);
+        }
+
+        [HttpGet]
+        public ActionResult UserPicks()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UserPicks(int weekId, int simpleUserId)
+        {
+            ModelState.Clear();
+            FootballPoolViewModel vw = FootballPoolFactory.BuildFootballPoolViewModel(weekId, simpleUserId);
+            return View(vw);
+        }
     }
 }

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YMB.Factory;
@@ -11,7 +14,19 @@ namespace YMB.Controllers
     [Authorize(Roles = "SiteAdmin")]
     public class AdminController : Controller
     {
-        
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         // GET: Admin
         public ActionResult Index()
         {
@@ -25,11 +40,12 @@ namespace YMB.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public Boolean SendRequest(string reqType, string name, string addr, string city, string state, string zip, string email, string comments)
+        public async Task<Boolean> SendRequest(string reqType, string name, string addr, string city, string state, string zip, string email, string comments)
         {
             try
             {
                 RequestFactory.SendRequest(reqType, name, email, addr, state, city, zip, comments);
+                await UserManager.SendEmailAsync("9bfa7dfb-36f3-4112-9bd7-4784cb0f07ba", "YMB Request", string.Format("Request from {0}. Request type: {1} Return Email: {2} Address Info: {3} Message: {4}", name, reqType, email, string.Format("{0} {1},{2} {3}", addr, city, state, zip), comments));
             }
             catch (Exception e)
             {
