@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://yellowmuttbrewery.com/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Home/Index</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Beers</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Home/About</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Home/Contact</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Store</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Account/Login</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Competitions</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://yellowmuttbrewery.com/Account/ForgotPassword</loc>
+  <changefreq>weekly</changefreq>
+</url>
+</urlset>

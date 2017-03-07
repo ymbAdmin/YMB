@@ -92,10 +92,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:43</publishTime>
     </File>
     <File Include="bin/YMB.dll">
-      <publishTime>11/16/2016 09:08:35</publishTime>
+      <publishTime>02/23/2017 07:58:24</publishTime>
     </File>
     <File Include="bin/YMB.pdb">
-      <publishTime>11/16/2016 09:08:35</publishTime>
+      <publishTime>02/23/2017 07:58:24</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>11/09/2016 09:34:35</publishTime>
@@ -113,10 +113,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 07:40:17</publishTime>
     </File>
     <File Include="Content/YMB.css">
-      <publishTime>11/15/2016 09:40:11</publishTime>
+      <publishTime>02/01/2017 15:49:59</publishTime>
     </File>
     <File Include="Content/YMB.Mobile.css">
-      <publishTime>11/09/2016 10:11:34</publishTime>
+      <publishTime>02/04/2017 18:02:24</publishTime>
     </File>
     <File Include="Content/YMB.Store.css">
       <publishTime>10/21/2016 09:44:28</publishTime>
@@ -571,6 +571,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>06/27/2016 13:54:37</publishTime>
     </File>
+    <File Include="google300595ad99a83286.html">
+      <publishTime>12/07/2016 07:23:41</publishTime>
+    </File>
     <File Include="images/002.jpg">
       <publishTime>06/28/2016 14:11:07</publishTime>
     </File>
@@ -882,6 +885,30 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="images/mobile-goFundme.svg">
       <publishTime>07/20/2016 11:39:07</publishTime>
+    </File>
+    <File Include="images/new-setup/1.mov">
+      <publishTime>11/23/2016 13:55:24</publishTime>
+    </File>
+    <File Include="images/new-setup/2.MOV">
+      <publishTime>11/23/2016 13:55:28</publishTime>
+    </File>
+    <File Include="images/new-setup/3.mov">
+      <publishTime>11/23/2016 13:55:32</publishTime>
+    </File>
+    <File Include="images/new-setup/Barrels.JPG">
+      <publishTime>11/23/2016 13:55:08</publishTime>
+    </File>
+    <File Include="images/new-setup/BasementLab.JPG">
+      <publishTime>11/23/2016 13:55:14</publishTime>
+    </File>
+    <File Include="images/new-setup/HopRocket1.JPG">
+      <publishTime>11/23/2016 13:54:48</publishTime>
+    </File>
+    <File Include="images/new-setup/HopRocket2.JPG">
+      <publishTime>11/23/2016 13:54:52</publishTime>
+    </File>
+    <File Include="images/new-setup/StirTheBoil.JPG">
+      <publishTime>11/23/2016 13:55:04</publishTime>
     </File>
     <File Include="images/NFL/49ers.png">
       <publishTime>08/10/2016 10:57:09</publishTime>
@@ -1345,8 +1372,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/slick.min.js">
       <publishTime>06/29/2016 07:40:17</publishTime>
     </File>
+    <File Include="Scripts/transactions.js">
+      <publishTime>02/17/2017 11:55:42</publishTime>
+    </File>
     <File Include="Scripts/_references.js">
-      <publishTime>08/03/2016 12:01:22</publishTime>
+      <publishTime>02/17/2017 11:55:27</publishTime>
+    </File>
+    <File Include="sitemap.xml">
+      <publishTime>12/07/2016 07:28:31</publishTime>
     </File>
     <File Include="slick/ajax-loader.gif">
       <publishTime>06/29/2016 07:40:17</publishTime>
@@ -1427,7 +1460,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:44</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>09/28/2016 12:28:40</publishTime>
+      <publishTime>12/07/2016 07:19:57</publishTime>
     </File>
     <File Include="Views/Admin/Requests.cshtml">
       <publishTime>09/29/2016 08:24:23</publishTime>
@@ -1445,7 +1478,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/01/2016 12:55:29</publishTime>
     </File>
     <File Include="Views/Beers/Index.cshtml">
-      <publishTime>07/21/2016 15:28:36</publishTime>
+      <publishTime>12/07/2016 07:20:19</publishTime>
     </File>
     <File Include="Views/Competitions/Index.cshtml">
       <publishTime>10/06/2016 09:39:43</publishTime>
@@ -1457,7 +1490,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/30/2016 15:56:42</publishTime>
     </File>
     <File Include="Views/Finances/Details.cshtml">
-      <publishTime>08/08/2016 11:23:46</publishTime>
+      <publishTime>02/17/2017 11:58:49</publishTime>
     </File>
     <File Include="Views/Finances/Edit.cshtml">
       <publishTime>06/30/2016 15:56:09</publishTime>
@@ -1487,7 +1520,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2016 11:00:37</publishTime>
     </File>
     <File Include="Views/FootballPool/Leaderboard.cshtml">
-      <publishTime>09/26/2016 08:37:54</publishTime>
+      <publishTime>12/05/2016 09:11:36</publishTime>
     </File>
     <File Include="Views/FootballPool/Mydashboard.cshtml">
       <publishTime>10/19/2016 13:11:02</publishTime>
@@ -1505,7 +1538,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2016 17:38:21</publishTime>
     </File>
     <File Include="Views/FootballPool/WeeklySchedule.cshtml">
-      <publishTime>11/09/2016 07:55:52</publishTime>
+      <publishTime>11/27/2016 16:16:52</publishTime>
     </File>
     <File Include="Views/FootballPoolAdmin/AddAlert.cshtml">
       <publishTime>09/29/2016 13:24:12</publishTime>
@@ -1538,7 +1571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/02/2016 15:09:50</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/23/2016 13:46:00</publishTime>
+      <publishTime>11/25/2016 11:23:35</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>06/27/2016 13:54:45</publishTime>
@@ -1583,13 +1616,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/20/2016 10:18:20</publishTime>
     </File>
     <File Include="Views/Shared/_GlobalJavaScript.cshtml">
-      <publishTime>11/15/2016 11:01:46</publishTime>
+      <publishTime>12/30/2016 08:56:41</publishTime>
     </File>
     <File Include="Views/Shared/_ImageSlider.cshtml">
-      <publishTime>07/21/2016 12:46:48</publishTime>
+      <publishTime>11/25/2016 11:18:22</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/23/2016 13:44:19</publishTime>
+      <publishTime>12/07/2016 07:04:01</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/19/2016 07:52:01</publishTime>
@@ -1600,11 +1633,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_StoreLayout.cshtml">
       <publishTime>10/21/2016 09:43:55</publishTime>
     </File>
+    <File Include="Views/Shared/_Videos.cshtml">
+      <publishTime>11/28/2016 21:43:43</publishTime>
+    </File>
     <File Include="Views/Shared/_WeekDropDown.cshtml">
-      <publishTime>11/16/2016 09:11:48</publishTime>
+      <publishTime>12/09/2016 09:15:49</publishTime>
     </File>
     <File Include="Views/Store/Index.cshtml">
-      <publishTime>11/23/2016 08:01:36</publishTime>
+      <publishTime>12/07/2016 07:19:04</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/27/2016 13:54:37</publishTime>
@@ -1613,7 +1649,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 13:54:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/15/2016 13:43:52</publishTime>
+      <publishTime>02/01/2017 15:50:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -396,3 +396,11 @@
     width: 178px;
     height: auto;
 }
+
+.show-on-phone{
+    display: none;
+}
+
+.tran-delete-img {
+    width: 19px;
+}

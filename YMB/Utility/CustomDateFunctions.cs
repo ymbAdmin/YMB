@@ -9,7 +9,7 @@ namespace YMB.Utility
     {
         public static DateTime GetDateTime() 
         {
-            return DateTime.UtcNow.AddHours(-4); 
+            return DateTime.UtcNow.AddHours(-5); 
         }
     }
 }

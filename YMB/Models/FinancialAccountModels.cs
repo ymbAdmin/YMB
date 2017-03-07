@@ -37,7 +37,7 @@ namespace YMB.Models
         public DateTime tranDate { get; set; }
         public decimal tranAmount { get; set; }
         public decimal acctBalance { get; set; }
-
+        public Boolean pending { get; set; }
     }
 
     public class Paycheck

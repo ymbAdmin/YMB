@@ -43,6 +43,7 @@
             }
         </form>
         DateTime timeNow = CustomDateFunctions.GetDateTime();
+        <input type="hidden" value="@timeNow" name="time-right-now" />
         var previousDateTime = new DateTime();
         <form id="submitPicksForm" method="post">
             <input type="hidden" id="numOfGames" value="@Model.footballGames.Count()" />

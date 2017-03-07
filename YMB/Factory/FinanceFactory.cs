@@ -31,7 +31,7 @@ namespace YMB.Factory
         {
             ApplicationDbContext _db = new ApplicationDbContext();
             List<AccountTransactions> acctTrans = new List<AccountTransactions>();
-            var results = _db.AccountTransactions.SqlQuery(String.Format("EXEC ymb_Get_Account_Transactions @acctId = {0}", acctId));
+            var results = _db.AccountTransactions.SqlQuery(String.Format("EXEC GetAccountTransactions @acctId = {0}", acctId));
             foreach (var tran in results)
             {
                 acctTrans.Add(tran);
@@ -49,13 +49,13 @@ namespace YMB.Factory
             _db.SaveChanges();
         }
 
-        internal static void AddTransaction(int acctId, int tranType, string tranDesc, decimal tranAmount, int acctType)
+        internal static void AddTransaction(int acctId, int tranType, string tranDesc, decimal tranAmount, int acctType, Boolean pending)
         {
             ApplicationDbContext _db = new ApplicationDbContext();
             //I also have a sproc for this ymb_Add_Account_Transaction
             decimal prevBal = GetCurrentAccountBalance(acctId);
             decimal newBal = GetAccountNewBalance(tranAmount, prevBal, tranType, acctType);
-            AccountTransactions newTran = new AccountTransactions() { acctId = acctId, tranAmount = tranAmount, tranDesc = tranDesc, tranType = tranType, tranDate = DateTime.Now, acctBalance = newBal };
+            AccountTransactions newTran = new AccountTransactions() { acctId = acctId, tranAmount = tranAmount, tranDesc = tranDesc, tranType = tranType, tranDate = DateTime.Now, acctBalance = newBal, pending = pending };
             _db.AccountTransactions.Add(newTran);
             //_db.AccountTransactions.SqlQuery(String.Format("EXEC ymb_Add_Account_Transaction {0},{1},{2},{3}", acctId, tranDesc, tranType, tranAmount));
             UpdateAccountBalance(acctId, newBal);
@@ -138,11 +138,21 @@ namespace YMB.Factory
             return previousBalance.First<decimal>(); 
         }
 
+        internal static void PendingTransaction(int acctId, int tranId)
+        {
+   
+            ApplicationDbContext _db = new ApplicationDbContext();
+            AccountTransactions acctTran = _db.AccountTransactions.Where(a => a.tranId == tranId).First<AccountTransactions>();
+            acctTran.pending = false;
+            _db.Entry(acctTran).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+
         internal static List<Accounts> GetBillsDue(DateTime thisPaycheckDate, DateTime nextPaycheckDate)
         {
             List<Accounts> acctsWithBillsDueThisPaycheck = new List<Accounts>();
             ApplicationDbContext _db = new ApplicationDbContext();
-            acctsWithBillsDueThisPaycheck = _db.Accounts.Where(a => a.acctBillDueDate > thisPaycheckDate && 
+            acctsWithBillsDueThisPaycheck = _db.Accounts.Where(a => a.acctBillDueDate >= thisPaycheckDate && 
                                                                a.acctBillDueDate < nextPaycheckDate).ToList();
 
             return acctsWithBillsDueThisPaycheck;

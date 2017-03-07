@@ -50,15 +50,7 @@
             else if (User.Identity.GetSimpleUserId() == "3")//this is to show myself when I am logged in relative to everyone else
             {
                 <tr class="@(myUserName == userName ? "highlight-me" : "")">
-                    @if (user.userScore == prevScore)
-                    {
-                        <td>@currPlace</td>
-                    }
-                    else
-                    {
-                        currPlace++;
-                        <td>@currPlace</td>
-                    }
+                    <td></td>
                     <td>@user.userName</td>
                     <td>@user.userScore</td>
                     <td>@user.win</td>

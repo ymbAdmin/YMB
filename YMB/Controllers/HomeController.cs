@@ -27,5 +27,10 @@ namespace YMB.Controllers
 
             return View();
         }
+
+        public ActionResult NewHome()
+        {
+            return View();
+        }
     }
 }
