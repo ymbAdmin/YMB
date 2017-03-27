@@ -2,30 +2,34 @@
 @{
     ViewBag.Title = "Accounts";
     var totalBillAmount = 0.0M;
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
 }
 
-<h2 class="ymb-yellow-text">Accounts</h2>
-
-<p>
-    Next Paycheck:  <b>@ViewBag.NextPaycheck</b>
-</p>
-<p>
-    Bills Due This Paycheck:<br/>
+<h2 class="ymb-yellow-text-and-shadow w3-lobster ">Accounts</h2>
+    <b class="ymb-yellow-text">Next Paycheck:</b>  @ViewBag.NextPaycheck<br/>
+    <b class="ymb-yellow-text">Bills Due This Paycheck:</b>
     <div class="row">
         @foreach (var bill in ViewBag.BillsListPayCheck)
-        {
-            totalBillAmount += bill.acctBillDueAmount;
-            if (bill.acctBillDueAmount > 0)
             {
-                <div class="col-sm-3">
+                totalBillAmount += bill.acctBillDueAmount;
+                if (bill.acctBillDueAmount > 0)
+                {
+                <div class="col-md-3">
                     <span class="acct-bill-spacing">@bill.acctName</span>&raquo;<span class="acct-bill-spacing">$@bill.acctBillDueAmount</span>
                 </div><br />
             }
         }
     </div>
-    <br/>
-    <b>Total:</b>  @totalBillAmount
-</p>
+    <b class="ymb-yellow-text">Total Bills:</b>  @totalBillAmount
+    <br />
+    <div >
+        <b class="ymb-yellow-text">Total Cash:</b>
+        <span class="green">@string.Format("{0:C}", ViewBag.TotalCashAccounts)</span>
+    </div>
+    <div>
+        <b class="ymb-yellow-text">Total Debt:</b>
+        <span class="@(ViewBag.TotalCreditAccounts > 0 ? " red" : "green" )">@string.Format("{0:C}", ViewBag.TotalCreditAccounts)</span>
+    </div>
 <table class="table">
     <tr>
         <th>
@@ -45,6 +49,7 @@
 
     @foreach (var item in Model)
     {
+
         if (item.display)
         {
             <tr>
@@ -84,6 +89,10 @@
                 </td>
             </tr>
         }
+
     }
 
 </table>
+
+<div></div>
+

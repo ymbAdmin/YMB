@@ -21,7 +21,7 @@ namespace YMB.Controllers
         // GET: MyFinances
         public async Task<ActionResult> Index()
         {
-
+            List<Accounts> myAccounts = FinanceFactory.GetAccounts();
             var thisPaycheckDate = _db.Paycheck.Find(1).paycheckDate;
             // make next paycheck in 2 weeks
             var nextPaycheckDate = thisPaycheckDate.AddDays(14);
@@ -31,9 +31,12 @@ namespace YMB.Controllers
             {
                 FinanceFactory.UpdatePaycheckDate(nextPaycheckDate);
             }
+            ViewBag.TotalCashAccounts = FinanceFactory.GetTotalValueOfAccounts(myAccounts, 1);
+            ViewBag.TotalCreditAccounts = FinanceFactory.GetTotalValueOfAccounts(myAccounts, 2);
             ViewBag.NextPaycheck = (string.Format("{0}/{1}/{2}", thisPaycheckDate.Month, thisPaycheckDate.Day, thisPaycheckDate.Year));
             ViewBag.BillsListPayCheck = FinanceFactory.GetBillsDue(thisPaycheckDate, nextPaycheckDate);
-            return View(FinanceFactory.GetAccounts());
+            
+            return View(myAccounts);
         }
 
         // GET: MyFinances/Details/5
@@ -41,6 +44,7 @@ namespace YMB.Controllers
         {
             Accounts accounts = await _db.Accounts.FindAsync(id);
             accounts.acctTrans = FinanceFactory.GetAccountTransactions(id);
+            
             if (accounts == null)
             {
                 return HttpNotFound();

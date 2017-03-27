@@ -49,6 +49,17 @@ namespace YMB.Factory
             _db.SaveChanges();
         }
 
+        internal static decimal GetTotalValueOfAccounts(List<Accounts> accounts, int acctType)
+        {
+            decimal total = 0.0M;
+            accounts = accounts.Where(a => a.acctType == acctType).ToList();
+            foreach (var account in accounts)
+            {
+                total += (decimal)account.acctBalance;
+            }
+            return total;
+        }
+
         internal static void AddTransaction(int acctId, int tranType, string tranDesc, decimal tranAmount, int acctType, Boolean pending)
         {
             ApplicationDbContext _db = new ApplicationDbContext();

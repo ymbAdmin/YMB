@@ -16,28 +16,30 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <link rel="stylesheet" type="text/css" href="~/slick/slick.css" />
+    @*<link rel="stylesheet" type="text/css" href="~/Content/YMB.css" />*@
     <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
     <style>
-        .redesign {
-            background: black;
+        .login_container{
+            width: 400px;
+            margin-left: 40%;
         }
-
-        body {
-            padding-top: 0px;
-            padding-bottom: 0px;
+        .padding{
+            padding: 10px;
         }
-        .background_home_image{
-            width: 100%;
-            opacity: 0.5;
+        .margin-left{
+            margin-left: 10px;
         }
     </style>
 </head>
-<body class="redesign">
-    <img alt="background" src="~/images/pipes_background.jpg" class="background_home_image" />
-    <div>
+<body>
+    <div class="login_container body-content">
         @RenderBody()
 
     </div>
+    <footer style="text-align: center;">
+        <hr />
+        <p>Andrew Sutton <b>Yellow Mutt Brewery LLC</b> &copy; @DateTime.Now.Year Norfolk, MA <a href="mailto:andrew@yellowmuttbrewery.com">Head Brewer</a></p>
+    </footer>
     <script type="text/javascript" src="~/slick/slick.js"></script>
     <script type="text/javascript" src="~/slick/slick.min.js"></script>
     @Html.Partial("_GlobalJavaScript")

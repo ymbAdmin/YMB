@@ -84,8 +84,8 @@
 }
 
 .ymb-yellow-text-and-shadow {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1px black;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    text-shadow: 1px 1px white;
     color: rgba(255,204,0,255);
 }
 
@@ -134,6 +134,13 @@
     font-weight: bold;
 }
 
+.italics{
+    font-style: italic;
+}
+
+.smaller-font{
+    font-size: smaller;
+}
 #fade {
     display: none;
     background-color: #ababab;
@@ -383,6 +390,10 @@
     background-color: black;
 }
 
+.navbar-collapse{
+    /*background: black;*/
+    opacity: 0.9;
+}
 .top-image {
     height: 20px;
 }
@@ -393,8 +404,44 @@
 }
 
 .clothing-img{
-    width: 178px;
     height: auto;
+    margin-top: 15px;
+}
+
+.clothing-img-md{
+    width: 178px;
+}
+
+.clothing-img-lg{
+    width: 250px;
+}
+
+.clothing-img-sm{
+    width: 140px;
+}
+
+.clothing-img-container-lg{
+    border-radius: 50px;
+    border: solid;
+    width: auto;
+    background: white;
+    height: 250px;
+}
+
+.clothing-img-container-md{
+    border-radius: 50px;
+    border: solid;
+    width: auto;
+    background: white;
+    height: 200px;
+}
+
+.clothing-img-container-sm{
+    border-radius: 50px;
+    border: solid;
+    width: auto;
+    background: white;
+    height: 150px;
 }
 
 .show-on-phone{

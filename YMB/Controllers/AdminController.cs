@@ -40,12 +40,12 @@ namespace YMB.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Boolean> SendRequest(string reqType, string name, string addr, string city, string state, string zip, string email, string comments)
+        public Boolean SendRequest(string reqType, string name, string addr, string city, string state, string zip, string email, string comments)
         {
             try
             {
                 RequestFactory.SendRequest(reqType, name, email, addr, state, city, zip, comments);
-                await UserManager.SendEmailAsync("9bfa7dfb-36f3-4112-9bd7-4784cb0f07ba", "YMB Request", string.Format("Request from {0}. Request type: {1} Return Email: {2} Address Info: {3} Message: {4}", name, reqType, email, string.Format("{0} {1},{2} {3}", addr, city, state, zip), comments));
+                UserManager.SendEmailAsync("9bfa7dfb-36f3-4112-9bd7-4784cb0f07ba", "YMB Request", string.Format("Request from {0}. Request type: {1} Return Email: {2} Address Info: {3} Message: {4}", name, reqType, email, string.Format("{0} {1},{2} {3}", addr, city, state, zip), comments));
             }
             catch (Exception e)
             {

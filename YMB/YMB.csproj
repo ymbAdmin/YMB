@@ -195,6 +195,7 @@
     <Compile Include="Models\BeerModels.cs" />
     <Compile Include="Models\FinancialAccountModels.cs" />
     <Compile Include="Models\FootballPoolModels.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AppEventModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Content\YMB.css" />
     <Content Include="Content\YMB.Store.css" />
     <Content Include="Content\YMB.Mobile.css" />
+    <Content Include="Content\YMB_redesign.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -355,6 +357,7 @@
     <Content Include="images\svg\WhitePawInitialsInPawTransparent.svg" />
     <Content Include="images\svg\WhiteTextLogoWithYellowPaw.svg" />
     <Content Include="images\svg\YellowMuttBrewery_iconWebsite.svg" />
+    <Content Include="images\svg\YellowMuttBrewery_iconWebsite_white.svg" />
     <Content Include="images\svg\YellowPaw.svg" />
     <Content Include="images\svg\YellowPawInitialsInPaw.svg" />
     <Content Include="images\svg\YellowPawWhiteInitials.svg" />
@@ -426,7 +429,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -486,8 +489,12 @@
     <Content Include="Views\Shared\_StoreLayout.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Shared\_Videos.cshtml" />
-    <Content Include="Views\Home\NewHome.cshtml" />
-    <Content Include="Views\Shared\_NewHomeLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_HomeLayout.cshtml" />
+    <Content Include="Views\Home\_Beers.cshtml" />
+    <Content Include="Views\Home\_About.cshtml" />
+    <Content Include="Views\Home\_Store.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

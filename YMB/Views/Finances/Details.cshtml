@@ -5,48 +5,103 @@
     var accountBalance = Model.acctBalance;
     var counter = 0;
     var rowClass = "";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
 }
 <script type="text/javascript" src="~/Scripts/transactions.js"></script>
-<p>
-    <br />
-    @Html.ActionLink("Edit", "Edit", new { id = Model.acctId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 <script type="text/javascript">
 
 </script>
-<div>
-    <h4><i>@Html.DisplayFor(model => model.acctName)</i> - $@Model.acctBalance</h4>
-    <a href="#"><img src="~/images/add_button.png" onclick="javascript: showAddTran();" /></a>
-
-    @if (Model.acctType == 2)
-    {
+<div class="account_detail_background">
+    <p>
         <br />
-        <label>Next Bill:</label>@Html.DisplayFor(m => m.acctBillDueDate)<br />
-        <label>Bill Amount:</label>@Html.DisplayFor(m => m.acctBillDueAmount)
-    }
+        @Html.ActionLink("Edit", "Edit", new { id = Model.acctId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <div>
+        <h4><i>@Html.DisplayFor(model => model.acctName)</i> - $@Model.acctBalance</h4>
+        <a href="#"><img src="~/images/add_button.png" onclick="javascript: showAddTran();" /></a>
 
-    <hr />
-</div>
+        @if (Model.acctType == 2)
+        {
+            <br />
+            <label>Next Bill:</label>@Html.DisplayFor(m => m.acctBillDueDate)<br />
+            <label>Bill Amount:</label>@Html.DisplayFor(m => m.acctBillDueAmount)
+        }
 
-<div class="pc">
-    <div class="transaction-container">
-        <div class="row">
+        <hr />
+    </div>
+
+    <div class="pc">
+        <div class="transaction-container">
+            <div class="row">
+                <div class="col-md-2">
+                    <b>Tran. Description</b>
+                </div>
+                <div class="col-md-2">
+                    <b>Tran. Date</b>
+                </div>
+                <div class="col-md-2">
+                    <b>Tran. Amount</b>
+                </div>
+                <div class="col-md-2">
+                    <b>Account Balance</b>
+                </div>
+            </div>
+
+            @foreach (var tran in Model.acctTrans)
+        {
+            if (counter % 2 <= 0)
+            {
+                rowClass = "odd";
+            }
+            if (tran.pending)
+            {
+                rowClass += " highlight-me";
+            }
+        <div class="row @rowClass">
             <div class="col-md-2">
-                <b>Tran. Description</b>
+                @tran.tranDesc
             </div>
             <div class="col-md-2">
-                <b>Tran. Date</b>
+                @tran.tranDate.ToString("MMM dd yyyy")
             </div>
             <div class="col-md-2">
-                <b>Tran. Amount</b>
+                @if (tran.tranType == 1)
+                {
+                    <span> -  $@tran.tranAmount</span>
+                    }
+                    else
+                    {
+                    <span> +  $@tran.tranAmount</span>
+                    }
             </div>
             <div class="col-md-2">
-                <b>Account Balance</b>
+                $@tran.acctBalance
+            </div>
+            <div class="col-md-2">
+                <input type="hidden" name="tranId" value="@tran.tranId" />
+                <a href="#"><img src="~/images/delete_button.png" onclick="javascript: deleteTransaction(@Model.acctId, @tran.tranId);" /></a>
+                @if (tran.pending)
+                    {
+                    <a href="#"><img src="~/images/Edit_icon.gif" onclick="javascript: pendingTransaction(@Model.acctId, @tran.tranId);" /></a>
+                    }
             </div>
         </div>
-
-        @foreach (var tran in Model.acctTrans)
+            rowClass = "";
+            counter++;
+        }
+        </div>
+    </div>
+    <div class="mobile">
+        <div class="row mobile-tran-headers">
+            <div class="col-md-2">Description</div>
+            <div class="col-md-2">Date</div>
+            <div class="col-md-2">Amount</div>
+            <div class="col-md-2">Balance</div>
+        </div>
+        <div class="transaction-container">
+            @foreach (var tran in Model.acctTrans)
         {
             if (counter % 2 <= 0)
             {
@@ -56,98 +111,49 @@
             {
                 rowClass += " highlight-me";
             }
-            <div class="row @rowClass">
-                <div class="col-md-2">
-                    @tran.tranDesc
-                </div>
-                <div class="col-md-2">
-                    @tran.tranDate.ToString("MMM dd yyyy")
-                </div>
-                <div class="col-md-2">
-                    @if (tran.tranType == 1)
-                {
-                        <span> -  $@tran.tranAmount</span>
-                    }
-                    else
-                    {
-                        <span> +  $@tran.tranAmount</span>
-                    }
-                </div>
-                <div class="col-md-2">
-                    $@tran.acctBalance
-                </div>
-                <div class="col-md-2">
-                    <input type="hidden" name="tranId" value="@tran.tranId" />
-                    <a href="#"><img src="~/images/delete_button.png" onclick="javascript: deleteTransaction(@Model.acctId, @tran.tranId);" /></a>
-                    @if (tran.pending)
-                    { 
-                        <a href="#"><img src="~/images/Edit_icon.gif" onclick="javascript: pendingTransaction(@Model.acctId, @tran.tranId);" /></a> 
-                    }
-                </div>
+        <div class="row mobile-transactions  @rowClass">
+            <div class="col-md-2">
+                @*@tran.tranDesc.Substring(0, Math.Min(tran.tranDesc.Length, 7)).Trim()*@
+                @tran.tranDesc
             </div>
-            rowClass = "";
-            counter++;
-        }
-    </div>
-</div>
-<div class="mobile">
-    <div class="row mobile-tran-headers">
-        <div class="col-md-2">Description</div>
-        <div class="col-md-2">Date</div>
-        <div class="col-md-2">Amount</div>
-        <div class="col-md-2">Balance</div>
-    </div>
-    <div class="transaction-container">
-        @foreach (var tran in Model.acctTrans)
-        {
-            if (counter % 2 <= 0)
-            {
-                rowClass = "odd";
-            }
-            if (tran.pending)
-            {
-                rowClass += " highlight-me";
-            }
-            <div class="row mobile-transactions  @rowClass">
-                <div class="col-md-2">
-                    @*@tran.tranDesc.Substring(0, Math.Min(tran.tranDesc.Length, 7)).Trim()*@
-                    @tran.tranDesc
-                </div>
-                <div class="col-md-2" >
-                    @tran.tranDate.ToString("MM/dd/yy")
-                </div>
-                <div class="col-md-2">
-                    @if (tran.tranType == 1)
+            <div class="col-md-2">
+                @tran.tranDate.ToString("MM/dd/yy")
+            </div>
+            <div class="col-md-2">
+                @if (tran.tranType == 1)
                 {
-                        <span> -  $@tran.tranAmount</span>
+                    <span> -  $@tran.tranAmount</span>
                     }
                     else
                     {
-                        <span> +  $@tran.tranAmount</span>
+                    <span> +  $@tran.tranAmount</span>
                     }
-                </div>
-                <div class="col-md-2">
-                    $@tran.acctBalance
-                    <input type="hidden" name="tranId" value="@tran.tranId" />
-                    <a href="#"><img src="~/images/delete_button.png" onclick="javascript: deleteTransaction(@Model.acctId, @tran.tranId);" class="tran-delete-img" /></a>
-                    @if (tran.pending)
+            </div>
+            <div class="col-md-2">
+                $@tran.acctBalance
+                <input type="hidden" name="tranId" value="@tran.tranId" />
+                <a href="#"><img src="~/images/delete_button.png" onclick="javascript: deleteTransaction(@Model.acctId, @tran.tranId);" class="tran-delete-img" /></a>
+                @if (tran.pending)
                     {
-                        <a href="#"><img src="~/images/Edit_icon.gif" onclick="javascript: pendingTransaction(@Model.acctId, @tran.tranId);" class="tran-delete-img" /></a>
+                    <a href="#"><img src="~/images/Edit_icon.gif" onclick="javascript: pendingTransaction(@Model.acctId, @tran.tranId);" class="tran-delete-img" /></a>
                     }
-                </div>
+            </div>
 
-                <br />
-            </div>
+            <br />
+        </div>
             rowClass = "";
             counter++;
         }
+        </div>
     </div>
-</div>
-<div id="add-tran-div" style="display: none;" class="add-tran-div">
-    <label>Transaction Description:</label><input id="tranDesc" /><br />
-    <label>Transaction Amount:</label><input id="tranAmount" /><br />
-    <label>Transaction Type:</label><select id="tranType"><option value="0">Select tran type...</option><option value="1">Charge (-)</option><option value="2">Deposit/Payment (+)</option></select><br />
-    <label>Pending?</label><input id="isPending" style="margin-left: 10px;" type="checkbox"/><br/>
-    <input type="button" onclick="javascript: hideAddTran();" value="Cancel" />
-    <input type="button" onclick="javascript: addTransaction(@Model.acctId, @Model.acctType);" value="Add Tran" />
+
+    <div id="add-tran-div" style="display: none;" class="add-tran-div">
+        <label>Transaction Description:</label><input id="tranDesc" /><br />
+        <label>Transaction Amount:</label><input id="tranAmount" /><br />
+        <label>Transaction Type:</label><select id="tranType"><option value="0">Select tran type...</option><option value="1">Charge (-)</option><option value="2">Deposit/Payment (+)</option></select><br />
+        <label>Pending?</label><input id="isPending" style="margin-left: 10px;" type="checkbox" /><br />
+        <input type="button" onclick="javascript: hideAddTran();" value="Cancel" />
+        <input type="button" onclick="javascript: addTransaction(@Model.acctId, @Model.acctType);" value="Add Tran" />
+    </div>
+
 </div>

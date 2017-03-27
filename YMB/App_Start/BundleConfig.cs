@@ -28,7 +28,8 @@ namespace YMB
                       "~/Content/site.css",
                       "~/Content/YMB.css",
                       "~/Content/YMB.Store.css",
-                      "~/Content/YMB.Mobile.css"));
+                      "~/Content/YMB.Mobile.css",
+                      "~/Content/YMB_redesign.css"));
         }
     }
 }

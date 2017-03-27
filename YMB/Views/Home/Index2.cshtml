@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<div>
+    <h2 class="center-text ymb-yellow-text">News</h2>
+</div>
+<div class="row">
+    @*<div class="col-md-3">
+            <input type="button" onclick="javascript:showRequestForm(1);" value="Request a free sticker today!" class="button-sticker-request ymb-yellow-text-and-shadow" /><br />
+            <div>
+                <img src="~/images/stickers/HiResYellowPayInitialsInPaw2_background.jpg" alt="sticker" class="sticker-img" />
+            </div>
+        </div>*@
+    @*<div>
+        <div>
+            <h3 class="text-center ymb-yellow-text-and-shadow">2<sup>nd</sup> Annual Yellow Mutt Brewery Beer tasting. Coming to you Saturday, November 5th. Stay tuned for more details!</h3>
+        </div>
+    </div>*@
+</div>
+<div class="row">
+    <div class="col-md-3">
+        @Html.ActionLink("View Past Competitions", "Index", "Competitions")
+    </div>
+</div>
+
+<div class="jumbotron">
+    @*<div class="top-logo-div">
+            <img src="~/images/CircleLogoWithBlackTextandYellowPawClearBackground.svg" alt="logo" class="top-logo-img"/>
+        </div>*@
+    <div class="text-center top-quote ymb-yellow-text-and-shadow magneto"><span class="magneto">Live to Drink Exceptional Beer</span></div>
+    <div class="row">
+        @*@Html.Partial("_ImageSlider")*@
+        @Html.Partial("_Videos")
+    </div>
+</div>
+
+
+

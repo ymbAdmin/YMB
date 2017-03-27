@@ -1,0 +1,121 @@
+﻿@*@model YMB.Models.HomeModel
+
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Beers";
+    var beerCount = Model.beerList.Count();
+}
+
+<h2 class="text-center ymb-yellow-text-and-shadow w3-lobster">YMB Beers (@beerCount)</h2>
+@foreach (var item in Model.beerList)
+{
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="beer-img-slider">
+                @foreach (var imageURL in item.beerImages)
+                {
+                    <div class="div-in-slider">
+                        <img src='~/@imageURL' class="beer-img img-thumbnail" />
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerName)</b></span><br /><span style="padding-left: 15px; font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerName)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerStyle)</b></span><br /> <span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">@Html.DisplayFor(modelItem => item.beerStyle)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerABV)</b></span><br /> <span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">@Html.DisplayFor(modelItem => item.beerABV)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerCalories)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerCalories)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerIBU)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerIBU)</span></div>
+            <div><span style="font-size: smaller;"><b>@Html.DisplayNameFor(model => item.beerDesc)</b></span><br /><span style="padding-left: 15px;font-size: smaller; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;"> @Html.DisplayFor(modelItem => item.beerDesc)</span></div>
+        </div>
+    </div>
+    //don't put line after last beer because footer has one already, looks wierd
+    if (beerCount != 1)
+    {
+        <hr />
+    }
+    beerCount--;
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.beer-img-slider').slick({
+            adaptiveHeight: false,
+            dots: true,
+            fade: true,
+            draggable: true,
+            prevArrow: true
+        });
+    });
+
+
+</script>*@
+
+<h2 class="text-center ymb-yellow-text-and-shadow w3-lobster">YMB Beers</h2>
+<p>
+    Yellow Mutt Brewery will provide unique, flavorful beers made from fresh ingredients that will gratify a vast spectrum of beer lovers.
+    The beers will embody the creativness of the YMB's brewers and craft beer industry, alike. A key focus of YMB will be local, in season ingredients, to empower the "craft" in 
+    Yellow Mutt Brewery. 
+</p>
+<p>
+    As the New England seasons change, so do the landscapes. Sunlight deminishes until spring brings us out of winter's depths.
+    People's moods change and what they desire to drink. YMB will have 2 to 4 seasonal beers that truly embody the drastic changes in seasons we experience here.
+    From refreshing, tart ale's backboned by in season fruit to strong, warming imperial stouts sure to warm the bones on the coldest winter days.
+</p>
+    The beers at Yellow Mutt Brewery will change with the season in addition to the constant offerings that can be found year round. 
+    Typically, there will be two seasonal beers on tap at any given time but some seasons may have more offerings.
+    Alongside seasonal offerings will be about 4 to 6 year round offerings. 
+    A Pilot beer will also be featured on tap which will typically change on a monthly basis and will beproduced in smaller quantities then 5 BBL; sold until gone.
+
+<h6 class="ymb-yellow-text bold-me">Year Round Offerings</h6>
+<p>
+    <ol>
+        <li>Yellow Mutt Pale Ale
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+        <li>Landlord Stout
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+        <li>Hop Hop Hooray
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+        <li>What Sarah Sais
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+        <li>
+            Berliner Weisse
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+        <li>
+            Red Ale
+            <ul>
+                <li class="italics smaller-font">Description coming!</li>
+            </ul>
+        </li>
+    </ol>
+</p>
+<h6 class="ymb-yellow-text bold-me">Seasonal Offerings</h6>
+<p>
+    [list beer and descriptions]
+</p>
+<h6 class="ymb-yellow-text bold-me">Pilot Beer Program</h6>
+<p>
+    [pilot program]
+</p>
+<h6 class="ymb-yellow-text bold-me">Oak Program</h6>
+<p>
+    [oak program]
+</p>

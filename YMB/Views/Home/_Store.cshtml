@@ -1,17 +1,9 @@
-﻿
-@{
-    ViewBag.Title = "Store";
-    Layout = "~/Views/Shared/_StoreLayout.cshtml";
-}
-
-<h2 class="text-center ymb-yellow-text-and-shadow w3-lobster">YMB Store</h2>
+﻿<h2 class="text-center ymb-yellow-text-and-shadow w3-lobster">YMB Store</h2>
 
 <div class="center-text"><i>*Note: $5 shipping on each article of clothing. Stickers ship free. Located close to the YMB store? <a href="~/Home/Contact">Contact</a> me for local pickup.</i></div>
-<div class="row">
-
-    <div class="col-md-3">
-        <img src="~/images/storeImages/menjacket.png" alt="men's under armor jacket'" />
-
+<div class="row ">
+    <div class="col-md-3 clothing-img-container-lg">
+        <img src="~/images/storeImages/menjacket.png" alt="men's under armor jacket'" class="clothing-img-md clothing-img" />
     </div>
     <div class="col-md-6">
         <h4 class="clothing-title">YMB Jacket</h4>
@@ -46,9 +38,9 @@
         </ul>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <img src="~/images/storeImages/menquarterzip.png" alt="men's under armor jacket'" />
+<div class="row ">
+    <div class="col-md-3 clothing-img-container-lg">
+        <img src="~/images/storeImages/menquarterzip.png" alt="men's under armor jacket'" class="clothing-img-md clothing-img" />
     </div>
     <div class="col-md-6">
         <h4 class="clothing-title">YMB 1/4 Zip - Mens</h4>
@@ -84,8 +76,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
-        <img src="~/images/storeImages/womenquarterzip.png" alt="men's under armor jacket'" />
+    <div class="col-md-3 clothing-img-container-lg">
+        <img src="~/images/storeImages/womenquarterzip.png" alt="men's under armor jacket'" class="clothing-img-sm clothing-img"/>
     </div>
     <div class="col-md-6">
         <h4>YMB 1/4 Zip - Womans</h4>
@@ -118,13 +110,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-2">
-        <img src="~/images/storeImages/LongSleevefront.png" alt="Mens long sleeve front" class="clothing-img" />
+    <div class="col-sm-2 clothing-img-container-md">
+        <img src="~/images/storeImages/LongSleevefront.png" alt="Mens long sleeve front" class="clothing-img-md clothing-img" />
     </div>
-    <div class="col-sm-2">
-        <img src="~/images/storeImages/LongSleeveBack.png" alt="Mens long sleeve back" class="clothing-img" />
+    <div class="col-sm-2 clothing-img-container-md">
+        <img src="~/images/storeImages/LongSleeveBack.png" alt="Mens long sleeve back" class="clothing-img-md clothing-img" />
     </div>
-    
+
     <div class="col-md-offset-1 col-md-6">
         <h4>YMB Long Sleeve</h4>
         <span class="ymb-yellow-text" style="font-size: xx-large;">$25.<u style="font-size: x-small; vertical-align: super;">00*</u></span>
@@ -137,7 +129,7 @@
                     <td>
                         <select name="os0">
                             <option value="Small">Small </option>
-                            <option value="Large">Large </option>
+                            @*<option value="Large">Large </option>*@
                             <option value="X-Large">X-Large </option>
                             <option value="XX-Large">XX-Large </option>
                         </select>
@@ -159,8 +151,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
-        <img src="~/images/storeImages/ovalSticker.png" alt="Oval YMB sticker" />
+    <div class="col-md-4 clothing-img-container-md">
+        <img src="~/images/storeImages/ovalSticker.png" alt="Oval YMB Bumper sticker" class="clothing-img-lg clothing-img clothing-img2" />
     </div>
     <div class="col-md-6">
         <h4>YMB Bumper Sticker</h4>
@@ -179,10 +171,9 @@
         </ul>
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-3">
-        <img src="~/images/storeImages/pawPrintSticker.png" alt="Oval YMB sticker"  class="clothing-img" />
+    <div class="col-md-3 clothing-img-container-md">
+        <img src="~/images/storeImages/pawPrintSticker.png" alt="Paw YMB sticker" class="clothing-img-md clothing-img" />
     </div>
     <div class="col-md-6">
         <h4>YMB Paw Sticker</h4>
@@ -202,10 +193,9 @@
         </ul>
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-3">
-        <img src="~/images/storeImages/ovalStickerSmall.png" alt="Oval YMB sticker" class="clothing-img" />
+    <div class="col-md-3 clothing-img-container-sm">
+        <img src="~/images/storeImages/ovalStickerSmall.png" alt="Small Oval YMB sticker" class="clothing-img-md clothing-img" />
     </div>
     <div class="col-md-6">
         <h4>YMB Oval Sticker</h4>

@@ -11,7 +11,7 @@ namespace YMB.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             return View();
         }
@@ -28,9 +28,11 @@ namespace YMB.Controllers
             return View();
         }
 
-        public ActionResult NewHome()
+        public ActionResult Index()
         {
-            return View();
+            HomeModel hm = new HomeModel();
+            hm.beerList = BeersFactory.GetBeerList();
+            return View(hm);
         }
     }
 }
