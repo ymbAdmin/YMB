@@ -16,6 +16,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# visual studio folders 
+.vs/
+
 # Roslyn cache directories
 *.ide/
 
