@@ -1,9 +1,11 @@
 namespace YMB.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using YMB.Models;
+    using YMB.Models.GreenChamberApp;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -15,14 +17,16 @@ namespace YMB.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //  This method will be called after migrating to the lhttp://localhost/YMB/Service References/atest version.
 
-            if (false)
+            if (true)
             {
                 //SeedTeamData(context);
-                SeedGameData(context);
+                //SeedGameData(context);
                 //SeedUserPickData(context, 3);
                 //ResetFootballTables(context);
+                //ResetCompanyTables(context);
+                SeedCompanyData(context);
             }
         }
 
@@ -32,6 +36,13 @@ namespace YMB.Migrations
             context.Database.ExecuteSqlCommand("TRUNCATE TABLE FootballPoolUserWeeklyScores");
             context.Database.ExecuteSqlCommand("UPDATE FootballGames set homeTeamScore = NULL, awayTeamScore = NULL, winningTeamId = 0, lossingTeamId = 0");
             context.Database.ExecuteSqlCommand("UPDATE FootballPoolUsers set userScore = 0.00, win = 0, loss = 0");
+        }
+
+        private void ResetCompanyTables(ApplicationDbContext context)
+        {
+            context.Database.ExecuteSqlCommand("DROP TABLE CompanyServices");
+            context.Database.ExecuteSqlCommand("DROP TABLE CompanyServices WHERE 1=1");
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE Companies");
         }
         private void SeedUserPickData(ApplicationDbContext context, int simpleUserId)
         {
@@ -144,6 +155,31 @@ namespace YMB.Migrations
             context.FootballTeam.Add(new FootballTeam() { teamId = 30, teamName = "San Francisco 49ers", win = 0, loss = 0, tie = 0, division = "NCW", conference = "NCF", winPercentage = .000m, pointsFor = 0, pointsAgainst = 0 });
             context.FootballTeam.Add(new FootballTeam() { teamId = 31, teamName = "Seattle Seahawks", win = 0, loss = 0, tie = 0, division = "NCW", conference = "NCF", winPercentage = .000m, pointsFor = 0, pointsAgainst = 0 });
             context.FootballTeam.Add(new FootballTeam() { teamId = 32, teamName = "Los Angeles Rams", win = 0, loss = 0, tie = 0, division = "NCW", conference = "NCF", winPercentage = .000m, pointsFor = 0, pointsAgainst = 0 });
+        }
+
+        private void SeedCompanyData(ApplicationDbContext context)
+        {
+            context.Companies.Add(new Company() { Id = 1, Name = "Joe's Donuts", StreetNumber = 1036, StreetName = "Hubbard St", City= "Jacksonville", State = "FL",  Industry = "", PhoneNumber = 0, ZipCode = 32206, Latitude = (decimal)30.335868, Longitude = (decimal)-81.653435, Services = GenerateCompanyServices(1, "Joe's Donuts") });
+            context.Companies.Add(new Company() { Id = 2, Name = "Mike's Cleaners", StreetNumber = 900, StreetName = "Acorn St", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32209, Latitude = (decimal)30.337646, Longitude = (decimal)-81.686222, Services = GenerateCompanyServices(2, "Mike's Cleaners") });
+            context.Companies.Add(new Company() { Id = 3, Name = "Mobile", StreetNumber = 2302, StreetName = "McCoy Creek Blvd", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32204, Latitude = (decimal)30.327868, Longitude = (decimal)-81.688454, Services = GenerateCompanyServices(3, "Mobile") });
+            context.Companies.Add(new Company() { Id = 4, Name = "Speedy Garbage Disposal", StreetNumber = 1705, StreetName = "Jones St", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32206, Latitude = (decimal)30.343869, Longitude = (decimal)-81.633694, Services = GenerateCompanyServices(4, "Speedy Garbage Disposal") });
+            context.Companies.Add(new Company() { Id = 5, Name = "Elegant Nails", StreetNumber = 1526, StreetName = "Morgana Rd", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32211, Latitude = (decimal)30.33972, Longitude = (decimal)-81.584427, Services = GenerateCompanyServices(5, "Elegant Nails") });
+            context.Companies.Add(new Company() { Id = 6, Name = "Prima Vera", StreetNumber = 603, StreetName = "W 46th St", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32208, Latitude = (decimal)30.37527, Longitude = (decimal)-81.660473, Services = GenerateCompanyServices(6, "Prima Vera") });
+            context.Companies.Add(new Company() { Id = 7, Name = "Forge Associates", StreetNumber = 1503, StreetName = "W 29th St", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32209, Latitude = (decimal)30.362552, Longitude = (decimal)-81.680579, Services = GenerateCompanyServices(7, "Forge Associates") });
+            context.Companies.Add(new Company() { Id = 8, Name = "Yellow Mutt Brewery", StreetNumber = 3573, StreetName = "Hermitage Rd E", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32277, Latitude = (decimal)30.364033, Longitude = (decimal)-81.582217, Services = GenerateCompanyServices(8, "Yellow Mutt Brewery") });
+            context.Companies.Add(new Company() { Id = 9, Name = "Put Put Golf", StreetNumber = 2165, StreetName = "W 33rd St", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32209, Latitude = (decimal)30.365218, Longitude = (decimal)-81.696372, Services = GenerateCompanyServices(9, "Put Put Golf") });
+            context.Companies.Add(new Company() { Id = 10, Name = "Lucky Cleaners", StreetNumber = 5385, StreetName = "Timber Line Dr", City = "Jacksonville", State = "FL", Industry = "", PhoneNumber = 0, ZipCode = 32277, Latitude = (decimal)30.383878, Longitude = (decimal)-81.611743, Services = GenerateCompanyServices(10, "Lucky Cleaners") });
+        }
+
+        private List<CompanyService> GenerateCompanyServices(int companyId, string companyName)
+        {
+            int servicesToCreate = 3;
+            List<CompanyService> list = new List<CompanyService>();
+            for (int j = 0; j < servicesToCreate; j++)
+            {
+                list.Add(new CompanyService() { Id = companyId, ServiceDescription = $"{companyName} service Description {j}", ServiceName = $"{companyName} service name {j}" });
+            }
+            return list;
         }
     }
 }

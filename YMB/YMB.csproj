@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -182,11 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201607251600559_Init.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Migrations\201607251600559_Init.Designer.cs">
-      <DependentUpon>201607251600559_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201812130016256_Company.cs" />
+    <Compile Include="Migrations\201812130016256_Company.Designer.cs">
+      <DependentUpon>201812130016256_Company.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs">
       <SubType>Code</SubType>
@@ -195,6 +194,10 @@
     <Compile Include="Models\BeerModels.cs" />
     <Compile Include="Models\FinancialAccountModels.cs" />
     <Compile Include="Models\FootballPoolModels.cs" />
+    <Compile Include="Models\GreenChamberApp\CompanyAddressModel.cs" />
+    <Compile Include="Models\GreenChamberApp\CompanyGPSLocationModel.cs" />
+    <Compile Include="Models\GreenChamberApp\CompanyModel.cs" />
+    <Compile Include="Models\GreenChamberApp\CompanyServiceModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AppEventModels.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Models\RequestModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\CustomAttributes.cs" />
     <Compile Include="Utility\CustomDateFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -506,12 +510,12 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607251600559_Init.resx">
-      <DependentUpon>201607251600559_Init.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <EmbeddedResource Include="Migrations\201812130016256_Company.resx">
+      <DependentUpon>201812130016256_Company.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

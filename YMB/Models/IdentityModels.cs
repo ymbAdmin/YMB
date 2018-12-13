@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using YMB.Models.GreenChamberApp;
 
 namespace YMB.Models
 {
@@ -82,5 +83,7 @@ namespace YMB.Models
         public DbSet<AppEvent> AppEvent { get; set; }
 
         public DbSet<UserAlerts> UserAlerts { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyService> CompanyServices { get; set; }
     }
 }
