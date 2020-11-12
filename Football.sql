@@ -14,4 +14,4 @@ insert into dbo.FootballPoolUsers (simpleUserId,userName,userScore,win,loss,user
 
 
 update dbo.footballpoolusers set signedUpDate = getdate()
-update dbo.users set isplayingfootballpool = 0  where simpleuserid = 3;
+update dbo.users set isplayingfootballpool = 0  where simpleuserid = 3; --blahhhhh
